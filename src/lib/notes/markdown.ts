@@ -33,6 +33,7 @@ export function chapterMarkdown(ch: ChapterLabel, notes: Note[]): string {
 			switch (kind) {
 				case 'term':
 					out.push(`- **${n.text.trim()}** — ${(n.body ?? '').trim()}${src}`);
+					if (n.book && n.origin !== 'book') out.push(`  _Book: ${n.book.trim()}_`);
 					break;
 				case 'line':
 					out.push(`- > ${n.text.trim()}${src}`);
@@ -88,4 +89,58 @@ export function download(
 	a.click();
 	a.remove();
 	setTimeout(() => URL.revokeObjectURL(url), 500);
+}
+
+export interface StudyEntry {
+	id: string;
+	explanation: string;
+	lines: { name: string; dr?: number; cr?: number }[];
+}
+
+/**
+ * Study-sheet Markdown: one page per chapter. Terms as a two-column table, the
+ * chapter's key entries as journal blocks, then your pinned states and lines.
+ */
+export function studySheetMarkdown(ch: ChapterLabel, notes: Note[], entries: StudyEntry[]): string {
+	const mine = notes.filter((n) => n.chapter === ch.number);
+	const out: string[] = [`# Chapter ${ch.number} — ${ch.title}`, ''];
+	const terms = mine.filter((n) => n.kind === 'term');
+	if (terms.length) {
+		out.push('## Terms', '', '| Term | In my words | The book |', '|---|---|---|');
+		for (const t of terms) {
+			const mineWords = t.origin === 'book' ? '' : (t.body ?? '');
+			const book = t.book ?? (t.origin === 'book' ? t.body : '') ?? '';
+			out.push(`| ${t.text.trim()} | ${mineWords.trim()} | ${book.trim()} |`);
+		}
+		out.push('');
+	}
+	if (entries.length) {
+		out.push('## Entries', '');
+		for (const e of entries) {
+			out.push(`(${e.id}) ${e.explanation}`, '', '```');
+			const w = Math.max(...e.lines.map((l) => l.name.length)) + 8;
+			for (const l of e.lines) {
+				const name = l.dr ? l.name : '    ' + l.name;
+				out.push(
+					name.padEnd(w) +
+						(l.dr ? String(l.dr).padStart(8) : ''.padStart(8)) +
+						(l.cr ? String(l.cr).padStart(10) : '')
+				);
+			}
+			out.push('```', '');
+		}
+	}
+	const states = mine.filter((n) => n.kind === 'state');
+	if (states.length) {
+		out.push('## Instrument states', '');
+		for (const s of states) out.push(`- ${s.text.trim()}`);
+		out.push('');
+	}
+	const lines = mine.filter((n) => n.kind === 'line' || n.kind === 'own');
+	if (lines.length) {
+		out.push('## Lines and my own words', '');
+		for (const l of lines) out.push(`- ${l.text.trim()}${l.body ? ' — ' + l.body.trim() : ''}`);
+		out.push('');
+	}
+	return out.join('\n');
 }

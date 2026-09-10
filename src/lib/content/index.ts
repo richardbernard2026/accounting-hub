@@ -95,21 +95,21 @@ export const chapterIndex: ChapterMeta[] = [
 	},
 	{
 		number: 12,
-		slug: 'investments',
-		title: 'Investments',
-		part: 'financial',
-		status: 'planned',
-		summary: 'Debt and equity securities, and where their gains land.',
-		instrument: 'Classification flow'
-	},
-	{
-		number: 13,
 		slug: 'cash-flows',
 		title: 'Reporting Cash Flows',
 		part: 'financial',
 		status: 'planned',
 		summary: 'From net income to cash, one adjustment at a time.',
 		instrument: 'Indirect-method waterfall'
+	},
+	{
+		number: 13,
+		slug: 'analysis',
+		title: 'Analysis of Financial Statements',
+		part: 'financial',
+		status: 'planned',
+		summary: 'Horizontal, vertical, and ratio analysis on one set of statements.',
+		instrument: 'Ratio dashboard'
 	}
 ];
 

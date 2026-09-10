@@ -19,7 +19,9 @@ export interface Note {
 	/** For terms: the meaning. For lines/states: your added words. */
 	body?: string;
 	/** Where it came from: learning objective code and a label (e.g. "Adjustment timeline"). */
-	source?: { lo?: string; label?: string };
+	source?: { lo?: string; label?: string; stop?: string };
+	/** For term notes captured in place: the book's definition, kept beside yours. */
+	book?: string;
 	/** For state notes: the parameters and results, for export. */
 	data?: Record<string, string | number>;
 	/** For term notes: whether the meaning was written by you or accepted from the book. */

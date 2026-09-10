@@ -1,5 +1,14 @@
 import { post, statements, trialBalance } from '$lib/ledger';
-import type { Anchor, ChapterContent, Objective, QuickCheck, Term } from '../types';
+import type {
+	Anchor,
+	ChapterContent,
+	Classification,
+	EntryCardSpec,
+	Objective,
+	QuickCheck,
+	Rule,
+	Term
+} from '../types';
 import {
 	accounts,
 	adjustments,
@@ -12,29 +21,49 @@ export const objectives: Objective[] = [
 	{
 		code: 'C1',
 		kind: 'conceptual',
+		short: 'Periodic reporting',
 		text: 'Explain the importance of periodic reporting and the role of accrual accounting.'
 	},
-	{ code: 'C2', kind: 'conceptual', text: 'Identify the types of adjustments and their purpose.' },
+	{
+		code: 'C2',
+		kind: 'conceptual',
+		short: 'Types of adjustments',
+		text: 'Identify the types of adjustments and their purpose.'
+	},
 	{
 		code: 'A1',
 		kind: 'analytical',
+		short: 'Links to statements',
 		text: 'Explain how accounting adjustments link to financial statements.'
 	},
 	{
 		code: 'A2',
 		kind: 'analytical',
+		short: 'Profit margin',
 		text: 'Compute profit margin and describe its use in analyzing company performance.'
 	},
-	{ code: 'P1', kind: 'procedural', text: 'Prepare and explain adjusting entries.' },
-	{ code: 'P2', kind: 'procedural', text: 'Explain and prepare an adjusted trial balance.' },
+	{
+		code: 'P1',
+		kind: 'procedural',
+		short: 'Adjusting entries',
+		text: 'Prepare and explain adjusting entries.'
+	},
+	{
+		code: 'P2',
+		kind: 'procedural',
+		short: 'Adjusted trial balance',
+		text: 'Explain and prepare an adjusted trial balance.'
+	},
 	{
 		code: 'P3',
 		kind: 'procedural',
+		short: 'Financial statements',
 		text: 'Prepare financial statements from an adjusted trial balance.'
 	},
 	{
 		code: 'P4',
 		kind: 'procedural',
+		short: 'Appendix 3A',
 		text: 'Appendix 3A: Explain the alternatives in accounting for prepaids.'
 	}
 ];
@@ -455,6 +484,166 @@ export const lanes: Lane[] = [
 	}
 ];
 
+/* ---------- Recall content: classifications, entry cards, rules ---------- */
+
+export const ADJUSTMENT_KINDS: { id: LaneKind; label: string; sub: string }[] = [
+	{ id: 'prepaid', label: 'Prepaid expense', sub: 'Deferral · paid, not yet used' },
+	{ id: 'unearned', label: 'Unearned revenue', sub: 'Deferral · received, not yet earned' },
+	{ id: 'accrued-expense', label: 'Accrued expense', sub: 'Accrual · incurred, not yet paid' },
+	{ id: 'accrued-revenue', label: 'Accrued revenue', sub: 'Accrual · earned, not yet received' }
+];
+const kindOptions = ADJUSTMENT_KINDS.map((k) => ({ id: k.id, label: k.label }));
+
+export const classifications: Classification[] = [
+	{
+		lo: 'C2',
+		text: 'A year of office rent was paid in October and three months have passed.',
+		answer: 'prepaid',
+		why: 'Cash went out first; the benefit is used month by month.',
+		options: kindOptions
+	},
+	{
+		lo: 'C2',
+		text: 'Employees worked Dec 29–31. Payday is January 9.',
+		answer: 'accrued-expense',
+		why: 'The cost is incurred now, the cash leaves later.',
+		options: kindOptions
+	},
+	{
+		lo: 'C2',
+		text: 'A client paid $3,000 for 60 days of consulting to be delivered starting tomorrow.',
+		answer: 'unearned',
+		why: 'Cash came in before the work: a liability until earned.',
+		options: kindOptions
+	},
+	{
+		lo: 'C2',
+		text: 'Twenty days of a 30-day contract are done; the bill goes out when the job ends.',
+		answer: 'accrued-revenue',
+		why: 'Earned already, cash later. Record revenue and a receivable.',
+		options: kindOptions
+	},
+	{
+		lo: 'C2',
+		text: 'Equipment bought on December 3 has now been used for a month.',
+		answer: 'prepaid',
+		why: 'Depreciation is a prepaid expense in slow motion: cost first, use over time.',
+		options: kindOptions
+	},
+	{
+		lo: 'C2',
+		text: 'Interest on a bank loan has accumulated but is not due until March.',
+		answer: 'accrued-expense',
+		why: 'Interest expense is incurred with time even though no cash has moved.',
+		options: kindOptions
+	},
+	{
+		lo: 'C2',
+		text: 'A magazine collected subscriptions in advance for next year’s issues.',
+		answer: 'unearned',
+		why: 'Cash first, delivery later: a liability until each issue ships.',
+		options: kindOptions
+	},
+	{
+		lo: 'C2',
+		text: 'Interest has been earned on a note receivable but will be collected at maturity.',
+		answer: 'accrued-revenue',
+		why: 'Earned with time, not yet received: revenue and a receivable.',
+		options: kindOptions
+	}
+];
+
+const laneHint: Record<LaneKind, string> = {
+	prepaid:
+		'The debit is the expense (or depreciation expense); the credit takes value out of the asset or into its contra account.',
+	unearned: 'The liability goes down, revenue goes up. No Cash.',
+	'accrued-expense': 'Expense up, payable up. Cash has not moved yet.',
+	'accrued-revenue': 'Receivable up, revenue up. Cash comes later.'
+};
+export const entryCards: EntryCardSpec[] = lanes.map((lane) => ({
+	lo: 'P1',
+	prompt: lane.facts,
+	entry: adjustments.find((e) => e.id === lane.id)!,
+	hint: laneHint[lane.kind]
+}));
+
+const side = [
+	{ id: 'dr', label: 'Debit' },
+	{ id: 'cr', label: 'Credit' }
+];
+/** The retrieval deck tests the rule, never the acronym. */
+export const rules: Rule[] = [
+	{
+		lo: 'P1',
+		prompt: 'Which side increases Dividends?',
+		options: side,
+		answer: 'dr',
+		why: 'Dividends pull equity down, so they grow on the debit side. Debits increase expenses, assets, and dividends.'
+	},
+	{
+		lo: 'P1',
+		prompt: 'Which side increases Salaries Expense?',
+		options: side,
+		answer: 'dr',
+		why: 'Expenses pull equity down: debit. Debits increase expenses, assets, and dividends.'
+	},
+	{
+		lo: 'P1',
+		prompt: 'Which side increases Accounts Receivable?',
+		options: side,
+		answer: 'dr',
+		why: 'Assets are the mirror image of the equity side: they grow with debits.'
+	},
+	{
+		lo: 'P1',
+		prompt: 'Which side increases Salaries Payable?',
+		options: side,
+		answer: 'cr',
+		why: 'Liabilities grow with credits. Credits increase liabilities, equity, and revenue.'
+	},
+	{
+		lo: 'P1',
+		prompt: 'Which side increases Common Stock?',
+		options: side,
+		answer: 'cr',
+		why: 'Anything that pushes equity up is a credit.'
+	},
+	{
+		lo: 'P1',
+		prompt: 'Which side increases Consulting Revenue?',
+		options: side,
+		answer: 'cr',
+		why: 'Revenue pushes equity up: credit. Credits increase liabilities, equity, and revenue.'
+	},
+	{
+		lo: 'P1',
+		prompt: 'Which side increases Accumulated Depreciation—Equipment?',
+		options: side,
+		answer: 'cr',
+		why: 'A contra asset carries a credit balance; it grows with credits and is subtracted from the asset.'
+	},
+	{
+		lo: 'C2',
+		prompt: 'Cash was received before the revenue was earned. Deferral or accrual?',
+		options: [
+			{ id: 'deferral', label: 'Deferral' },
+			{ id: 'accrual', label: 'Accrual' }
+		],
+		answer: 'deferral',
+		why: 'Deferral = cash first, recognition later.'
+	},
+	{
+		lo: 'C2',
+		prompt: 'The expense was incurred; cash will be paid next period. Deferral or accrual?',
+		options: [
+			{ id: 'deferral', label: 'Deferral' },
+			{ id: 'accrual', label: 'Accrual' }
+		],
+		answer: 'accrual',
+		why: 'Accrual = recognition first, cash later.'
+	}
+];
+
 /* ---------- Derived ledgers and anchors ---------- */
 
 export const unadjusted = post(accounts, decemberTransactions);
@@ -484,6 +673,10 @@ export const chapter: ChapterContent = {
 	objectives,
 	terms,
 	quickChecks,
+	accounts,
+	classifications,
+	entryCards,
+	rules,
 	ledgers: [
 		{
 			label: 'FastForward, December transactions (unadjusted)',
@@ -600,6 +793,16 @@ export const chapter: ChapterContent = {
 			seen.add(k);
 			if (!objectives.some((o) => o.code === t.lo))
 				throw new Error(`Term ${t.term} cites unknown objective ${t.lo}`);
+		}
+		for (const c of classifications) {
+			if (!c.options.some((o) => o.id === c.answer))
+				throw new Error(`Classification answer not in options: ${c.text}`);
+		}
+		for (const r of rules) {
+			if (!r.options.some((o) => o.id === r.answer))
+				throw new Error(`Rule answer not in options: ${r.prompt}`);
+			if (/what does the|stand for/i.test(r.prompt))
+				throw new Error(`Rule card tests the acronym, not the rule: ${r.prompt}`);
 		}
 		for (const q of quickChecks) {
 			if (q.answer < 0 || q.answer >= q.options.length)
