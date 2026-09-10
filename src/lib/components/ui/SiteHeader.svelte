@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { notes } from '$lib/notes/store.svelte';
 	import { page } from '$app/state';
-	let { chapter }: { chapter?: number } = $props();
+	let { chapter, notesButton = true }: { chapter?: number; notesButton?: boolean } = $props();
 	const count = $derived(chapter ? notes.forChapter(chapter).length : notes.notes.length);
 	let theme = $state<'system' | 'light' | 'dark'>('system');
 	$effect(() => {
@@ -44,16 +44,20 @@
 					? 'underline'
 					: ''}">All notes</a
 			>
-			<button
-				class="border-rule hover:bg-paper-2 ml-1 inline-flex items-center gap-1.5 border px-2.5 py-1 {notes.lastSavedId
-					? 'bg-mark/40'
-					: ''} transition-colors"
-				onclick={() => (notes.drawerOpen = !notes.drawerOpen)}
-				aria-label="Open notes"
-			>
-				<span>Notes</span>
-				<span class="num text-ink-2 text-xs">{count}</span>
-			</button>
+			{#if notesButton}
+				<button
+					id="notes-toggle"
+					class="border-rule hover:bg-paper-2 ml-1 inline-flex items-center gap-1.5 border px-2.5 py-1 {notes.lastSavedId
+						? 'bg-mark/40'
+						: ''} transition-colors"
+					onclick={() => (notes.drawerOpen = !notes.drawerOpen)}
+					aria-label="Open notes"
+					aria-expanded={notes.drawerOpen}
+				>
+					<span>Notes</span>
+					<span class="num text-ink-2 text-xs">{count}</span>
+				</button>
+			{/if}
 			<button
 				class="text-ink-3 hover:text-ink ml-1 px-2 py-1 text-xs"
 				onclick={cycle}

@@ -114,11 +114,10 @@
 			<blockquote class="border-ink mt-1 border-l-2 pl-2 text-sm leading-snug">{text}</blockquote>
 		</div>
 		<div class="px-3 pb-3">
-			<!-- svelte-ignore a11y_autofocus -->
 			<textarea
 				class="field mt-1 min-h-14 text-sm"
 				bind:value={own}
-				autofocus
+				aria-label="Your words about this line"
 				placeholder="Add why it matters (optional)"></textarea>
 			<div class="mt-2 flex items-center gap-2">
 				<button class="btn" onclick={saveLine}>Save note</button>

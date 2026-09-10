@@ -33,9 +33,19 @@
 	let amount = $state('');
 	let tries = $state(0);
 	let feedback = $state<string | null>(null);
+	// svelte-ignore state_referenced_locally
 	let solved = $state<boolean[]>(lanes.map(() => false));
 	let revealed = $state(false);
 	const allDone = $derived(solved.every(Boolean));
+	const takeaway = $derived(
+		`FastForward’s six adjustments at Dec 31: ${entries
+			.map((e) => {
+				const d = e.lines.find((l) => l.dr)!;
+				const c = e.lines.find((l) => l.cr)!;
+				return `(${e.id}) ${accountName(d.acct)} ${fmt(d.dr!)} / ${accountName(c.acct)} ${fmt(c.cr!)}`;
+			})
+			.join('; ')}. Trial balance totals move from ${fmt(lift.from)} to ${fmt(lift.to)}.`
+	);
 
 	function go(i: number) {
 		idx = i;
@@ -140,7 +150,7 @@
 					inputmode="decimal"
 					bind:value={amount}
 					placeholder="0"
-					onkeydown={(e) => e.key === 'Enter' && check()}
+					onkeydown={(e) => e.key === 'Enter' && dr && cr && amount && check()}
 				/></label
 			>
 		</div>
@@ -160,13 +170,5 @@
 		<button class="btn btn-quiet mt-3 text-xs" onclick={() => go(idx + 1)}>Next adjustment</button>
 	{/if}
 
-	<Takeaway
-		{chapter}
-		lo="P1"
-		label="Entry drill"
-		show={allDone}
-		text="FastForward’s six adjustments at Dec 31: (a) Insurance Expense 100 / Prepaid Insurance 100; (b) Supplies Expense 1,050 / Supplies 1,050; (c) Depreciation Expense 375 / Accumulated Depreciation 375; (d) Unearned Consulting Revenue 250 / Consulting Revenue 250; (e) Salaries Expense 210 / Salaries Payable 210; (f) Accounts Receivable 1,800 / Consulting Revenue 1,800. Trial balance totals move from {fmt(
-			lift.from
-		)} to {fmt(lift.to)}."
-	/>
+	<Takeaway {chapter} lo="P1" label="Entry drill" show={allDone} text={takeaway} />
 </div>

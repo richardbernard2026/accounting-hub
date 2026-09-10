@@ -3,9 +3,14 @@
 	import PinState from '../notes/PinState.svelte';
 	let { chapter, netIncome, netSales }: { chapter: number; netIncome: number; netSales: number } =
 		$props();
+	// svelte-ignore state_referenced_locally
 	let ni = $state(netIncome);
+	// svelte-ignore state_referenced_locally
 	let sales = $state(netSales);
-	const margin = $derived(sales > 0 ? ni / sales : 0);
+	const margin = $derived(sales > 0 ? Math.min(1, ni / sales) : 0);
+	$effect(() => {
+		if (ni > sales) ni = sales;
+	});
 	const dirty = $derived(ni !== netIncome || sales !== netSales);
 	const sentence = $derived(
 		`Profit margin = net income ${fmt(ni, { dollar: true })} ÷ net sales ${fmt(sales, { dollar: true })} = ${(margin * 100).toFixed(1)}%: ${(margin * 100).toFixed(1)} cents of every sales dollar became profit.`

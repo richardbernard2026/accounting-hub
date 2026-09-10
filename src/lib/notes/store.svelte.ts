@@ -29,6 +29,20 @@ export interface Note {
 }
 
 const KEY = 'accounting-hub:notes:v1';
+const KINDS: NoteKind[] = ['term', 'line', 'state', 'own'];
+
+/** Shape check for anything read from storage or a restored backup. */
+export function isNote(x: unknown): x is Note {
+	if (!x || typeof x !== 'object') return false;
+	const n = x as Record<string, unknown>;
+	return (
+		typeof n.id === 'string' &&
+		typeof n.chapter === 'number' &&
+		KINDS.includes(n.kind as NoteKind) &&
+		typeof n.text === 'string' &&
+		typeof n.createdAt === 'string'
+	);
+}
 
 function load(): Note[] {
 	if (!browser) return [];
@@ -36,7 +50,7 @@ function load(): Note[] {
 		const raw = localStorage.getItem(KEY);
 		if (!raw) return [];
 		const parsed = JSON.parse(raw);
-		return Array.isArray(parsed) ? parsed : [];
+		return Array.isArray(parsed) ? parsed.filter(isNote) : [];
 	} catch {
 		return [];
 	}

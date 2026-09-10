@@ -34,6 +34,9 @@
 						: ''}"
 					onmouseenter={() => onhover?.(r.num)}
 					onmouseleave={() => onhover?.(null)}
+					onfocus={() => onhover?.(r.num)}
+					onblur={() => onhover?.(null)}
+					tabindex={onhover ? 0 : undefined}
 				>
 					<td><span class="num text-ink-3 mr-2 text-xs">{r.num}</span>{r.name}</td>
 					<td class="amt num {r.dr ? 'dr' : ''}">{r.dr ? fmt(r.dr, { dollar: i === 0 }) : ''}</td>

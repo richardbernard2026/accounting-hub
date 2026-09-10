@@ -1,12 +1,9 @@
 <script lang="ts">
 	/** Wild Exhibit 3.2: the $2,400 policy under the cash basis and the accrual basis, by year. */
 	import { fmt } from '$lib/ledger';
-	const years = [
-		{ y: 2025, cash: 2400, accrual: 100 },
-		{ y: 2026, cash: 0, accrual: 1200 },
-		{ y: 2027, cash: 0, accrual: 1100 }
-	];
-	const max = 2400;
+	import { insuranceByYear } from '$lib/content/chapters/ch03';
+	const years = insuranceByYear.map((r) => ({ y: r.year, cash: r.cash, accrual: r.accrual }));
+	const max = Math.max(...years.map((r) => r.cash));
 </script>
 
 <figure class="border-rule bg-paper-2/40 border p-4">

@@ -92,7 +92,6 @@
 				(selected.rule === 'monthly' || selected.rule === 'count'))
 		)
 			return null;
-		if (amt <= 0) return null;
 		return {
 			...base,
 			date: iso(day),
@@ -137,6 +136,12 @@
 		day = Math.max(1, Math.min(31, Math.round(d)));
 		touched = true;
 	}
+	/** Screen-reader text, updated only when a scrub settles (not 30× during the sweep). */
+	let announce = $state('');
+	function settle() {
+		announce = `${label(day - 1)}: ${selected.title}. ${laneState.explain}`;
+	}
+	let sweepDone = $state(false);
 	function select(id: Lane['id']) {
 		selectedId = id;
 		touched = true;
@@ -144,7 +149,10 @@
 
 	// Sweep December on first paint so the chapter opens on something moving.
 	onMount(() => {
-		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			sweepDone = true;
+			return;
+		}
 		day = 1;
 		const t0 = performance.now();
 		const dur = 2600;
@@ -155,7 +163,10 @@
 			const eased = 1 - Math.pow(1 - p, 3);
 			day = Math.max(1, Math.min(31, Math.round(1 + eased * 30)));
 			if (p < 1) raf = requestAnimationFrame(tick);
-			else day = 31;
+			else {
+				day = 31;
+				sweepDone = true;
+			}
 		};
 		raf = requestAnimationFrame(tick);
 		return () => cancelAnimationFrame(raf);
@@ -180,6 +191,7 @@
 	}
 	function up() {
 		dragging = false;
+		settle();
 	}
 	const months = [
 		{ off: 0, name: 'December 2025' },
@@ -188,7 +200,7 @@
 	];
 </script>
 
-<div class="instrument border-rule bg-paper-2/40 border">
+<div class="instrument border-rule bg-paper-2/40 border" data-sweep-done={sweepDone}>
 	<div class="grid lg:grid-cols-[minmax(0,3fr)_minmax(320px,2fr)]">
 		<!-- ===== Timeline ===== -->
 		<div class="min-w-0 p-4 sm:p-5">
@@ -248,56 +260,56 @@
 							onclick={() => select(lane.id)}
 							aria-pressed={selectedId === lane.id}
 						>
-							<div class="py-2 pr-2 pl-1 leading-tight">
-								<div class="text-xs sm:text-sm">
+							<span class="block py-2 pr-2 pl-1 leading-tight">
+								<span class="block text-xs sm:text-sm">
 									<span class="num text-ink-3 mr-1">({lane.id})</span>{lane.title}
-								</div>
-								<div class="text-ink-3 hidden text-[0.68rem] sm:block">{k.name}</div>
-							</div>
-							<div class="track relative h-9">
+								</span>
+								<span class="text-ink-3 hidden text-[0.68rem] sm:block">{k.name}</span>
+							</span>
+							<span class="border-rule-2 relative block h-9 border-l">
 								<!-- window -->
-								<div
+								<span
 									class="bg-paper-3 absolute top-3 h-3 {lane.window.openEnded ? 'open-ended' : ''}"
 									style="left:{pct(start)}%; width:{pct(Math.min(SPAN, endEx)) - pct(start)}%"
-								></div>
+								></span>
 								<!-- elapsed fill -->
 								{#if fillEnd > start}
-									<div
+									<span
 										class="absolute top-3 h-3 {k.color === 'dr'
 											? 'bg-debit'
 											: 'bg-credit'} transition-[width] duration-75"
 										style="left:{pct(start)}%; width:{pct(fillEnd) - pct(start)}%"
-									></div>
+									></span>
 								{/if}
 								<!-- cash events -->
 								{#each lane.cash as c (c.day + c.label)}
-									<div
+									<span
 										class="absolute top-0 flex flex-col items-center"
 										style="left:{pct(c.day + 0.5)}%; transform:translateX(-50%)"
 										title="{label(c.day)}: {c.label}"
 									>
 										<span class="border-ink bg-paper block h-2 w-2 rounded-full border"></span>
 										<span class="bg-ink block h-1.5 w-px"></span>
-									</div>
+									</span>
 								{/each}
 								{#if lane.rule === 'count'}
-									<div
+									<span
 										class="absolute top-0 flex flex-col items-center"
 										style="left:{pct(31)}%; transform:translateX(-50%)"
 										title="Dec 31: count supplies on hand"
 									>
 										<span class="border-ink bg-paper block h-2 w-2 border"></span>
 										<span class="bg-ink block h-1.5 w-px"></span>
-									</div>
+									</span>
 								{/if}
 								{#if lane.window.openEnded}
 									<span class="text-ink-3 absolute top-3.5 right-0 text-[0.6rem] leading-none"
-										>{lane.id === 'a' ? '24 mo.' : '48 mo.'}</span
+										>{Math.round((lane.window.end - lane.window.start) / 30.4)} mo.</span
 									>
 								{/if}
-							</div>
-							<div
-								class="num py-2 pr-1 text-right text-sm {s.recognized > 0
+							</span>
+							<span
+								class="num block py-2 pr-1 text-right text-sm {s.recognized > 0
 									? k.color === 'dr'
 										? 'dr'
 										: 'cr'
@@ -310,7 +322,7 @@
 										  (lane.rule === 'monthly' || lane.rule === 'count')
 										? '—'
 										: '0'}
-							</div>
+							</span>
 						</button>
 					{/each}
 
@@ -345,10 +357,6 @@
 					>
 						<div class="bg-rule absolute inset-x-0 top-3 h-px"></div>
 						<div class="bg-ink/5 absolute top-0 h-8" style="left:0; width:{pct(31)}%"></div>
-						<div
-							class="border-ink bg-paper shadow-lift absolute top-1.5 h-4 w-4 -translate-x-1/2 rounded-full border-2 transition-transform"
-							style="left:{pct(day)}%"
-						></div>
 						<label class="sr-only" for="period-end">Period end day in December</label>
 						<input
 							id="period-end"
@@ -356,10 +364,16 @@
 							min="1"
 							max="31"
 							value={day}
+							aria-valuetext={label(day - 1)}
 							oninput={(e) => setDay(Number((e.target as HTMLInputElement).value))}
-							class="absolute top-0 h-8 opacity-0"
+							onchange={settle}
+							class="peer pointer-events-none absolute top-0 h-8 opacity-0"
 							style="left:0; width:{pct(31)}%"
 						/>
+						<div
+							class="border-ink bg-paper shadow-lift peer-focus-visible:ring-debit absolute top-1.5 h-4 w-4 -translate-x-1/2 rounded-full border-2 transition-transform peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2"
+							style="left:{pct(day)}%"
+						></div>
 						<span
 							class="text-ink-3 absolute top-7 text-[0.65rem] whitespace-nowrap"
 							style="left:{pct(31)}%; transform:translateX(-100%)"
@@ -399,7 +413,8 @@
 				</li>
 				<li>
 					<div class="eyebrow"><span class="num">2</span> Analyze · {label(day - 1)}</div>
-					<p class="mt-1" aria-live="polite">{laneState.explain}</p>
+					<p class="mt-1">{laneState.explain}</p>
+					<p class="sr-only" aria-live="polite">{announce}</p>
 					<p class="text-ink-3 mt-1">{KIND[selected.kind].analyze}</p>
 				</li>
 				<li>
@@ -444,8 +459,5 @@
 <style>
 	.open-ended {
 		mask-image: linear-gradient(to right, black 70%, transparent);
-	}
-	.track {
-		border-left: 1px solid var(--rule-2);
 	}
 </style>

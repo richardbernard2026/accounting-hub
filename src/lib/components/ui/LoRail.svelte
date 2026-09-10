@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import type { Objective } from '$lib/content/types';
 	let { objectives }: { objectives: Objective[] } = $props();
+	// svelte-ignore state_referenced_locally
 	let active = $state<string>(objectives[0]?.code ?? '');
 	onMount(() => {
 		const els = objectives

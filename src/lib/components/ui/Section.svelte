@@ -13,11 +13,9 @@
 		title: string;
 		children: Snippet;
 	} = $props();
-	const kindLabel = {
-		conceptual: 'Conceptual',
-		analytical: 'Analytical',
-		procedural: 'Procedural'
-	}[kind];
+	const kindLabel = $derived(
+		{ conceptual: 'Conceptual', analytical: 'Analytical', procedural: 'Procedural' }[kind]
+	);
 </script>
 
 <section {id} class="border-rule scroll-mt-20 border-t pt-6 pb-10">

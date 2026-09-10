@@ -34,7 +34,7 @@ test.describe('@screens chapter 3', () => {
 		test(`ch3 ${w.name} initial`, async ({ page }) => {
 			await page.setViewportSize({ width: w.width, height: w.height });
 			await page.goto('/ch/3');
-			await page.waitForTimeout(3200); // let the December sweep finish
+			await page.locator('[data-sweep-done="true"]').waitFor();
 			await settle(page);
 			await expect(page.getByText('Period end:')).toContainText('Dec 31');
 			await page.screenshot({ path: `${OUT}/ch3-${w.name}.png`, fullPage: true });
@@ -45,14 +45,14 @@ test.describe('@screens chapter 3', () => {
 	test('ch3 desktop interactive states', async ({ page }) => {
 		await page.setViewportSize({ width: 1440, height: 900 });
 		await page.goto('/ch/3');
-		await page.waitForTimeout(3200);
+		await page.locator('[data-sweep-done="true"]').waitFor();
 		await settle(page);
 
 		// 1. Scrub to Dec 20 and select lane (f): 9 days × 90 = 810
 		await page.getByRole('button', { name: /\(f\)\s*Accrued consulting revenue/ }).click();
 		await page.locator('#period-end').fill('20');
 		await page.waitForTimeout(300);
-		await expect(page.getByText('9 of 30 days delivered')).toBeVisible();
+		await expect(page.locator('aside p', { hasText: '9 of 30 days delivered' }).first()).toBeVisible();
 		await expect(page.locator('aside').getByText('810').first()).toBeVisible();
 		await expect(page.getByRole('button', { name: /Pin this state/ })).toBeVisible();
 		await page.locator('.instrument').screenshot({ path: `${OUT}/ch3-timeline-dec20-lane-f.png` });
@@ -156,15 +156,15 @@ test.describe('@screens chapter 3', () => {
 		await page.emulateMedia({ colorScheme: 'dark' });
 		await page.setViewportSize({ width: 1440, height: 900 });
 		await page.goto('/ch/3');
-		await page.waitForTimeout(3200);
+		await page.locator('[data-sweep-done="true"]').waitFor();
 		await settle(page);
 		await page.screenshot({ path: `${OUT}/ch3-desktop-dark.png` });
 	});
 
-	test('notes page with exported markdown', async ({ page }) => {
+	test('notes page lists a pinned state', async ({ page }) => {
 		await page.setViewportSize({ width: 1440, height: 900 });
 		await page.goto('/ch/3');
-		await page.waitForTimeout(3200);
+		await page.locator('[data-sweep-done="true"]').waitFor();
 		await page.getByRole('button', { name: /\(d\)\s*Unearned consulting revenue/ }).click();
 		await page.locator('#period-end').fill('29');
 		await page.getByRole('button', { name: /Pin this state/ }).click();

@@ -68,6 +68,7 @@
 								class="field min-h-16 text-sm"
 								bind:value={own}
 								autofocus
+								aria-label="{t.term}, in your words"
 								placeholder="{t.term} means…"></textarea>
 							{#if revealed}
 								<p class="border-rule text-ink-2 mt-2 border-l-2 pl-2 text-sm">{t.definition}</p>

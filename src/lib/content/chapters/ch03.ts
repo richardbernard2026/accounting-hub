@@ -393,10 +393,11 @@ export const lanes: Lane[] = [
 		kind: 'accrued-expense',
 		title: 'Accrued salaries',
 		facts:
-			'The employee earns $70 a day, Monday–Friday, and is paid every two weeks on Friday. The last payday was Friday, Dec 26.',
+			'The employee earns $70 a day, Monday–Friday, and is paid every two weeks on Friday (Dec 12 and Dec 26). Dec 29, 30, and 31 are worked but unpaid at year end.',
 		bsAcct: '209',
 		isAcct: '622',
 		cash: [
+			{ day: DEC(12), amount: 700, label: 'Payday $700' },
 			{ day: DEC(26), amount: 700, label: 'Payday $700' },
 			{ day: JAN(9), amount: 700, label: 'Next payday $700' }
 		],
@@ -404,18 +405,25 @@ export const lanes: Lane[] = [
 		rule: 'workdays',
 		rate: 70,
 		stateAt: (day) => {
-			const workdays = [29, 30, 31].filter((d) => d <= day).length;
+			// Dec 1, 2025 is a Monday; paydays are Fridays Dec 12 and Dec 26.
+			const lastPayday = day >= 26 ? 26 : day >= 12 ? 12 : 0;
+			const isWeekday = (d: number) => (d - 1) % 7 < 5;
+			let workdays = 0;
+			for (let d = lastPayday + 1; d <= day; d++) if (isWeekday(d)) workdays++;
+			const paidThrough = lastPayday
+				? `Paid through Friday the ${lastPayday}th.`
+				: 'No payday yet this month.';
 			return {
 				recognized: 70 * workdays,
 				recorded: 0,
 				adjustment: day >= 31 ? 70 * workdays : null,
 				explain:
 					workdays === 0
-						? day < 26
-							? 'Salaries are up to date through the last payday.'
-							: 'Paid through Friday the 26th. The weekend is not worked, so nothing has accrued yet.'
-						: `${workdays} workday${workdays === 1 ? '' : 's'} since payday × $70 = $${70 * workdays} earned by the employee but not paid or recorded. That is an expense and a liability.`,
-				progress: workdays / 3
+						? day === 12 || day === 26
+							? `Payday. The $700 paid today covers ten workdays, so nothing is owed tonight.`
+							: `${paidThrough} The weekend is not worked, so nothing has accrued yet.`
+						: `${paidThrough} ${workdays} workday${workdays === 1 ? '' : 's'} since × $70 = $${70 * workdays} earned by the employee but not paid or recorded. That is an expense and a liability.`,
+				progress: Math.min(1, workdays / 3)
 			};
 		}
 	},
@@ -455,6 +463,12 @@ export const unadjustedTB = trialBalance(unadjusted);
 export const adjustedTB = trialBalance(adjusted);
 export const fs = statements(adjusted, company);
 export const profitMargin = fs.income.netIncome / fs.income.totalRevenues;
+/** Wild Exhibit 3.2: the $2,400 policy by year (1, 12, and 11 months of coverage). */
+export const insuranceByYear = [
+	{ year: 2025, cash: 2400, accrual: 100 * 1 },
+	{ year: 2026, cash: 0, accrual: 100 * 12 },
+	{ year: 2027, cash: 0, accrual: 100 * 11 }
+];
 
 export const chapter: ChapterContent = {
 	meta: {
@@ -525,6 +539,21 @@ export const chapter: ChapterContent = {
 				actual: adjusted.get('622')!.balance
 			}
 		];
+		a.push({
+			label: 'Exhibit 3.2 accrual-basis expense sums to the premium',
+			expected: 2400,
+			actual: insuranceByYear.reduce((s, y) => s + y.accrual, 0)
+		});
+		a.push({
+			label: 'Lane (e) on Dec 19 (5 workdays since Dec 12 payday)',
+			expected: 350,
+			actual: lanes.find((l) => l.id === 'e')!.stateAt(19).recognized
+		});
+		a.push({
+			label: 'Lane (e) on Dec 28 (weekend after payday)',
+			expected: 0,
+			actual: lanes.find((l) => l.id === 'e')!.stateAt(28).recognized
+		});
 		for (const lane of lanes) {
 			const entry = adjustments.find((e) => e.id === lane.id)!;
 			const amount = entry.lines.reduce((s, l) => s + (l.dr ?? 0), 0);
@@ -554,10 +583,12 @@ export const chapter: ChapterContent = {
 			const crAcct = entry.lines.find((l) => l.cr)!.acct;
 			if (![drAcct, crAcct].includes(lane.bsAcct) || ![drAcct, crAcct].includes(lane.isAcct))
 				throw new Error(`Lane (${lane.id}) accounts do not match entry (${lane.id})`);
+			// Recognized amounts only grow, except that an accrual resets on a cash (payday) day.
 			let prev = -1;
 			for (let d = 1; d <= 31; d++) {
 				const s = lane.stateAt(d);
-				if (s.recognized < prev)
+				const cashDay = lane.cash.some((c) => c.day === d - 1);
+				if (s.recognized < prev && !cashDay)
 					throw new Error(`Lane (${lane.id}) recognized amount decreases on Dec ${d}`);
 				prev = s.recognized;
 			}

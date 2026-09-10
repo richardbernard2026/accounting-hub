@@ -74,8 +74,12 @@ export function allMarkdown(
 	return out.join('\n');
 }
 
-export function download(filename: string, text: string): void {
-	const blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
+export function download(
+	filename: string,
+	text: string,
+	mime = 'text/markdown;charset=utf-8'
+): void {
+	const blob = new Blob([text], { type: mime });
 	const url = URL.createObjectURL(blob);
 	const a = document.createElement('a');
 	a.href = url;

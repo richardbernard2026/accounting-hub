@@ -26,7 +26,7 @@
 </script>
 
 <div class="grid gap-5 md:grid-cols-3">
-	<div class="statement">
+	<div class="bg-paper-2/60 border-rule-2 border px-3 pt-3 pb-2">
 		<div class="text-center leading-tight">
 			<div class="font-serif">{company}</div>
 			<div class="text-sm">Income Statement</div>
@@ -36,7 +36,13 @@
 			<tbody>
 				<tr><td colspan="2" class="font-medium">Revenues</td></tr>
 				{#each fs.income.revenues as r, i (r.num)}
-					<tr class={hl(r.num!)} onmouseenter={() => enter(r.num!)} onmouseleave={leave}
+					<tr
+						class="transition-colors duration-150 {hl(r.num!)}"
+						onmouseenter={() => enter(r.num!)}
+						onmouseleave={leave}
+						onfocus={() => enter(r.num!)}
+						onblur={leave}
+						tabindex={onhover ? 0 : undefined}
 						><td class="indent">{r.label}</td><td class="amt num"
 							>{fmt(r.amount, { dollar: i === 0 })}</td
 						></tr
@@ -49,7 +55,13 @@
 				>
 				<tr><td colspan="2" class="pt-2 font-medium">Expenses</td></tr>
 				{#each fs.income.expenses as e (e.num)}
-					<tr class={hl(e.num!)} onmouseenter={() => enter(e.num!)} onmouseleave={leave}
+					<tr
+						class="transition-colors duration-150 {hl(e.num!)}"
+						onmouseenter={() => enter(e.num!)}
+						onmouseleave={leave}
+						onfocus={() => enter(e.num!)}
+						onblur={leave}
+						tabindex={onhover ? 0 : undefined}
 						><td class="indent">{e.label}</td><td class="amt num">{fmt(e.amount)}</td></tr
 					>
 				{/each}
@@ -58,7 +70,13 @@
 						>{fmt(fs.income.totalExpenses)}</td
 					></tr
 				>
-				<tr class="total {hl('NI')}" onmouseenter={() => enter('NI')} onmouseleave={leave}
+				<tr
+					class="total {hl('NI')}"
+					onmouseenter={() => enter('NI')}
+					onmouseleave={leave}
+					onfocus={() => enter('NI')}
+					onblur={leave}
+					tabindex={onhover ? 0 : undefined}
 					><td>Net income</td><td class="amt num">{fmt(fs.income.netIncome, { dollar: true })}</td
 					></tr
 				>
@@ -66,7 +84,7 @@
 		</table>
 	</div>
 
-	<div class="statement">
+	<div class="bg-paper-2/60 border-rule-2 border px-3 pt-3 pb-2">
 		<div class="text-center leading-tight">
 			<div class="font-serif">{company}</div>
 			<div class="text-sm">Statement of Retained Earnings</div>
@@ -79,7 +97,13 @@
 						>{fmt(fs.retainedEarnings.beginning, { dollar: true })}</td
 					></tr
 				>
-				<tr class={hl('NI')} onmouseenter={() => enter('NI')} onmouseleave={leave}
+				<tr
+					class="transition-colors duration-150 {hl('NI')}"
+					onmouseenter={() => enter('NI')}
+					onmouseleave={leave}
+					onfocus={() => enter('NI')}
+					onblur={leave}
+					tabindex={onhover ? 0 : undefined}
 					><td>Add: Net income</td><td class="amt num">{fmt(fs.retainedEarnings.netIncome)}</td></tr
 				>
 				<tr class="subtotal"
@@ -87,10 +111,22 @@
 						>{fmt(fs.retainedEarnings.beginning + fs.retainedEarnings.netIncome)}</td
 					></tr
 				>
-				<tr class={hl('319')} onmouseenter={() => enter('319')} onmouseleave={leave}
+				<tr
+					class="transition-colors duration-150 {hl('319')}"
+					onmouseenter={() => enter('319')}
+					onmouseleave={leave}
+					onfocus={() => enter('319')}
+					onblur={leave}
+					tabindex={onhover ? 0 : undefined}
 					><td>Less: Dividends</td><td class="amt num">{fmt(fs.retainedEarnings.dividends)}</td></tr
 				>
-				<tr class="total {hl('RE')}" onmouseenter={() => enter('RE')} onmouseleave={leave}
+				<tr
+					class="total {hl('RE')}"
+					onmouseenter={() => enter('RE')}
+					onmouseleave={leave}
+					onfocus={() => enter('RE')}
+					onblur={leave}
+					tabindex={onhover ? 0 : undefined}
 					><td>Retained earnings, Dec. 31</td><td class="amt num"
 						>{fmt(fs.retainedEarnings.ending, { dollar: true })}</td
 					></tr
@@ -99,7 +135,7 @@
 		</table>
 	</div>
 
-	<div class="statement">
+	<div class="bg-paper-2/60 border-rule-2 border px-3 pt-3 pb-2">
 		<div class="text-center leading-tight">
 			<div class="font-serif">{company}</div>
 			<div class="text-sm">Balance Sheet</div>
@@ -109,7 +145,13 @@
 			<tbody>
 				<tr><td colspan="2" class="font-medium">Assets</td></tr>
 				{#each fs.balanceSheet.assets as a, i (a.num)}
-					<tr class={hl(a.num!)} onmouseenter={() => enter(a.num!)} onmouseleave={leave}
+					<tr
+						class="transition-colors duration-150 {hl(a.num!)}"
+						onmouseenter={() => enter(a.num!)}
+						onmouseleave={leave}
+						onfocus={() => enter(a.num!)}
+						onblur={leave}
+						tabindex={onhover ? 0 : undefined}
 						><td class={a.amount < 0 ? 'indent text-ink-2 pl-10' : 'indent'}>{a.label}</td><td
 							class="amt num">{fmt(a.amount, { dollar: i === 0 })}</td
 						></tr
@@ -122,7 +164,13 @@
 				>
 				<tr><td colspan="2" class="pt-2 font-medium">Liabilities</td></tr>
 				{#each fs.balanceSheet.liabilities as l, i (l.num)}
-					<tr class={hl(l.num!)} onmouseenter={() => enter(l.num!)} onmouseleave={leave}
+					<tr
+						class="transition-colors duration-150 {hl(l.num!)}"
+						onmouseenter={() => enter(l.num!)}
+						onmouseleave={leave}
+						onfocus={() => enter(l.num!)}
+						onblur={leave}
+						tabindex={onhover ? 0 : undefined}
 						><td class="indent">{l.label}</td><td class="amt num"
 							>{fmt(l.amount, { dollar: i === 0 })}</td
 						></tr
@@ -156,14 +204,3 @@
 		</table>
 	</div>
 </div>
-
-<style>
-	.statement {
-		background: color-mix(in oklab, var(--paper-2) 60%, transparent);
-		border: 1px solid var(--rule-2);
-		padding: 0.75rem 0.75rem 0.5rem;
-	}
-	.statement tr {
-		transition: background-color 150ms;
-	}
-</style>

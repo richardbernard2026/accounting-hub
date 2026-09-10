@@ -99,7 +99,7 @@ export function assertEntryBalanced(e: Entry): void {
 }
 
 export function post(accounts: Account[], entries: Entry[]): Map<string, Balance> {
-	const chart = chartOf(accounts);
+	chartOf(accounts); // throws on duplicate account numbers
 	const out = new Map<string, Balance>();
 	for (const a of accounts) out.set(a.num, { acct: a, dr: 0, cr: 0, balance: 0 });
 	for (const e of entries) {
@@ -115,7 +115,6 @@ export function post(accounts: Account[], entries: Entry[]): Map<string, Balance
 		const side = normalSide(b.acct.type);
 		b.balance = round(side === 'dr' ? b.dr - b.cr : b.cr - b.dr);
 	}
-	void chart;
 	return out;
 }
 
@@ -128,13 +127,11 @@ export function trialBalance(
 	let totalDr = 0;
 	let totalCr = 0;
 	for (const b of [...balances.values()].sort((x, y) => x.acct.num.localeCompare(y.acct.num))) {
-		const side = normalSide(b.acct.type);
 		const net = round(b.dr - b.cr); // positive → debit balance
 		if (net === 0 && !opts?.includeZero) continue;
 		const row: TrialBalanceRow = { num: b.acct.num, name: b.acct.name, dr: 0, cr: 0 };
 		if (net > 0) row.dr = net;
 		else row.cr = -net;
-		void side;
 		rows.push(row);
 		totalDr = round(totalDr + row.dr);
 		totalCr = round(totalCr + row.cr);
@@ -177,6 +174,7 @@ export interface StatementOptions {
 	retainedEarningsAcct: string; // e.g. '318'
 	dividendsAcct?: string; // e.g. '319'
 	/** For each contra-asset, which asset it offsets (so the balance sheet nets them). */
+	/* Note: `beginning` retained earnings is the account balance before closing entries; chapters that close the books post those entries explicitly. */
 	contraOf?: Record<string, string>;
 }
 

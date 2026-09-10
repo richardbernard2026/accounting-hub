@@ -1,7 +1,7 @@
 <script lang="ts">
 	import SiteHeader from '$lib/components/ui/SiteHeader.svelte';
 	import { chapterIndex } from '$lib/content';
-	import { notes, type Note } from '$lib/notes/store.svelte';
+	import { notes, isNote, type Note } from '$lib/notes/store.svelte';
 	import { allMarkdown, chapterMarkdown, download } from '$lib/notes/markdown';
 	const labels = chapterIndex.map((c) => ({ number: c.number, title: c.title }));
 	const byChapter = $derived(labels.filter((c) => notes.notes.some((n) => n.chapter === c.number)));
@@ -24,13 +24,7 @@
 		} catch {}
 	}
 	function exportJson() {
-		const blob = new Blob([JSON.stringify(notes.notes, null, 2)], { type: 'application/json' });
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = 'accounting-notes.json';
-		a.click();
-		setTimeout(() => URL.revokeObjectURL(url), 500);
+		download('accounting-notes.json', JSON.stringify(notes.notes, null, 2), 'application/json');
 	}
 	async function importJson(e: Event) {
 		const f = (e.target as HTMLInputElement).files?.[0];
@@ -39,7 +33,10 @@
 			const arr = JSON.parse(await f.text());
 			if (Array.isArray(arr)) {
 				const ids = new Set(notes.notes.map((n) => n.id));
-				notes.replaceAll([...notes.notes, ...arr.filter((n: Note) => n && n.id && !ids.has(n.id))]);
+				notes.replaceAll([
+					...notes.notes,
+					...arr.filter((n: unknown) => isNote(n) && !ids.has(n.id))
+				]);
 			}
 		} catch {}
 		(e.target as HTMLInputElement).value = '';
@@ -47,7 +44,7 @@
 </script>
 
 <svelte:head><title>All notes · Accounting Hub</title></svelte:head>
-<SiteHeader />
+<SiteHeader notesButton={false} />
 
 <main class="mx-auto max-w-[900px] px-4 pb-24 sm:px-6">
 	<div class="flex flex-wrap items-end justify-between gap-4 pt-8 pb-4">

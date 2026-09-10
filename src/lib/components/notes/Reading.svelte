@@ -1,8 +1,9 @@
 <script lang="ts">
 	/**
 	 * Wraps explanatory prose. Nothing is pre-marked: select any run of text and a
-	 * capture popover appears. If the selection is a key term, the popover offers to
-	 * save it as a term (your words first, the book's on request).
+	 * capture popover appears once the pointer is up. If the selection is a key
+	 * term, the popover offers to save it as a term (your words first, the book's
+	 * on request). The popover stays until you save, press Escape, or click outside.
 	 */
 	import { onMount, type Snippet } from 'svelte';
 	import type { Term } from '$lib/content/types';
@@ -23,6 +24,7 @@
 		rect: { top: number; left: number; bottom: number; width: number };
 		term?: Term;
 	} | null>(null);
+	let pointerDown = false;
 
 	function norm(s: string) {
 		return s
@@ -39,9 +41,9 @@
 		);
 	}
 
+	/** Read the current selection; only ever *sets* the popover. Clearing is explicit. */
 	function read() {
 		const s = window.getSelection();
-		const inPopover = popover && document.activeElement && popover.contains(document.activeElement);
 		if (
 			!s ||
 			s.isCollapsed ||
@@ -49,15 +51,10 @@
 			!root.contains(s.anchorNode) ||
 			!s.focusNode ||
 			!root.contains(s.focusNode)
-		) {
-			if (!inPopover) sel = null;
+		)
 			return;
-		}
 		const text = s.toString().replace(/\s+/g, ' ').trim();
-		if (text.length < 3 || text.length > 600) {
-			if (!inPopover) sel = null;
-			return;
-		}
+		if (text.length < 3 || text.length > 600) return;
 		const r = s.getRangeAt(0).getBoundingClientRect();
 		sel = {
 			text,
@@ -67,12 +64,30 @@
 	}
 
 	let timer: ReturnType<typeof setTimeout> | undefined;
-	function onSelectionChange() {
+	function schedule() {
 		clearTimeout(timer);
-		timer = setTimeout(read, 120);
+		timer = setTimeout(() => {
+			if (!pointerDown) read();
+		}, 120);
 	}
-	function onKey(e: KeyboardEvent) {
+	function onPointerDown(e: PointerEvent) {
+		pointerDown = true;
+		const t = e.target as Node | null;
+		if (sel && popover && t && !popover.contains(t)) sel = null; // outside: dismiss
+	}
+	function onPointerUp() {
+		pointerDown = false;
+		schedule();
+	}
+	function onKeyUp(e: KeyboardEvent) {
+		if (e.shiftKey || e.key === 'Shift') schedule(); // keyboard selection
+	}
+	function onKeyDown(e: KeyboardEvent) {
 		if (e.key === 'Escape') dismiss();
+	}
+	function onScroll() {
+		if (sel && !(popover && document.activeElement && popover.contains(document.activeElement)))
+			sel = null;
 	}
 	function dismiss() {
 		sel = null;
@@ -80,11 +95,19 @@
 	}
 
 	onMount(() => {
-		document.addEventListener('selectionchange', onSelectionChange);
-		document.addEventListener('keydown', onKey);
+		document.addEventListener('selectionchange', schedule);
+		document.addEventListener('pointerdown', onPointerDown, true);
+		document.addEventListener('pointerup', onPointerUp);
+		document.addEventListener('keyup', onKeyUp);
+		document.addEventListener('keydown', onKeyDown);
+		window.addEventListener('scroll', onScroll, { passive: true });
 		return () => {
-			document.removeEventListener('selectionchange', onSelectionChange);
-			document.removeEventListener('keydown', onKey);
+			document.removeEventListener('selectionchange', schedule);
+			document.removeEventListener('pointerdown', onPointerDown, true);
+			document.removeEventListener('pointerup', onPointerUp);
+			document.removeEventListener('keyup', onKeyUp);
+			document.removeEventListener('keydown', onKeyDown);
+			window.removeEventListener('scroll', onScroll);
 			clearTimeout(timer);
 		};
 	});
@@ -95,14 +118,16 @@
 </div>
 
 {#if sel}
-	<CapturePopover
-		bind:el={popover}
-		{chapter}
-		{lo}
-		{label}
-		text={sel.text}
-		term={sel.term}
-		rect={sel.rect}
-		onclose={dismiss}
-	/>
+	{#key sel.text}
+		<CapturePopover
+			bind:el={popover}
+			{chapter}
+			{lo}
+			{label}
+			text={sel.text}
+			term={sel.term}
+			rect={sel.rect}
+			onclose={dismiss}
+		/>
+	{/key}
 {/if}

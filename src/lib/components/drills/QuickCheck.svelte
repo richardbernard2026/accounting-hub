@@ -2,6 +2,7 @@
 	import type { QuickCheck } from '$lib/content/types';
 	import Takeaway from '../notes/Takeaway.svelte';
 	let { chapter, items }: { chapter: number; items: QuickCheck[] } = $props();
+	// svelte-ignore state_referenced_locally
 	let picked = $state<(number | null)[]>(items.map(() => null));
 	const answered = $derived(picked.filter((p) => p !== null).length);
 	const score = $derived(picked.filter((p, i) => p === items[i].answer).length);

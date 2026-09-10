@@ -16,6 +16,7 @@
 	import QuickCheck from '$lib/components/drills/QuickCheck.svelte';
 	import JournalEntry from '$lib/components/ledger/JournalEntry.svelte';
 	import {
+		adjusted,
 		chapter,
 		lanes,
 		objectives,
@@ -35,7 +36,9 @@
 	import { fmt } from '$lib/ledger';
 
 	const N = chapter.meta.number;
-	const obj = (code: string) => objectives.find((o) => o.code === code)!;
+	const bal = (m: Map<string, { balance: number }>, n: string) => fmt(m.get(n)!.balance);
+	const u = (n: string) => bal(unadjusted, n);
+	const j = (n: string) => bal(adjusted, n);
 	let linkKind = $state<'prepaid' | 'unearned' | 'accrued-expense' | 'accrued-revenue'>('prepaid');
 	const LINKS = {
 		prepaid: {
@@ -44,7 +47,7 @@
 			is: 'Expense understated',
 			entry: 'Dr. Expense · Cr. Asset (or contra asset)',
 			ni: 'Net income overstated',
-			ex: 'Skip (a): Prepaid Insurance stays at 2,400 instead of 2,300; Insurance Expense shows 0 instead of 100.'
+			ex: `Skip (a): Prepaid Insurance stays at ${u('128')} instead of ${j('128')}; Insurance Expense shows ${u('637')} instead of ${j('637')}.`
 		},
 		unearned: {
 			name: 'Unearned revenues',
@@ -52,7 +55,7 @@
 			is: 'Revenue understated',
 			entry: 'Dr. Liability · Cr. Revenue',
 			ni: 'Net income understated',
-			ex: 'Skip (d): Unearned Consulting Revenue stays at 3,000 instead of 2,750; Consulting Revenue is short by 250.'
+			ex: `Skip (d): Unearned Consulting Revenue stays at ${u('236')} instead of ${j('236')}; Consulting Revenue is short by ${fmt(adjusted.get('236')!.balance * -1 + unadjusted.get('236')!.balance)}.`
 		},
 		'accrued-expense': {
 			name: 'Accrued expenses',
@@ -60,7 +63,7 @@
 			is: 'Expense understated',
 			entry: 'Dr. Expense · Cr. Liability',
 			ni: 'Net income overstated',
-			ex: 'Skip (e): Salaries Payable shows 0 instead of 210; Salaries Expense shows 1,400 instead of 1,610.'
+			ex: `Skip (e): Salaries Payable shows ${u('209')} instead of ${j('209')}; Salaries Expense shows ${u('622')} instead of ${j('622')}.`
 		},
 		'accrued-revenue': {
 			name: 'Accrued revenues',
@@ -68,7 +71,7 @@
 			is: 'Revenue understated',
 			entry: 'Dr. Asset · Cr. Revenue',
 			ni: 'Net income understated',
-			ex: 'Skip (f): Accounts Receivable shows 0 instead of 1,800; Consulting Revenue is short by 1,800.'
+			ex: `Skip (f): Accounts Receivable shows ${u('106')} instead of ${j('106')}; Consulting Revenue is short by ${j('106')}.`
 		}
 	} as const;
 </script>
