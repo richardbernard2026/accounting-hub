@@ -52,7 +52,9 @@ test.describe('@screens chapter 3', () => {
 		await page.getByRole('button', { name: /\(f\)\s*Accrued consulting revenue/ }).click();
 		await page.locator('#period-end').fill('20');
 		await page.waitForTimeout(300);
-		await expect(page.locator('aside p', { hasText: '9 of 30 days delivered' }).first()).toBeVisible();
+		await expect(
+			page.locator('aside p', { hasText: '9 of 30 days delivered' }).first()
+		).toBeVisible();
 		await expect(page.locator('aside').getByText('810').first()).toBeVisible();
 		await expect(page.getByRole('button', { name: /Pin this state/ })).toBeVisible();
 		await page.locator('.instrument').screenshot({ path: `${OUT}/ch3-timeline-dec20-lane-f.png` });
