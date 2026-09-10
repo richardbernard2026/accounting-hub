@@ -3,8 +3,13 @@
 	import NotesDrawer from '$lib/components/notes/NotesDrawer.svelte';
 	import { chapterIndex } from '$lib/content';
 	import { notes } from '$lib/notes/store.svelte';
+	import { chapters } from '$lib/content';
+	import { cardsFor } from '$lib/recall/cards';
+	import { recall } from '$lib/recall/store.svelte';
 	const live = chapterIndex.filter((c) => c.status === 'live');
 	const countFor = (n: number) => notes.forChapter(n).length;
+	const dueFor = (n: number) =>
+		chapters[n] && recall.visited.includes(n) ? recall.due(cardsFor(chapters[n])).length : 0;
 </script>
 
 <svelte:head>
@@ -59,7 +64,10 @@
 					<div class="text-ink-3 col-start-2 mt-1 text-xs sm:col-start-auto sm:mt-0 sm:text-right">
 						{#if c.status === 'live'}
 							<span class="text-ok">Live</span>{#if countFor(c.number)}
-								· <span class="num">{countFor(c.number)}</span> notes{/if}
+								· <span class="num">{countFor(c.number)}</span> notes{/if}{#if dueFor(c.number)}
+								· <a href="/review" class="underline underline-offset-2"
+									><span class="num">{dueFor(c.number)}</span> cards due</a
+								>{/if}
 						{:else}
 							{c.instrument ?? 'Planned'}
 						{/if}
