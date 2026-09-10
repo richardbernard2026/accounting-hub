@@ -200,15 +200,11 @@
 	];
 </script>
 
-<div class="instrument border-rule bg-paper-2/40 border" data-sweep-done={sweepDone}>
+<div class="instrument" data-sweep-done={sweepDone}>
 	<div class="grid lg:grid-cols-[minmax(0,3fr)_minmax(320px,2fr)]">
 		<!-- ===== Timeline ===== -->
-		<div class="min-w-0 p-4 sm:p-5">
+		<div class="min-w-0 pr-0 lg:pr-8">
 			<div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-				<div>
-					<div class="eyebrow">Instrument · Wild C2, P1</div>
-					<h2 class="mt-0.5 text-lg">The adjustment timeline</h2>
-				</div>
 				<p class="text-ink-2 max-w-md text-sm">
 					Drag the period end across December. Each lane shows when cash moved and how much expense
 					or revenue has been earned by that day.
@@ -386,11 +382,13 @@
 		</div>
 
 		<!-- ===== Four-step panel ===== -->
-		<aside class="border-rule bg-paper-2/70 border-t p-4 sm:p-5 lg:border-t-0 lg:border-l">
+		<aside
+			class="border-rule-2 mt-8 border-t pt-6 lg:mt-0 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8"
+		>
 			<div class="flex items-start justify-between gap-2">
 				<div>
 					<div class="eyebrow">({selected.id}) {KIND[selected.kind].group}</div>
-					<h3 class="mt-0.5 text-lg leading-tight">{selected.title}</h3>
+					<h2 class="mt-0.5 text-lg leading-tight">{selected.title}</h2>
 				</div>
 				<PinState
 					{chapter}

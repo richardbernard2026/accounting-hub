@@ -32,9 +32,9 @@
 	}
 </script>
 
-<div class="border-rule bg-paper-2/50 border p-4 sm:p-5">
+<div class="max-w-[720px]">
 	<div class="flex flex-wrap items-baseline justify-between gap-2">
-		<h3 class="text-lg">Terms you have not written down</h3>
+		<div class="text-ink-2 text-sm">Each one waits for your wording first</div>
 		<span class="num text-ink-2 text-sm">{captured} of {terms.length} captured</span>
 	</div>
 	<div class="bg-paper-3 mt-2 h-1 w-full">

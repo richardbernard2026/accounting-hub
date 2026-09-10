@@ -69,12 +69,9 @@
 	const inActive = (r: Row) => active && [...r.aDr, ...r.aCr].some((x) => x.id === active);
 </script>
 
-<div class="border-rule bg-paper-2/40 border">
-	<div class="border-rule-2 flex flex-wrap items-baseline justify-between gap-2 border-b px-4 py-3">
-		<div>
-			<div class="eyebrow">Instrument · Wild P2</div>
-			<h3 class="mt-0.5 text-lg">From unadjusted to adjusted</h3>
-		</div>
+<div>
+	<div class="flex flex-wrap items-baseline justify-between gap-2 pb-3">
+		<div class="text-ink-2 text-sm">Wild’s three column pairs</div>
 		<div class="flex flex-wrap items-center gap-1 text-sm">
 			<span class="text-ink-3 mr-1">Trace an adjustment:</span>
 			{#each adjustments as e (e.id)}
@@ -88,7 +85,7 @@
 			{/each}
 		</div>
 	</div>
-	<div class="overflow-x-auto">
+	<div class="border-rule bg-paper-2/40 overflow-x-auto border">
 		<table class="ledger min-w-[720px] text-sm">
 			<thead>
 				<tr>
@@ -139,7 +136,7 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="border-rule-2 border-t px-4 py-3 text-sm">
+	<div class="pt-4 text-sm">
 		{#if activeEntry}
 			<div class="grid gap-3 sm:grid-cols-[1fr_auto]">
 				<div>

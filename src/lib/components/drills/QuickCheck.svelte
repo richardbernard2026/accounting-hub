@@ -12,12 +12,9 @@
 	const done = $derived(answered === items.length);
 </script>
 
-<div class="border-rule bg-paper-2/40 border p-4 sm:p-5">
+<div>
 	<div class="flex flex-wrap items-baseline justify-between gap-2">
-		<div>
-			<div class="eyebrow">Quick check · all objectives</div>
-			<h3 class="mt-0.5 text-lg">Seven questions, one pass</h3>
-		</div>
+		<div class="text-ink-2 text-sm">One attempt per question</div>
 		<div class="num text-ink-2 text-sm">{score} of {answered} right</div>
 	</div>
 	<ol class="divide-rule-2 mt-4 divide-y">

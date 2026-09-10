@@ -56,12 +56,9 @@
 	);
 </script>
 
-<div class="border-rule bg-paper-2/40 border p-4 sm:p-5">
+<div>
 	<div class="flex flex-wrap items-start justify-between gap-3">
-		<div>
-			<div class="eyebrow">Instrument · Wild P4 (Appendix 3A)</div>
-			<h3 class="mt-0.5 text-lg">Two roads to the same balance</h3>
-		</div>
+		<div class="text-ink-2 text-sm">Insurance, $2,400 for 24 months</div>
 		<div class="flex items-center gap-2">
 			<div class="border-rule flex border text-sm" role="group" aria-label="Initial recording">
 				<button
@@ -87,13 +84,13 @@
 	<div class="mt-4 grid gap-4 md:grid-cols-2">
 		<div>
 			<div class="eyebrow">Dec 26 · when cash is paid</div>
-			<div class="bg-paper mt-1 px-2 py-1">
+			<div class="border-rule-2 bg-paper mt-1 border px-2 py-1">
 				<JournalEntry entry={initial} {accountName} compact />
 			</div>
 		</div>
 		<div>
 			<div class="eyebrow">Dec 31 · adjusting entry</div>
-			<div class="bg-paper mt-1 px-2 py-1">
+			<div class="border-rule-2 bg-paper mt-1 border px-2 py-1">
 				<JournalEntry entry={adjust} {accountName} compact />
 			</div>
 		</div>

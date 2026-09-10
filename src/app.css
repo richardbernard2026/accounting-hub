@@ -111,7 +111,10 @@
 		background: var(--paper);
 		color: var(--ink);
 		font-family: var(--font-sans);
-		font-size: 16px;
+		font-size: 17px;
+		line-height: 1.65;
+		scroll-snap-type: y proximity;
+		scroll-padding-top: 3rem; /* sticky header */
 		-webkit-font-smoothing: antialiased;
 		text-rendering: optimizeLegibility;
 		scroll-behavior: smooth;
@@ -158,8 +161,8 @@
 		cursor: pointer;
 	}
 	:focus-visible {
-		outline: 2px solid var(--debit);
-		outline-offset: 2px;
+		outline: 2px solid var(--ink);
+		outline-offset: 3px;
 		border-radius: 2px;
 	}
 	@media (prefers-reduced-motion: reduce) {
@@ -233,15 +236,80 @@
 		font-weight: 500;
 	}
 	.prose-col {
-		max-width: 66ch;
+		max-width: 68ch;
 	}
 	.prose-col p {
-		margin: 0 0 1rem;
-		line-height: 1.6;
+		margin: 0 0 1.1rem;
+		line-height: 1.65;
 		font-size: 1.0625rem;
 	}
 	.prose-col p:last-child {
 		margin-bottom: 0;
+	}
+
+	/* Stops: one idea per viewport, generous rhythm, settle on scroll */
+	.stop {
+		scroll-snap-align: start;
+		scroll-margin-top: 3rem;
+		min-height: calc(100svh - 3rem);
+		display: grid;
+		align-content: center;
+		padding: 6rem 0 7rem;
+	}
+	@media (max-width: 899px) {
+		.stop {
+			min-height: 0;
+			padding: 4.5rem 0 5rem;
+		}
+	}
+	.stop-head {
+		font-family: var(--font-serif);
+		font-weight: 400;
+		letter-spacing: -0.015em;
+		line-height: 1.05;
+		font-size: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+		text-wrap: balance;
+	}
+	.stop-kicker {
+		font-size: var(--text-xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--ink-3);
+		font-weight: 500;
+	}
+
+	/* Key terms taught in place: a quiet underline, solid once captured */
+	.term {
+		background: none;
+		border: 0;
+		padding: 0;
+		margin: 0;
+		font: inherit;
+		color: inherit;
+		text-align: inherit;
+		text-decoration: underline;
+		text-decoration-style: dotted;
+		text-decoration-color: var(--ink-3);
+		text-underline-offset: 0.2em;
+		text-decoration-thickness: 1px;
+		cursor: pointer;
+		border-radius: 2px;
+	}
+	.term:hover {
+		text-decoration-color: var(--ink);
+	}
+	.term.captured {
+		text-decoration-style: solid;
+		text-decoration-color: var(--ink);
+	}
+
+	/* Large, calm numbers */
+	.figure {
+		font-family: var(--font-serif);
+		font-variant-numeric: tabular-nums lining-nums;
+		font-weight: 400;
+		letter-spacing: -0.02em;
+		line-height: 1;
 	}
 	.btn {
 		display: inline-flex;

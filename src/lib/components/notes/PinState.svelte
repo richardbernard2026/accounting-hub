@@ -4,6 +4,7 @@
 	 * "state" note carrying the sentence and the numbers on screen.
 	 */
 	import { notes } from '$lib/notes/store.svelte';
+	import { getContext } from 'svelte';
 	import { fade } from 'svelte/transition';
 	let {
 		chapter,
@@ -23,8 +24,15 @@
 		hint?: string;
 	} = $props();
 	let pinned = $state(false);
+	const stop = getContext<{ id: string } | undefined>('stop');
 	function pin() {
-		notes.add({ chapter, kind: 'state', text: sentence, data, source: { lo, label } });
+		notes.add({
+			chapter,
+			kind: 'state',
+			text: sentence,
+			data,
+			source: { lo, label, stop: stop?.id }
+		});
 		pinned = true;
 		setTimeout(() => (pinned = false), 1600);
 	}

@@ -2,6 +2,7 @@
 	import { notes } from '$lib/notes/store.svelte';
 	import type { Term } from '$lib/content/types';
 	import { fly } from 'svelte/transition';
+	import { getContext } from 'svelte';
 
 	let {
 		el = $bindable(),
@@ -24,6 +25,7 @@
 	} = $props();
 
 	let own = $state('');
+	const stop = getContext<{ id: string } | undefined>('stop');
 	let revealed = $state(false);
 	let saved = $state(false);
 	const W = 340;

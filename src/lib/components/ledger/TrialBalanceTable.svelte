@@ -19,12 +19,12 @@
 </script>
 
 <div class="bg-paper-2/60 border-rule-2 border px-3 pt-3 pb-2">
-	<div class="text-center leading-tight">
-		<div class="font-serif text-base">{company}</div>
-		<div class="text-sm">{title}</div>
-		<div class="text-ink-3 text-xs">{date}</div>
-	</div>
-	<table class="ledger mt-3 text-sm">
+	<table class="ledger text-sm">
+		<caption class="pb-3 text-center leading-tight">
+			<span class="block font-serif text-base">{company}</span>
+			<span class="block text-sm">{title}</span>
+			<span class="text-ink-3 block text-xs">{date}</span>
+		</caption>
 		<thead><tr><th>Account</th><th class="amt">Debit</th><th class="amt">Credit</th></tr></thead>
 		<tbody>
 			{#each tb.rows as r, i (r.num)}

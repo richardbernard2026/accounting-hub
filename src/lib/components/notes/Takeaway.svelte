@@ -1,6 +1,7 @@
 <script lang="ts">
 	/** Offered after a drill is finished, not before. */
 	import { notes } from '$lib/notes/store.svelte';
+	import { getContext } from 'svelte';
 	import { slide } from 'svelte/transition';
 	let {
 		chapter,
@@ -10,8 +11,9 @@
 		show
 	}: { chapter: number; lo?: string; label: string; text: string; show: boolean } = $props();
 	let kept = $state(false);
+	const stop = getContext<{ id: string } | undefined>('stop');
 	function keep() {
-		notes.add({ chapter, kind: 'line', text, source: { lo, label } });
+		notes.add({ chapter, kind: 'line', text, source: { lo, label, stop: stop?.id } });
 		kept = true;
 	}
 </script>

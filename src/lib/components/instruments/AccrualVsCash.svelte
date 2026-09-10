@@ -6,11 +6,11 @@
 	const max = Math.max(...years.map((r) => r.cash));
 </script>
 
-<figure class="border-rule bg-paper-2/40 border p-4">
+<figure class="max-w-[720px]">
 	<figcaption class="eyebrow">
 		Wild Exhibit 3.2 · insurance expense for a $2,400, 24-month policy
 	</figcaption>
-	<div class="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm">
+	<div class="grid grid-cols-[auto_1fr] gap-x-6 gap-y-4 text-sm">
 		{#each years as r (r.y)}
 			<div class="num text-ink-2 pt-1">{r.y}</div>
 			<div class="space-y-1">

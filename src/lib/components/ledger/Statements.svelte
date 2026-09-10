@@ -27,12 +27,12 @@
 
 <div class="grid gap-5 md:grid-cols-3">
 	<div class="bg-paper-2/60 border-rule-2 border px-3 pt-3 pb-2">
-		<div class="text-center leading-tight">
-			<div class="font-serif">{company}</div>
-			<div class="text-sm">Income Statement</div>
-			<div class="text-ink-3 text-xs">{period}</div>
-		</div>
-		<table class="ledger mt-3 text-sm">
+		<table class="ledger text-sm">
+			<caption class="pb-3 text-center leading-tight">
+				<span class="block font-serif">{company}</span>
+				<span class="block text-sm">Income Statement</span>
+				<span class="text-ink-3 block text-xs">{period}</span>
+			</caption>
 			<tbody>
 				<tr><td colspan="2" class="font-medium">Revenues</td></tr>
 				{#each fs.income.revenues as r, i (r.num)}
@@ -85,12 +85,12 @@
 	</div>
 
 	<div class="bg-paper-2/60 border-rule-2 border px-3 pt-3 pb-2">
-		<div class="text-center leading-tight">
-			<div class="font-serif">{company}</div>
-			<div class="text-sm">Statement of Retained Earnings</div>
-			<div class="text-ink-3 text-xs">{period}</div>
-		</div>
-		<table class="ledger mt-3 text-sm">
+		<table class="ledger text-sm">
+			<caption class="pb-3 text-center leading-tight">
+				<span class="block font-serif">{company}</span>
+				<span class="block text-sm">Statement of Retained Earnings</span>
+				<span class="text-ink-3 block text-xs">{period}</span>
+			</caption>
 			<tbody>
 				<tr
 					><td>Retained earnings, Dec. 1</td><td class="amt num"
@@ -136,12 +136,12 @@
 	</div>
 
 	<div class="bg-paper-2/60 border-rule-2 border px-3 pt-3 pb-2">
-		<div class="text-center leading-tight">
-			<div class="font-serif">{company}</div>
-			<div class="text-sm">Balance Sheet</div>
-			<div class="text-ink-3 text-xs">{asOf}</div>
-		</div>
-		<table class="ledger mt-3 text-sm">
+		<table class="ledger text-sm">
+			<caption class="pb-3 text-center leading-tight">
+				<span class="block font-serif">{company}</span>
+				<span class="block text-sm">Balance Sheet</span>
+				<span class="text-ink-3 block text-xs">{asOf}</span>
+			</caption>
 			<tbody>
 				<tr><td colspan="2" class="font-medium">Assets</td></tr>
 				{#each fs.balanceSheet.assets as a, i (a.num)}

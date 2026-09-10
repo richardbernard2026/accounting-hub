@@ -25,13 +25,11 @@
 	});
 </script>
 
-<div class="border-rule bg-paper-2/40 border">
-	<div class="border-rule-2 border-b px-4 py-3">
-		<div class="eyebrow">Instrument · Wild P3</div>
-		<h3 class="mt-0.5 text-lg">Where every balance lands</h3>
+<div>
+	<div class="pb-2">
 		<p class="text-ink-2 mt-1 min-h-10 text-sm" aria-live="polite">{note}</p>
 	</div>
-	<div class="grid gap-5 p-4 2xl:grid-cols-[minmax(340px,1fr)_minmax(0,2.4fr)]">
+	<div class="grid gap-6 pt-2 2xl:grid-cols-[minmax(340px,1fr)_minmax(0,2.4fr)]">
 		<div class="mx-auto w-full max-w-lg 2xl:mx-0 2xl:max-w-none">
 			<TrialBalanceTable
 				{tb}

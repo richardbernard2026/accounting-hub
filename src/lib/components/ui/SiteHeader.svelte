@@ -21,8 +21,8 @@
 	}
 </script>
 
-<header class="border-rule bg-paper/90 border-b backdrop-blur-sm">
-	<div class="mx-auto flex max-w-[1280px] items-center gap-4 px-4 py-2.5 sm:px-6">
+<header class="border-rule bg-paper/90 sticky top-0 z-40 h-12 border-b backdrop-blur-sm">
+	<div class="mx-auto flex h-12 max-w-[1280px] items-center gap-4 px-4 sm:px-6">
 		<a href="/" class="font-serif text-lg leading-none tracking-tight"
 			>Accounting<span class="text-ink-3"> Hub</span></a
 		>
@@ -38,6 +38,13 @@
 					: ''}">Chapters</a
 			>
 			<a
+				href="/review"
+				class="hidden px-2 py-1 underline-offset-4 hover:underline sm:inline {page.url.pathname ===
+				'/review'
+					? 'underline'
+					: ''}">Review</a
+			>
+			<a
 				href="/notes"
 				class="hidden px-2 py-1 underline-offset-4 hover:underline sm:inline {page.url.pathname ===
 				'/notes'
@@ -51,7 +58,7 @@
 						? 'bg-mark/40'
 						: ''} transition-colors"
 					onclick={() => (notes.drawerOpen = !notes.drawerOpen)}
-					aria-label="Open notes"
+					aria-label="Notes, {count}"
 					aria-expanded={notes.drawerOpen}
 				>
 					<span>Notes</span>
@@ -61,7 +68,7 @@
 			<button
 				class="text-ink-3 hover:text-ink ml-1 px-2 py-1 text-xs"
 				onclick={cycle}
-				aria-label="Toggle theme"
+				aria-label="Theme: {theme === 'dark' ? 'Dark' : theme === 'light' ? 'Light' : 'Auto'}"
 				title="Theme: {theme}"
 			>
 				{theme === 'dark' ? 'Dark' : theme === 'light' ? 'Light' : 'Auto'}

@@ -21,12 +21,9 @@
 	}
 </script>
 
-<div class="border-rule bg-paper-2/40 border p-4 sm:p-5">
+<div>
 	<div class="flex items-start justify-between gap-3">
-		<div>
-			<div class="eyebrow">Instrument · Wild A2</div>
-			<h3 class="mt-0.5 text-lg">Profit margin</h3>
-		</div>
+		<div class="text-ink-2 text-sm">Move either number</div>
 		<div class="flex gap-2">
 			{#if dirty}<button class="btn btn-quiet text-xs" onclick={reset}>FastForward</button>{/if}
 			<PinState
@@ -85,7 +82,7 @@
 		</div>
 		<div class="text-center sm:min-w-44">
 			<div class="eyebrow">Net income ÷ Net sales</div>
-			<div class="num font-serif text-[3rem] leading-none">
+			<div class="figure text-[4rem]">
 				{(margin * 100).toFixed(1)}<span class="text-ink-3 text-xl">%</span>
 			</div>
 			<div class="num text-ink-3 mt-1 text-xs">{fmt(ni)} ÷ {fmt(sales)}</div>
