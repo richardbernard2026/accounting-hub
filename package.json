@@ -9,7 +9,7 @@
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo \"\"",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"validate": "tsx scripts/validate.ts",
+		"validate": "tsx --tsconfig tsconfig.scripts.json scripts/validate.ts",
 		"format": "prettier --write .",
 		"lint": "prettier --check .",
 		"test:visual": "playwright test",

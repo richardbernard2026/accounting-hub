@@ -1,4 +1,12 @@
 {
-	"extends": "./tsconfig.json",
-	"compilerOptions": { "paths": { "$lib": ["./src/lib"], "$lib/*": ["./src/lib/*"] } }
+	"compilerOptions": {
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"target": "ES2022",
+		"strict": true,
+		"skipLibCheck": true,
+		"baseUrl": ".",
+		"paths": { "$lib": ["./src/lib"], "$lib/*": ["./src/lib/*"] }
+	},
+	"include": ["scripts/**/*.ts", "src/lib/**/*.ts"]
 }
