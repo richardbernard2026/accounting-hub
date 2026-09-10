@@ -4,7 +4,7 @@ An open study site for John Wild's _Financial and Managerial Accounting_ (2025 r
 
 Built for ACCT 2301 at UTRGV. Chapters 1–13 (financial) first, 14–24 (managerial) later. Chapter 3, Adjusting Accounts, is live; it was built first because it is the hardest idea in the first half and the best stress test for the template.
 
-**Live:** see the Deployments panel of this repo, or run it locally (below).
+**Live:** https://accounting-hub-ebon.vercel.app
 
 ![Chapter 3 opens on the adjustment timeline](docs/screenshots/ch3-desktop-fold.png)
 
