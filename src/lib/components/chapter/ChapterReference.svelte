@@ -5,14 +5,17 @@
 	 * correct here. A term you have not captured still shows the book's
 	 * definition, with a place to write your own right beside it.
 	 */
-	import { chapter, formulas } from '$lib/content/chapters/ch03';
-	import { accountName } from '$lib/content/chapters/fastforward';
+	import { accountNameOf } from '$lib/ledger';
 	import { notes } from '$lib/notes/store.svelte';
 	import JournalEntry from '$lib/components/ledger/JournalEntry.svelte';
+	import type { ChapterContent } from '$lib/content/types';
 
+	let { chapter }: { chapter: ChapterContent } = $props();
 	const n = chapter.meta.number;
-	const href = '/ch/3/reference';
-	const patterns = chapter.journalPatterns ?? [];
+	const href = `/ch/${n}/reference`;
+	const patterns = $derived(chapter.journalPatterns ?? []);
+	const formulas = $derived(chapter.formulas ?? []);
+	const accountName = $derived(accountNameOf(chapter.accounts ?? []));
 
 	let open = $state<string | null>(null);
 	let own = $state('');

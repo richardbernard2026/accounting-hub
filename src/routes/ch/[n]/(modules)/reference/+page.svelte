@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { chapterModules } from '$lib/chapters/registry';
+	import ChapterReference from '$lib/components/chapter/ChapterReference.svelte';
 	let { data } = $props();
-	const Reference = $derived(chapterModules[data.n]?.reference);
 </script>
 
 <svelte:head><title>Reference · Chapter {data.n}</title></svelte:head>
 
-{#if Reference}<Reference />{/if}
+<ChapterReference chapter={data.chapter} />

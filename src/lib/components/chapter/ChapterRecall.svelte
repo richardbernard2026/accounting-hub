@@ -1,10 +1,14 @@
 <script lang="ts">
 	/** This chapter's retrieval deck. Cross-chapter due cards live at /review. */
 	import RetrievalDeck from '$lib/components/recall/RetrievalDeck.svelte';
-	import { chapter } from '$lib/content/chapters/ch03';
+	import { accountNameOf } from '$lib/ledger';
 	import { cardsFor } from '$lib/recall/cards';
-	import { accounts, accountName } from '$lib/content/chapters/fastforward';
-	const cards = cardsFor(chapter);
+	import type { ChapterContent } from '$lib/content/types';
+
+	let { chapter }: { chapter: ChapterContent } = $props();
+	const cards = $derived(cardsFor(chapter));
+	const accounts = $derived(chapter.accounts ?? []);
+	const accountName = $derived(accountNameOf(accounts));
 </script>
 
 <div class="mx-auto max-w-[900px] px-4 py-10 sm:px-6">

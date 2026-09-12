@@ -2,8 +2,9 @@
 	/** This chapter's notes, grouped by lesson, editable, with study-sheet and Markdown export. */
 	import { notes, type Note } from '$lib/notes/store.svelte';
 	import { chapterMarkdown, studySheetMarkdown, download } from '$lib/notes/markdown';
-	import { chapter } from '$lib/content/chapters/ch03';
+	import type { ChapterContent } from '$lib/content/types';
 
+	let { chapter }: { chapter: ChapterContent } = $props();
 	const n = chapter.meta.number;
 	const label = { number: n, title: chapter.meta.title };
 	const mine = $derived(notes.forChapter(n));

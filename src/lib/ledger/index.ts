@@ -76,6 +76,16 @@ export function chartOf(accounts: Account[]): Map<string, Account> {
 	return m;
 }
 
+/** An `accountName` resolver bound to one chapter's chart of accounts. */
+export function accountNameOf(accounts: Account[]): (num: string) => string {
+	const chart = chartOf(accounts);
+	return (num: string) => {
+		const a = chart.get(num);
+		if (!a) throw new Error(`Unknown account ${num}`);
+		return a.name;
+	};
+}
+
 export function entryTotals(e: Entry): { dr: number; cr: number } {
 	let dr = 0;
 	let cr = 0;
