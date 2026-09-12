@@ -12,8 +12,9 @@
 		"validate": "tsx --tsconfig tsconfig.scripts.json scripts/validate.ts",
 		"format": "prettier --write .",
 		"lint": "prettier --check .",
-		"test:visual": "playwright test",
-		"screenshots": "playwright test --grep @screens"
+		"test:visual": "playwright test && node scripts/contact-sheet.mjs",
+		"contact-sheet": "node scripts/contact-sheet.mjs",
+		"review:check": "node scripts/check-review.mjs"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.63.0",
