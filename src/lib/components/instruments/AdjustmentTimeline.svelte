@@ -210,7 +210,7 @@
 			<div class="select-none">
 				<!-- month header -->
 				<div
-					class="grid grid-cols-[96px_minmax(0,1fr)_60px] items-end sm:grid-cols-[168px_minmax(0,1fr)_84px]"
+					class="grid grid-cols-[112px_minmax(0,1fr)_44px] items-end sm:grid-cols-[168px_minmax(0,1fr)_84px]"
 				>
 					<div class="text-ink-3 text-xs">
 						Period end: <span class="num text-ink font-medium">{label(day - 1)}</span>
@@ -239,13 +239,13 @@
 						{@const fillEnd = Math.min(day, endEx)}
 						{@const groupStart = i === 0 || KIND[lanes[i - 1].kind].group !== k.group}
 						{#if groupStart}
-							<div class="mt-2 grid grid-cols-[96px_1fr] sm:grid-cols-[168px_1fr]">
+							<div class="mt-2 grid grid-cols-[112px_1fr] sm:grid-cols-[168px_1fr]">
 								<div class="eyebrow py-1 text-[0.65rem]">{k.group}</div>
 								<div class="border-rule-2 border-b"></div>
 							</div>
 						{/if}
 						<button
-							class="grid w-full grid-cols-[96px_minmax(0,1fr)_60px] items-center text-left sm:grid-cols-[168px_minmax(0,1fr)_84px] {selectedId ===
+							class="grid w-full grid-cols-[112px_minmax(0,1fr)_44px] items-start text-left sm:items-center sm:grid-cols-[168px_minmax(0,1fr)_84px] {selectedId ===
 							lane.id
 								? 'bg-paper-3/70'
 								: 'hover:bg-paper-3/40'} transition-colors duration-150"
@@ -320,7 +320,7 @@
 
 					<!-- overlay: period-end line + scrubber, spans the track column only -->
 					<div
-						class="pointer-events-none absolute inset-y-0 right-[60px] left-[96px] sm:right-[84px] sm:left-[168px]"
+						class="pointer-events-none absolute inset-y-0 right-[44px] left-[112px] sm:right-[84px] sm:left-[168px]"
 					>
 						<div
 							class="border-ink-3 absolute inset-y-0 border-l border-dashed"
@@ -332,7 +332,7 @@
 
 				<!-- axis / scrubber -->
 				<div
-					class="grid grid-cols-[96px_minmax(0,1fr)_60px] sm:grid-cols-[168px_minmax(0,1fr)_84px]"
+					class="grid grid-cols-[112px_minmax(0,1fr)_44px] sm:grid-cols-[168px_minmax(0,1fr)_84px]"
 				>
 					<div class="text-ink-3 pt-2 text-[0.68rem] leading-tight sm:text-xs">
 						● cash moves<br class="sm:hidden" /><span class="hidden sm:inline">&nbsp;·&nbsp;</span>─

@@ -3,13 +3,18 @@
 	import Reading from '$lib/components/notes/Reading.svelte';
 	import TermMark from '$lib/components/notes/TermMark.svelte';
 	import Deeper from '$lib/components/prose/Deeper.svelte';
+	import InstrumentInstruction from '$lib/components/chapter/InstrumentInstruction.svelte';
 	import WorksheetInstrument from '../lab/WorksheetInstrument.svelte';
 	import StatementLinksInstrument from '../lab/StatementLinksInstrument.svelte';
+	import { instruments } from '$lib/content/chapters/ch03';
 	const href = '/ch/3/learn/statements';
 	setContext('href', href);
+	const worksheetInstruction = instruments.find((i) => i.id === 'worksheet')!.instruction;
+	const statementLinksInstruction = instruments.find((i) => i.id === 'statement-links')!.instruction;
 </script>
 
 <div class="frame">
+	<InstrumentInstruction text={worksheetInstruction} />
 	<WorksheetInstrument {href} />
 </div>
 
@@ -34,6 +39,7 @@
 </Reading>
 
 <div class="frame mt-16">
+	<InstrumentInstruction text={statementLinksInstruction} />
 	<StatementLinksInstrument {href} />
 </div>
 

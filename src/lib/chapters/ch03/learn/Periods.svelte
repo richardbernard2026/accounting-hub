@@ -3,12 +3,16 @@
 	import Reading from '$lib/components/notes/Reading.svelte';
 	import TermMark from '$lib/components/notes/TermMark.svelte';
 	import Deeper from '$lib/components/prose/Deeper.svelte';
+	import InstrumentInstruction from '$lib/components/chapter/InstrumentInstruction.svelte';
 	import AccrualVsCashInstrument from '../lab/AccrualVsCashInstrument.svelte';
+	import { instruments } from '$lib/content/chapters/ch03';
 	const href = '/ch/3/learn/periods';
 	setContext('href', href);
+	const instruction = instruments.find((i) => i.id === 'accrual-vs-cash')!.instruction;
 </script>
 
 <div class="frame">
+	<InstrumentInstruction text={instruction} />
 	<AccrualVsCashInstrument {href} />
 </div>
 

@@ -24,8 +24,28 @@
 	$effect(() => {
 		if (active) progress.visitLesson(chapter, active.id);
 	});
+
+	// Reset on every lesson change — prev/next reuses this component, so
+	// onMount alone would only fire once. `instant` bypasses the global
+	// `scroll-behavior: smooth` so this snaps rather than visibly sliding.
+	let mounted = false;
+	$effect(() => {
+		activeId;
+		if (mounted) window.scrollTo({ top: 0, behavior: 'instant' });
+	});
+
+	// On first mount (i.e. a hard reload), Chrome keeps re-asserting the
+	// scroll offset it remembers for this URL for a brief window after
+	// load — a single scrollTo(0) loses that fight. Out-stubborn it for a
+	// few frames, then leave scroll alone.
 	onMount(() => {
-		window.scrollTo({ top: 0 });
+		let frames = 0;
+		let raf = requestAnimationFrame(function fight() {
+			window.scrollTo({ top: 0, behavior: 'instant' });
+			if (++frames < 20) raf = requestAnimationFrame(fight);
+			else mounted = true;
+		});
+		return () => cancelAnimationFrame(raf);
 	});
 </script>
 

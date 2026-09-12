@@ -1,12 +1,16 @@
 <script lang="ts">
 	import { setContext } from 'svelte';
 	import Reading from '$lib/components/notes/Reading.svelte';
+	import InstrumentInstruction from '$lib/components/chapter/InstrumentInstruction.svelte';
 	import PrepaidAlternativesInstrument from '../lab/PrepaidAlternativesInstrument.svelte';
+	import { instruments } from '$lib/content/chapters/ch03';
 	const href = '/ch/3/learn/appendix';
 	setContext('href', href);
+	const instruction = instruments.find((i) => i.id === 'prepaid-alternatives')!.instruction;
 </script>
 
 <div class="frame">
+	<InstrumentInstruction text={instruction} />
 	<PrepaidAlternativesInstrument {href} />
 </div>
 

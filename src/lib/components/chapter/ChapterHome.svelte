@@ -33,6 +33,7 @@
 	const instrumentsDone = $derived(progress.instrumentsTouched(n));
 	const drillsDone = $derived(progress.drillsDone(n));
 	const cardTotal = $derived(cardsFor(chapter).length);
+	const recallOpened = $derived(progress.recallStarted(n));
 
 	const modules = $derived([
 		{
@@ -62,8 +63,8 @@
 			href: `${base}/recall`,
 			label: 'Recall',
 			tagline: 'Produce the answer. Box 1–5, due in 1, 2, 4, 8, 16 days.',
-			progress: `${dueCount} of ${cardTotal} cards due`,
-			start: lessonsDone > 0 && dueCount > 0
+			progress: recallOpened ? `${dueCount} of ${cardTotal} cards due` : 'Not started',
+			start: lessonsDone > 0 && (!recallOpened || dueCount > 0)
 		},
 		{
 			href: `${base}/notes`,

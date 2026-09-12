@@ -11,12 +11,13 @@ interface ProgressState {
 	lessons: Record<number, string[]>; // chapter -> lesson ids visited
 	instruments: Record<number, string[]>; // chapter -> instrument ids interacted
 	drills: Record<number, DrillKind[]>; // chapter -> drills completed
+	recallOpened: number[]; // chapters whose Recall deck has been opened
 }
 
 const KEY = 'accounting-hub:progress:v1';
 
 function load(): ProgressState {
-	const empty: ProgressState = { lessons: {}, instruments: {}, drills: {} };
+	const empty: ProgressState = { lessons: {}, instruments: {}, drills: {}, recallOpened: [] };
 	if (!browser) return empty;
 	try {
 		const raw = localStorage.getItem(KEY);
@@ -68,6 +69,14 @@ class ProgressStore {
 	}
 	instrumentsTouched(chapter: number): number {
 		return this.state.instruments[chapter]?.length ?? 0;
+	}
+
+	visitRecall(chapter: number) {
+		if (this.state.recallOpened.includes(chapter)) return;
+		this.state = { ...this.state, recallOpened: [...this.state.recallOpened, chapter] };
+	}
+	recallStarted(chapter: number): boolean {
+		return this.state.recallOpened.includes(chapter);
 	}
 
 	markDrillDone(chapter: number, kind: DrillKind) {

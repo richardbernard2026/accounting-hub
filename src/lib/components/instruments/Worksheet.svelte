@@ -170,13 +170,15 @@
 					<JournalEntry entry={activeEntry} {accountName} compact date={false} />
 				</div>
 			</div>
-		{:else}
+		{:else if touched}
 			<p class="text-ink-2">
 				The adjustments column adds <span class="num">{fmt(adjTotal, { dollar: true })}</span> of
 				debits and credits, but the totals rise by only
 				<span class="num">{fmt(lift, { dollar: true })}</span>. Entries (a), (b), and (d) shift
 				amounts within a column; only (c), (e), and (f) add to both columns.
 			</p>
+		{:else}
+			<p class="text-ink-2 italic">Trace an adjustment above to see what it does to the totals.</p>
 		{/if}
 	</div>
 </div>

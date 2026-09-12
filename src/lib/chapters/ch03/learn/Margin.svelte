@@ -2,14 +2,17 @@
 	import { setContext } from 'svelte';
 	import Reading from '$lib/components/notes/Reading.svelte';
 	import TermMark from '$lib/components/notes/TermMark.svelte';
+	import InstrumentInstruction from '$lib/components/chapter/InstrumentInstruction.svelte';
 	import ProfitMarginInstrument from '../lab/ProfitMarginInstrument.svelte';
-	import { fs, profitMargin } from '$lib/content/chapters/ch03';
+	import { fs, profitMargin, instruments } from '$lib/content/chapters/ch03';
 	import { fmt } from '$lib/ledger';
 	const href = '/ch/3/learn/margin';
 	setContext('href', href);
+	const instruction = instruments.find((i) => i.id === 'profit-margin')!.instruction;
 </script>
 
 <div class="frame">
+	<InstrumentInstruction text={instruction} />
 	<ProfitMarginInstrument {href} />
 </div>
 

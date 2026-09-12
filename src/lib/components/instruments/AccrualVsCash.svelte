@@ -68,14 +68,11 @@
 			</div>
 		{/each}
 	</div>
-	<p class="text-ink-2 mt-3 text-sm" aria-live="polite">
-		{#if row}
+	{#if row}
+		<p class="text-ink-2 mt-3 text-sm" aria-live="polite">
 			{row.y}: the cash basis charges {fmt(row.cash, { dollar: true })}; the accrual basis charges
 			only
 			{fmt(row.accrual, { dollar: true })}, the coverage {row.y} actually used.
-		{:else}
-			Same $2,400 either way. The cash basis charges it all to 2025, the year the check was written.
-			The accrual basis charges each year for the months of coverage it used: 1, 12, and 11.
-		{/if}
-	</p>
+		</p>
+	{/if}
 </figure>

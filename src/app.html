@@ -4,6 +4,20 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="color-scheme" content="light dark" />
+		<script>
+			// Chrome restores the previous scroll offset on reload before any app
+			// JS runs, which briefly shows Learn lessons scrolled past the fold.
+			// Must run this early, before the head's other tags load. Setting
+			// scrollRestoration alone doesn't stop a same-URL reload from
+			// restoring the old offset, so force it back on 'pageshow' too
+			// (fires after that restoration, including bfcache restores).
+			if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+			if (/\/learn(\/|$)/.test(location.pathname)) {
+				addEventListener('pageshow', function () {
+					window.scrollTo(0, 0);
+				});
+			}
+		</script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { setContext } from 'svelte';
 	import Reading from '$lib/components/notes/Reading.svelte';
+	import InstrumentInstruction from '$lib/components/chapter/InstrumentInstruction.svelte';
 	import PinState from '$lib/components/notes/PinState.svelte';
 	import { unadjusted, adjusted, ADJUSTMENT_KINDS } from '$lib/content/chapters/ch03';
 	import { fmt } from '$lib/ledger';
@@ -45,9 +46,7 @@
 </script>
 
 <div class="frame">
-	<p class="mb-4 max-w-[68ch] text-[1.15rem] leading-snug font-medium">
-		Pick a type and read what happens if December 31 comes and goes without it.
-	</p>
+	<InstrumentInstruction text="Pick a type and read what happens if December 31 comes and goes without it." />
 	<div class="flex flex-wrap items-center justify-between gap-3">
 		<div class="flex flex-wrap gap-1.5">
 			{#each ADJUSTMENT_KINDS as k (k.id)}

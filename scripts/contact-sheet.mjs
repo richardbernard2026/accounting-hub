@@ -38,16 +38,16 @@ function readExistingVerdicts(path) {
 	} catch {
 		return verdicts;
 	}
-	// Row shape: | file.png | route | viewport | state | verdict text |
+	// Row shape: | # | [file.png](file.png) | route | viewport | verdict text |
 	for (const line of text.split('\n')) {
-		const m = line.match(/^\|\s*\[([^\]]+\.png)\]/);
+		const m = line.match(/^\|\s*\d+\s*\|\s*\[([^\]]+\.png)\]/);
 		if (!m) continue;
 		const cells = line
 			.split('|')
 			.slice(1, -1)
 			.map((c) => c.trim());
 		if (cells.length < 5) continue;
-		const verdict = cells[4].replace(/^\[([^\]]+\.png)\]\([^)]*\)$/, '').trim();
+		const verdict = cells[4].trim();
 		if (verdict) verdicts.set(m[1], verdict);
 	}
 	return verdicts;

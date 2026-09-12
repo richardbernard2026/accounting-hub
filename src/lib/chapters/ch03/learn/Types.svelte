@@ -3,12 +3,16 @@
 	import Reading from '$lib/components/notes/Reading.svelte';
 	import TermMark from '$lib/components/notes/TermMark.svelte';
 	import DebitCreditMnemonic from '$lib/components/chapter/DebitCreditMnemonic.svelte';
+	import InstrumentInstruction from '$lib/components/chapter/InstrumentInstruction.svelte';
 	import TimelineInstrument from '../lab/TimelineInstrument.svelte';
+	import { instruments } from '$lib/content/chapters/ch03';
 	const href = '/ch/3/learn/types';
 	setContext('href', href);
+	const instruction = instruments.find((i) => i.id === 'timeline')!.instruction;
 </script>
 
 <div class="frame">
+	<InstrumentInstruction text={instruction} />
 	<TimelineInstrument {href} />
 </div>
 
