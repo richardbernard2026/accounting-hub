@@ -16,12 +16,15 @@
 
 	let {
 		chapter,
+		href,
 		lanes,
 		entries,
 		balances,
 		accountName
 	}: {
 		chapter: number;
+		/** The path back to wherever this instrument is mounted, saved with any pin. */
+		href?: string;
 		lanes: Lane[];
 		entries: Entry[];
 		balances: Map<string, Balance>;
@@ -204,14 +207,7 @@
 	<div class="grid lg:grid-cols-[minmax(0,3fr)_minmax(320px,2fr)]">
 		<!-- ===== Timeline ===== -->
 		<div class="min-w-0 pr-0 lg:pr-8">
-			<div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-				<p class="text-ink-2 max-w-md text-sm">
-					Drag the period end across December. Each lane shows when cash moved and how much expense
-					or revenue has been earned by that day.
-				</p>
-			</div>
-
-			<div class="mt-4 select-none">
+			<div class="select-none">
 				<!-- month header -->
 				<div
 					class="grid grid-cols-[96px_minmax(0,1fr)_60px] items-end sm:grid-cols-[168px_minmax(0,1fr)_84px]"
@@ -394,6 +390,7 @@
 					{chapter}
 					lo="P1"
 					label="Adjustment timeline"
+					{href}
 					{sentence}
 					dirty={touched}
 					data={{

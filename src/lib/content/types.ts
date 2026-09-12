@@ -23,10 +23,42 @@ export interface ChapterMeta {
 	title: string;
 	part: 'financial' | 'managerial';
 	status: 'live' | 'planned';
-	/** One line for the index page. */
+	/** One line for the site-wide chapter index. */
 	summary: string;
 	/** What the chapter opens on. */
 	instrument?: string;
+	/** Chapter-home one-liner, max 60 words, plain language (SPEC-v3 §2.1). */
+	oneLine?: string;
+	/** Chapter-home headline number or idea. `**text**` renders bold. */
+	headline?: string;
+}
+
+/** One page in Learn — one learning objective, or a closely related pair. */
+export interface LessonMeta {
+	id: string;
+	title: string;
+	/** Primary learning objective this lesson teaches. */
+	lo: string;
+}
+
+/** One instrument in Lab, and where else (if anywhere) it is embedded in Learn. */
+export interface InstrumentMeta {
+	id: string;
+	title: string;
+	lo: string;
+	/** The one-line imperative instruction, printed above the instrument. Never a legend alone. */
+	instruction: string;
+	/** Printed below the instrument, always visible. */
+	resultLine: string;
+	/** Printed below the result line, revealed only after the student interacts. */
+	noticed: string;
+}
+
+/** A formula with a worked example, computed from the ledger so it cannot drift. */
+export interface Formula {
+	lo: string;
+	formula: string;
+	worked: string;
 }
 
 export interface Anchor {
@@ -90,6 +122,13 @@ export interface ChapterContent {
 	classifications?: Classification[];
 	entryCards?: EntryCardSpec[];
 	rules?: Rule[];
+	formulas?: Formula[];
+	/** Learn's pages, in order. */
+	lessons?: LessonMeta[];
+	/** Lab's instruments, in order. */
+	instruments?: InstrumentMeta[];
+	/** Every entry Reference should list as a journal-entry pattern. */
+	journalPatterns?: Entry[];
 	/** Every ledger the chapter shows, so the validator can check it. */
 	ledgers: Array<{ label: string; company: Company; entries: Entry[] }>;
 	/** Numbers the textbook states, which the model must reproduce. */

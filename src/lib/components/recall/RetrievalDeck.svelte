@@ -119,7 +119,7 @@
 		{#key card.id}
 			<div in:fade={{ duration: 160 }}>
 				<div class="flex items-baseline justify-between gap-3">
-					<div class="stop-kicker">
+					<div class="kicker">
 						{label[card.type]} · {chapterLabel ? chapterLabel(card.chapter) + ' · ' : ''}{card.lo} · box
 						{recall.boxOf(card) || '–'}
 					</div>
@@ -186,11 +186,11 @@
 						{:else}
 							<div class="mt-4 grid gap-4 sm:grid-cols-2">
 								<div>
-									<div class="stop-kicker">You</div>
+									<div class="kicker">You</div>
 									<p class="mt-1">{own}</p>
 								</div>
 								<div>
-									<div class="stop-kicker">The book</div>
+									<div class="kicker">The book</div>
 									<p class="text-ink-2 mt-1">{card.answer}</p>
 								</div>
 							</div>

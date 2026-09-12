@@ -3,13 +3,18 @@
 	import type { Entry, TrialBalance } from '$lib/ledger';
 	import { fmt } from '$lib/ledger';
 	import JournalEntry from '../ledger/JournalEntry.svelte';
+	import PinState from '../notes/PinState.svelte';
 	let {
+		chapter,
+		href,
 		unadjusted,
 		adjusted,
 		adjustments,
 		accounts,
 		accountName
 	}: {
+		chapter: number;
+		href?: string;
 		unadjusted: TrialBalance;
 		adjusted: TrialBalance;
 		adjustments: Entry[];
@@ -18,7 +23,13 @@
 	} = $props();
 
 	let active = $state<string | null>(null);
+	let touched = $state(false);
 	const activeEntry = $derived(adjustments.find((e) => e.id === active) ?? null);
+	const sentence = $derived(
+		activeEntry
+			? `Traced adjustment (${activeEntry.id}): ${activeEntry.explanation}.`
+			: 'No adjustment traced.'
+	);
 
 	interface Row {
 		num: string;
@@ -65,25 +76,37 @@
 	);
 	const lift = $derived(adjusted.totalDr - unadjusted.totalDr);
 	const cell = (ids: { id: string }[]) =>
-		active && ids.some((x) => x.id === active) ? 'bg-mark/50' : '';
+		active && ids.some((x) => x.id === active)
+			? 'bg-mark/50 underline decoration-2 underline-offset-2'
+			: '';
 	const inActive = (r: Row) => active && [...r.aDr, ...r.aCr].some((x) => x.id === active);
 </script>
 
 <div>
 	<div class="flex flex-wrap items-baseline justify-between gap-2 pb-3">
-		<div class="text-ink-2 text-sm">Wild’s three column pairs</div>
 		<div class="flex flex-wrap items-center gap-1 text-sm">
-			<span class="text-ink-3 mr-1">Trace an adjustment:</span>
+			<span class="text-ink-2 mr-1">Trace an adjustment:</span>
 			{#each adjustments as e (e.id)}
 				<button
 					class="num border px-2 py-0.5 transition-colors {active === e.id
 						? 'border-ink bg-ink text-paper'
 						: 'border-rule hover:bg-paper-3'}"
-					onclick={() => (active = active === e.id ? null : e.id)}
+					onclick={() => {
+						active = active === e.id ? null : e.id;
+						touched = true;
+					}}
 					aria-pressed={active === e.id}>({e.id})</button
 				>
 			{/each}
 		</div>
+		<PinState
+			{chapter}
+			lo="P2"
+			label="Adjusted trial balance worksheet"
+			{href}
+			{sentence}
+			dirty={touched}
+		/>
 	</div>
 	<div class="border-rule bg-paper-2/40 overflow-x-auto border">
 		<table class="ledger min-w-[720px] text-sm">

@@ -7,23 +7,34 @@
 	let {
 		chapter,
 		lo = 'P1',
+		href,
 		specs,
 		accounts,
 		accountName,
-		takeaway
+		takeaway,
+		onDone
 	}: {
 		chapter: number;
 		lo?: string;
+		href?: string;
 		specs: EntryCardSpec[];
 		accounts: Account[];
 		accountName: (n: string) => string;
 		takeaway: string;
+		onDone?: () => void;
 	} = $props();
 	let idx = $state(0);
 	// svelte-ignore state_referenced_locally
 	let solved = $state<boolean[]>(specs.map(() => false));
 	const allDone = $derived(solved.every(Boolean));
 	const spec = $derived(specs[idx]);
+	let announced = false;
+	$effect(() => {
+		if (allDone && !announced) {
+			announced = true;
+			onDone?.();
+		}
+	});
 </script>
 
 <div class="flex flex-wrap items-baseline justify-between gap-3">
@@ -59,4 +70,4 @@
 		<button class="btn btn-quiet mt-4 text-xs" onclick={() => (idx = idx + 1)}>Next entry</button>
 	{/if}
 </div>
-<Takeaway {chapter} {lo} label="Entry drill" show={allDone} text={takeaway} />
+<Takeaway {chapter} {lo} {href} label="Entry drill" show={allDone} text={takeaway} />

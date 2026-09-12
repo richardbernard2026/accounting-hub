@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { fmt } from '$lib/ledger';
 	import PinState from '../notes/PinState.svelte';
-	let { chapter, netIncome, netSales }: { chapter: number; netIncome: number; netSales: number } =
-		$props();
+	let {
+		chapter,
+		href,
+		netIncome,
+		netSales
+	}: { chapter: number; href?: string; netIncome: number; netSales: number } = $props();
 	// svelte-ignore state_referenced_locally
 	let ni = $state(netIncome);
 	// svelte-ignore state_referenced_locally
@@ -22,14 +26,14 @@
 </script>
 
 <div>
-	<div class="flex items-start justify-between gap-3">
-		<div class="text-ink-2 text-sm">Move either number</div>
+	<div class="flex items-start justify-end gap-3">
 		<div class="flex gap-2">
 			{#if dirty}<button class="btn btn-quiet text-xs" onclick={reset}>FastForward</button>{/if}
 			<PinState
 				{chapter}
 				lo="A2"
 				label="Profit margin"
+				{href}
 				{sentence}
 				{dirty}
 				data={{

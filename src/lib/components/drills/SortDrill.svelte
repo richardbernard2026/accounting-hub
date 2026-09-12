@@ -5,21 +5,32 @@
 	let {
 		chapter,
 		lo = 'C2',
+		href,
 		items,
 		takeaway,
-		subtitles = {}
+		subtitles = {},
+		onDone
 	}: {
 		chapter: number;
 		lo?: string;
+		href?: string;
 		items: Classification[];
 		takeaway: string;
 		subtitles?: Record<string, string>;
+		onDone?: () => void;
 	} = $props();
 	// svelte-ignore state_referenced_locally
 	let answers = $state<(string | null)[]>(items.map(() => null));
 	let attempts = $state(0);
 	const correct = $derived(answers.filter((a, i) => a === items[i].answer).length);
 	const done = $derived(correct === items.length);
+	let announced = false;
+	$effect(() => {
+		if (done && !announced) {
+			announced = true;
+			onDone?.();
+		}
+	});
 	function pick(i: number, k: string) {
 		if (answers[i] === items[i].answer) return;
 		answers[i] = k;
@@ -39,7 +50,7 @@
 		{@const a = answers[i]}
 		{@const right = a === it.answer}
 		<li class="py-4">
-			<p class="text-[1.05rem]"><span class="num text-ink-3 mr-2">{i + 1}.</span>{it.text}</p>
+			<p class="text-[1.05rem]"><span class="num text-ink-2 mr-2">{i + 1}.</span>{it.text}</p>
 			<div class="mt-2 flex flex-wrap gap-1.5">
 				{#each it.options as k (k.id)}
 					<button
@@ -65,4 +76,4 @@
 	{/each}
 </ol>
 {#if done}<button class="btn btn-quiet mt-3 text-xs" onclick={reset}>Start over</button>{/if}
-<Takeaway {chapter} {lo} label="Sorting drill" show={done} text={takeaway} />
+<Takeaway {chapter} {lo} {href} label="Sorting drill" show={done} text={takeaway} />

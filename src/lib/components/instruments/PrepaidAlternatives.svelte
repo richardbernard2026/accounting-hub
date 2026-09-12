@@ -4,7 +4,11 @@
 	import { fmt } from '$lib/ledger';
 	import JournalEntry from '../ledger/JournalEntry.svelte';
 	import PinState from '../notes/PinState.svelte';
-	let { chapter, accountName }: { chapter: number; accountName: (n: string) => string } = $props();
+	let {
+		chapter,
+		href,
+		accountName
+	}: { chapter: number; href?: string; accountName: (n: string) => string } = $props();
 	let mode = $state<'asset' | 'expense'>('asset');
 	let touched = $state(false);
 	const paid = 2400;
@@ -78,7 +82,7 @@
 					aria-pressed={mode === 'expense'}>Expense first</button
 				>
 			</div>
-			<PinState {chapter} lo="P4" label="Prepaid alternatives" {sentence} dirty={touched} />
+			<PinState {chapter} lo="P4" label="Prepaid alternatives" {href} {sentence} dirty={touched} />
 		</div>
 	</div>
 	<div class="mt-4 grid gap-4 md:grid-cols-2">

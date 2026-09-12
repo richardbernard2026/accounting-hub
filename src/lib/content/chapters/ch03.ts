@@ -1,9 +1,12 @@
-import { post, statements, trialBalance } from '$lib/ledger';
+import { fmt, post, statements, trialBalance } from '$lib/ledger';
 import type {
 	Anchor,
 	ChapterContent,
 	Classification,
 	EntryCardSpec,
+	Formula,
+	InstrumentMeta,
+	LessonMeta,
 	Objective,
 	QuickCheck,
 	Rule,
@@ -659,6 +662,122 @@ export const insuranceByYear = [
 	{ year: 2027, cash: 0, accrual: 100 * 11 }
 ];
 
+/* ---------- Lessons (Learn) and instruments (Lab) ---------- */
+
+export const lessons: LessonMeta[] = [
+	{ id: 'periods', title: 'Why books need adjusting', lo: 'C1' },
+	{ id: 'types', title: 'The four types of adjustments', lo: 'C2' },
+	{ id: 'entries', title: 'The six entries', lo: 'P1' },
+	{ id: 'skipped', title: 'What goes wrong when you skip one', lo: 'A1' },
+	{ id: 'statements', title: 'From unadjusted to statements', lo: 'P2' },
+	{ id: 'margin', title: 'Profit margin', lo: 'A2' },
+	{ id: 'appendix', title: 'Two roads to the same balance', lo: 'P4' }
+];
+
+const revenueEffect = lanes
+	.filter((l) => l.kind === 'unearned' || l.kind === 'accrued-revenue')
+	.reduce((s, l) => s + (l.stateAt(31).adjustment ?? 0), 0);
+const expenseEffect = lanes
+	.filter((l) => l.kind === 'prepaid' || l.kind === 'accrued-expense')
+	.reduce((s, l) => s + (l.stateAt(31).adjustment ?? 0), 0);
+
+export const instruments: InstrumentMeta[] = [
+	{
+		id: 'timeline',
+		title: 'Adjustment timeline',
+		lo: 'P1',
+		instruction: 'Drag the period end across December and watch each adjustment grow.',
+		resultLine: `Dec 31 — six adjustments, total income effect +${fmt(revenueEffect)} revenue, −${fmt(expenseEffect)} expense`,
+		noticed:
+			'None of the six entries touched Cash. Each one moved one balance sheet account and one income statement account.'
+	},
+	{
+		id: 'worksheet',
+		title: 'Adjusted trial balance worksheet',
+		lo: 'P2',
+		instruction:
+			'Switch each adjustment on and trace it from the unadjusted column to the adjusted column.',
+		resultLine: `Adjusted trial balance — Debits ${fmt(adjustedTB.totalDr, { dollar: true })} = Credits ${fmt(adjustedTB.totalCr, { dollar: true })}`,
+		noticed: `The unadjusted total was ${fmt(unadjustedTB.totalDr, { dollar: true })}. Adjustments added ${fmt(adjustedTB.totalDr - unadjustedTB.totalDr)} to each side, and net income rose from ${fmt(3470)} to ${fmt(fs.income.netIncome)}.`
+	},
+	{
+		id: 'statement-links',
+		title: 'Statement links',
+		lo: 'P3',
+		instruction: 'Hover or focus any line and follow it to the statement it lands on.',
+		resultLine: 'Net income → Retained earnings → Balance sheet, one line at a time.',
+		noticed:
+			'Every account has exactly one destination. Revenues and expenses land on the income statement; everything else lands on the balance sheet.'
+	},
+	{
+		id: 'accrual-vs-cash',
+		title: 'Cash versus accrual',
+		lo: 'C1',
+		instruction: 'Select 2025, 2026, and 2027 and compare the $2,400 policy under each basis.',
+		resultLine: `2025 insurance expense — cash ${fmt(2400, { dollar: true })}, accrual ${fmt(100, { dollar: true })}`,
+		noticed:
+			'Both bases expense $2,400 in total. Accrual spreads it across the 24 months the coverage actually runs.'
+	},
+	{
+		id: 'profit-margin',
+		title: 'Profit margin',
+		lo: 'A2',
+		instruction: 'Move net income or net sales and watch the margin recompute.',
+		resultLine: `Profit margin ${(profitMargin * 100).toFixed(1)}% — net income ${fmt(fs.income.netIncome, { dollar: true })} ÷ net sales ${fmt(fs.income.totalRevenues, { dollar: true })}`,
+		noticed:
+			'Each sales dollar splits into what became profit and what expenses consumed. Move either number and the split redraws.'
+	},
+	{
+		id: 'prepaid-alternatives',
+		title: 'Two roads to the same balance',
+		lo: 'P4',
+		instruction: 'Switch between recording the policy as an asset first and as an expense first.',
+		resultLine: `Either way: Prepaid insurance ${fmt(2300, { dollar: true })}, Insurance expense ${fmt(100, { dollar: true })}`,
+		noticed:
+			'The Dec 31 adjusting entry looks completely different depending which method you start from, but both land on the same two balances.'
+	}
+];
+
+/* ---------- Formulas (Recall + Reference), computed so they cannot drift ---------- */
+
+export const formulas: Formula[] = [
+	{
+		lo: 'P1',
+		formula: 'Straight-line depreciation = (Cost − Salvage value) ÷ Useful life',
+		worked: `(26,000 − 8,000) ÷ 48 = ${fmt(lanes.find((l) => l.id === 'c')!.stateAt(31).adjustment!)} a month`
+	},
+	{
+		lo: 'P1',
+		formula: 'Book value = Cost − Accumulated depreciation',
+		worked: `26,000 − ${fmt(lanes.find((l) => l.id === 'c')!.stateAt(31).adjustment!)} = ${fmt(adjusted.get('167')!.balance - adjusted.get('168')!.balance)}`
+	},
+	{
+		lo: 'P1',
+		formula: 'Supplies expense = Supplies available − Supplies on hand',
+		worked: `9,720 − 8,670 = ${fmt(lanes.find((l) => l.id === 'b')!.stateAt(31).adjustment!)}`
+	},
+	{
+		lo: 'P1',
+		formula: 'Expired prepaid = Cost ÷ Months covered × Months elapsed',
+		worked: `2,400 ÷ 24 × 1 = ${fmt(lanes.find((l) => l.id === 'a')!.stateAt(31).adjustment!)}`
+	},
+	{
+		lo: 'P1',
+		formula: 'Unearned revenue earned = Daily rate × Days performed',
+		worked: `50 × 5 = ${fmt(lanes.find((l) => l.id === 'd')!.stateAt(31).adjustment!)}`
+	},
+	{
+		lo: 'P1',
+		formula: 'Accrued salaries = Daily pay × Unpaid days worked',
+		worked: `70 × 3 = ${fmt(lanes.find((l) => l.id === 'e')!.stateAt(31).adjustment!)}`
+	},
+	{
+		lo: 'A2',
+		formula: 'Profit margin = Net income ÷ Net sales',
+		worked: `${fmt(fs.income.netIncome, { dollar: true })} ÷ ${fmt(fs.income.totalRevenues, { dollar: true })} = ${(profitMargin * 100).toFixed(1)}%`
+	}
+];
+
 export const chapter: ChapterContent = {
 	meta: {
 		number: 3,
@@ -668,7 +787,10 @@ export const chapter: ChapterContent = {
 		status: 'live',
 		summary:
 			'Why December’s books are wrong until you fix them, and the six entries that fix them.',
-		instrument: 'Adjustment timeline'
+		instrument: 'Adjustment timeline',
+		oneLine:
+			'December’s books are not finished until six entries on December 31 put each revenue and expense in the month it belongs to.',
+		headline: `Six entries at Dec 31 turn a **${fmt(unadjustedTB.totalDr, { dollar: true })}** trial balance into a **${fmt(adjustedTB.totalDr, { dollar: true })}** one.`
 	},
 	objectives,
 	terms,
@@ -677,6 +799,10 @@ export const chapter: ChapterContent = {
 	classifications,
 	entryCards,
 	rules,
+	formulas,
+	lessons,
+	instruments,
+	journalPatterns: [...adjustments, ...januaryFollowUps],
 	ledgers: [
 		{
 			label: 'FastForward, December transactions (unadjusted)',
@@ -807,6 +933,27 @@ export const chapter: ChapterContent = {
 		for (const q of quickChecks) {
 			if (q.answer < 0 || q.answer >= q.options.length)
 				throw new Error(`Quick check answer out of range: ${q.q}`);
+		}
+		const lessonIds = new Set<string>();
+		for (const l of lessons) {
+			if (lessonIds.has(l.id)) throw new Error(`Duplicate lesson id ${l.id}`);
+			lessonIds.add(l.id);
+			if (!objectives.some((o) => o.code === l.lo))
+				throw new Error(`Lesson ${l.id} cites unknown objective ${l.lo}`);
+		}
+		if (lessons.length < 4 || lessons.length > 7)
+			throw new Error(`Chapter should have 4–7 lessons, has ${lessons.length}`);
+		const instrumentIds = new Set<string>();
+		for (const inst of instruments) {
+			if (instrumentIds.has(inst.id)) throw new Error(`Duplicate instrument id ${inst.id}`);
+			instrumentIds.add(inst.id);
+			if (!objectives.some((o) => o.code === inst.lo))
+				throw new Error(`Instrument ${inst.id} cites unknown objective ${inst.lo}`);
+			if (!inst.instruction.trim()) throw new Error(`Instrument ${inst.id} has no instruction`);
+		}
+		for (const f of formulas) {
+			if (!objectives.some((o) => o.code === f.lo))
+				throw new Error(`Formula "${f.formula}" cites unknown objective ${f.lo}`);
 		}
 	}
 };
