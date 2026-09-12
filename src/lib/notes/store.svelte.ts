@@ -18,8 +18,8 @@ export interface Note {
 	text: string;
 	/** For terms: the meaning. For lines/states: your added words. */
 	body?: string;
-	/** Where it came from: learning objective code and a label (e.g. "Adjustment timeline"). */
-	source?: { lo?: string; label?: string; stop?: string };
+	/** Where it came from: learning objective code, a label, and the path back to that screen. */
+	source?: { lo?: string; label?: string; href?: string };
 	/** For term notes captured in place: the book's definition, kept beside yours. */
 	book?: string;
 	/** For state notes: the parameters and results, for export. */
@@ -60,8 +60,6 @@ function load(): Note[] {
 
 class NotesStore {
 	notes = $state<Note[]>(load());
-	/** The drawer's open state lives here so any component can open it. */
-	drawerOpen = $state(false);
 	/** A brief “saved” pulse for the header count. */
 	lastSavedId = $state<string | null>(null);
 

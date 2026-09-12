@@ -11,7 +11,7 @@
 
 <div class="grid gap-8 md:grid-cols-2">
 	<div>
-		<div class="stop-kicker">Debits increase</div>
+		<div class="kicker">Debits increase</div>
 		<div class="mt-2 flex items-baseline gap-3">
 			<span class="figure dr text-[3rem] sm:text-[3.5rem]">{device}</span>
 			{#if device === 'DEAD'}
@@ -32,7 +32,7 @@
 		</p>
 	</div>
 	<div>
-		<div class="stop-kicker">Credits increase</div>
+		<div class="kicker">Credits increase</div>
 		<div class="mt-2"><span class="figure cr text-[3rem] sm:text-[3.5rem]">CLOR</span></div>
 		<p class="mt-2 text-[1.05rem] leading-snug">
 			<span class="cr font-medium">Liabilities, Owner’s equity, Revenue.</span>

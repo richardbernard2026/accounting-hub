@@ -7,13 +7,23 @@
 		chapter,
 		lo,
 		label,
+		href,
 		text,
 		show
-	}: { chapter: number; lo?: string; label: string; text: string; show: boolean } = $props();
+	}: {
+		chapter: number;
+		lo?: string;
+		label: string;
+		/** The path back to this drill, saved with the note. */
+		href?: string;
+		text: string;
+		show: boolean;
+	} = $props();
+	// svelte-ignore state_referenced_locally
+	const resolvedHref = href ?? getContext<string | undefined>('href');
 	let kept = $state(false);
-	const stop = getContext<{ id: string } | undefined>('stop');
 	function keep() {
-		notes.add({ chapter, kind: 'line', text, source: { lo, label, stop: stop?.id } });
+		notes.add({ chapter, kind: 'line', text, source: { lo, label, href: resolvedHref } });
 		kept = true;
 	}
 </script>

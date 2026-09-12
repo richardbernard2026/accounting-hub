@@ -15,11 +15,11 @@
 </script>
 
 <svelte:head><title>Review · Accounting Hub</title></svelte:head>
-<SiteHeader notesButton={false} />
+<SiteHeader />
 
 <main class="mx-auto max-w-[900px] px-5 pt-16 pb-24 sm:px-8">
-	<div class="stop-kicker">Review · every chapter you have opened</div>
-	<h1 class="stop-head mt-2">{due} card{due === 1 ? '' : 's'} due</h1>
+	<div class="kicker">Review · every chapter you have opened</div>
+	<h1 class="display mt-2">{due} card{due === 1 ? '' : 's'} due</h1>
 	{#if visited.length === 0}
 		<p class="text-ink-2 mt-6 max-w-[60ch]">
 			Open a chapter first. Its deck is generated from the terms, situations, entries, and rules it

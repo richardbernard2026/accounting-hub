@@ -1,9 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-	import { afterNavigate } from '$app/navigation';
-	import { notes } from '$lib/notes/store.svelte';
 	let { children } = $props();
-	afterNavigate(() => (notes.drawerOpen = false));
 </script>
 
 <svelte:head>

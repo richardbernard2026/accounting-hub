@@ -71,7 +71,7 @@
 </script>
 
 <svelte:head><title>All notes · Accounting Hub</title></svelte:head>
-<SiteHeader notesButton={false} />
+<SiteHeader />
 
 <main class="mx-auto max-w-[900px] px-4 pb-24 sm:px-6">
 	<div class="flex flex-wrap items-end justify-between gap-4 pt-8 pb-4">
@@ -160,9 +160,9 @@
 						<li class="py-2.5 text-sm">
 							<div class="eyebrow flex items-center justify-between gap-2">
 								<span>{KIND[n.kind]}{n.source?.label ? ` · ${n.source.label}` : ''}</span>
-								{#if n.source?.stop}<a
-										class="text-ink-3 hover:text-ink tracking-normal normal-case underline underline-offset-2"
-										href="/ch/{c.number}#{n.source.stop}">Back to the stop</a
+								{#if n.source?.href}<a
+										class="text-ink-2 hover:text-ink tracking-normal normal-case underline underline-offset-2"
+										href={n.source.href}>Back to this screen</a
 									>{/if}
 							</div>
 							{#if n.kind === 'term'}

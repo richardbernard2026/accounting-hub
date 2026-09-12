@@ -34,10 +34,10 @@
 		{@const states = mine.filter((n) => n.kind === 'state')}
 		{@const lines = mine.filter((n) => n.kind === 'line' || n.kind === 'own')}
 		<article class="sheet break-after-page pb-10">
-			<div class="stop-kicker">Study sheet · Chapter {c.number}</div>
+			<div class="kicker">Study sheet · Chapter {c.number}</div>
 			<h1 class="font-serif text-[2rem] leading-tight">{c.title}</h1>
 			{#if terms.length}
-				<h2 class="stop-kicker mt-8">Terms</h2>
+				<h2 class="kicker mt-8">Terms</h2>
 				<table class="ledger mt-2 text-sm">
 					<thead><tr><th class="w-44">Term</th><th>In my words</th><th>The book</th></tr></thead>
 					<tbody>
@@ -51,7 +51,7 @@
 				</table>
 			{/if}
 			{#if entriesOf(c.number).length}
-				<h2 class="stop-kicker mt-8">Entries the chapter teaches</h2>
+				<h2 class="kicker mt-8">Entries the chapter teaches</h2>
 				<div class="mt-2 grid gap-4 sm:grid-cols-2">
 					{#each entriesOf(c.number) as e (e.id)}
 						<div class="border-rule-2 border px-3 py-2 text-sm">
@@ -75,13 +75,13 @@
 				</div>
 			{/if}
 			{#if states.length}
-				<h2 class="stop-kicker mt-8">Instrument states I pinned</h2>
+				<h2 class="kicker mt-8">Instrument states I pinned</h2>
 				<ul class="mt-2 list-disc pl-5 text-sm">
 					{#each states as s (s.id)}<li>{s.text}</li>{/each}
 				</ul>
 			{/if}
 			{#if lines.length}
-				<h2 class="stop-kicker mt-8">Lines and my own words</h2>
+				<h2 class="kicker mt-8">Lines and my own words</h2>
 				<ul class="mt-2 list-disc pl-5 text-sm">
 					{#each lines as l (l.id)}<li>
 							{l.text}{#if l.body}

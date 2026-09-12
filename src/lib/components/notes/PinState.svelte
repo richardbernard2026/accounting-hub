@@ -10,6 +10,7 @@
 		chapter,
 		lo,
 		label,
+		href,
 		sentence,
 		data,
 		dirty,
@@ -18,20 +19,23 @@
 		chapter: number;
 		lo?: string;
 		label: string;
+		/** The path back to this instrument, saved with the note. */
+		href?: string;
 		sentence: string;
 		data?: Record<string, string | number>;
 		dirty: boolean;
 		hint?: string;
 	} = $props();
+	// svelte-ignore state_referenced_locally
+	const resolvedHref = href ?? getContext<string | undefined>('href');
 	let pinned = $state(false);
-	const stop = getContext<{ id: string } | undefined>('stop');
 	function pin() {
 		notes.add({
 			chapter,
 			kind: 'state',
 			text: sentence,
 			data,
-			source: { lo, label, stop: stop?.id }
+			source: { lo, label, href: resolvedHref }
 		});
 		pinned = true;
 		setTimeout(() => (pinned = false), 1600);

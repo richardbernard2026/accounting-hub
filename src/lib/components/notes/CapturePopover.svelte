@@ -9,6 +9,7 @@
 		chapter,
 		lo,
 		label,
+		href,
 		text,
 		term,
 		rect,
@@ -18,6 +19,8 @@
 		chapter: number;
 		lo?: string;
 		label?: string;
+		/** The path back to this screen, saved with the note. */
+		href?: string;
 		text: string;
 		term?: Term;
 		rect: { top: number; left: number; bottom: number; width: number };
@@ -25,7 +28,8 @@
 	} = $props();
 
 	let own = $state('');
-	const stop = getContext<{ id: string } | undefined>('stop');
+	// svelte-ignore state_referenced_locally
+	const resolvedHref = href ?? getContext<string | undefined>('href');
 	let revealed = $state(false);
 	let saved = $state(false);
 	const W = 340;
@@ -44,7 +48,7 @@
 			kind: 'line',
 			text,
 			body: own.trim() || undefined,
-			source: { lo, label }
+			source: { lo, label, href: resolvedHref }
 		});
 		done();
 	}
@@ -57,8 +61,9 @@
 			kind: 'term',
 			text: term.term,
 			body,
+			book: term.definition,
 			origin,
-			source: { lo: term.lo, label }
+			source: { lo: term.lo, label, href: resolvedHref }
 		});
 		done();
 	}

@@ -13,9 +13,18 @@
 		chapter,
 		lo,
 		label,
+		href,
 		terms = [],
 		children
-	}: { chapter: number; lo?: string; label?: string; terms?: Term[]; children: Snippet } = $props();
+	}: {
+		chapter: number;
+		lo?: string;
+		label?: string;
+		/** The path back to this screen, saved with any note taken here. */
+		href?: string;
+		terms?: Term[];
+		children: Snippet;
+	} = $props();
 
 	let root: HTMLElement;
 	let popover: HTMLElement | undefined = $state();
@@ -124,6 +133,7 @@
 			{chapter}
 			{lo}
 			{label}
+			{href}
 			text={sel.text}
 			term={sel.term}
 			rect={sel.rect}
