@@ -231,6 +231,13 @@ export interface StatementOptions {
 	contraLiabilityOf?: Record<string, string>;
 	/** For each adjunct-liability (e.g. premium on bonds payable), which liability it adds to. */
 	adjunctLiabilityOf?: Record<string, string>;
+	/**
+	 * Contra-equity accounts that carry a standing balance-sheet balance (e.g.
+	 * treasury stock), listed as their own negative equity line. A temporary
+	 * Dividends account should NOT be listed here — its effect is already
+	 * captured through `dividendsAcct` in the retained-earnings roll-forward.
+	 */
+	standingContraEquity?: string[];
 }
 
 export function statements(balances: Map<string, Balance>, o: StatementOptions): Statements {
@@ -303,6 +310,15 @@ export function statements(balances: Map<string, Balance>, o: StatementOptions):
 		)
 		.map((b) => ({ num: b.acct.num, label: b.acct.name, amount: b.balance }));
 	equity.push({ num: o.retainedEarningsAcct, label: 'Retained earnings', amount: ending });
+	for (const b of list) {
+		if (
+			b.acct.type === 'contra-equity' &&
+			o.standingContraEquity?.includes(b.acct.num) &&
+			b.balance !== 0
+		) {
+			equity.push({ num: b.acct.num, label: `Less: ${b.acct.name}`, amount: -b.balance });
+		}
+	}
 	const totalEquity = sum(equity.map((l) => l.amount));
 
 	return {

@@ -79,6 +79,7 @@ export interface Company {
 	contraRevenueOf?: Record<string, string>;
 	contraLiabilityOf?: Record<string, string>;
 	adjunctLiabilityOf?: Record<string, string>;
+	standingContraEquity?: string[];
 }
 
 export interface QuickCheck {
