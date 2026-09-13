@@ -1,6 +1,6 @@
 # Visual review
 
-230 screens, captured 2026-09-13.
+278 screens, captured 2026-09-13.
 
 Open `index.html` in this folder — a browser tab, not a code editor — and look at
 every image before writing a verdict. A verdict is what is actually on the screen
@@ -231,12 +231,60 @@ and what, if anything, is wrong with it. "Looks fine" is not a verdict.
 | 219 | [ch4-reference__mobile__initial.png](ch4-reference__mobile__initial.png) | ch4-reference | mobile | Generic Reference component renders correctly at mobile width — all 33 terms, 5 formulas, and all 13 journal-entry patterns across both Z-Mart and Harborview. |
 | 220 | [ch4-reference__tablet__initial.png](ch4-reference__tablet__initial.png) | ch4-reference | tablet | Renders correctly at tablet width. |
 | 221 | [ch4-reference__desktop__initial.png](ch4-reference__desktop__initial.png) | ch4-reference | desktop | Renders correctly at desktop width; every formula’s worked calculation and every journal entry’s dr/cr amounts reconcile exactly to the ledger-derived figures, including the Sales refund payable term’s [book?] disclaimer. |
-| 222 | [index__mobile__initial.png](index__mobile__initial.png) | index | mobile | Homepage at 390px: all 13 financial chapters listed with correct titles/summaries per the confirmed TOC, Chapter 3 marked Live with 46 cards due, 12 chapters correctly marked Planned. |
-| 223 | [index__tablet__initial.png](index__tablet__initial.png) | index | tablet | Same at 768px, summary column becomes visible alongside the title. |
-| 224 | [index__desktop__initial.png](index__desktop__initial.png) | index | desktop | Same at 1440px, “How a chapter works” four-item grid sits in two columns. |
-| 225 | [review__mobile__initial.png](review__mobile__initial.png) | review | mobile | Empty cross-chapter review state at 390px: “0 cards due”, link into Chapter 3, correct copy about deck generation. |
-| 226 | [review__tablet__initial.png](review__tablet__initial.png) | review | tablet | Same at 768px. |
-| 227 | [review__desktop__initial.png](review__desktop__initial.png) | review | desktop | Same at 1440px, content stays left-aligned rather than stretching. |
-| 228 | [study-sheet__mobile__initial.png](study-sheet__mobile__initial.png) | study-sheet | mobile | Print-oriented study sheet at 390px: all six adjusting entries (a)-(f) with correct account names and amounts, Back/Print controls at top. |
-| 229 | [study-sheet__tablet__initial.png](study-sheet__tablet__initial.png) | study-sheet | tablet | Two-column entry grid at 768px once width allows. |
-| 230 | [study-sheet__desktop__initial.png](study-sheet__desktop__initial.png) | study-sheet | desktop | Same two-column grid at 1440px, matches the reference page's journal-entry patterns exactly. |
+| 222 | [ch5-home__mobile__initial.png](ch5-home__mobile__initial.png) | ch5-home | mobile | Chapter home renders correctly at mobile width; six module cards with correct progress counts (0 of 6 lessons, 0 of 3 instruments, 0 of 2 drills). |
+| 223 | [ch5-home__tablet__initial.png](ch5-home__tablet__initial.png) | ch5-home | tablet | Renders correctly at tablet width. |
+| 224 | [ch5-home__desktop__initial.png](ch5-home__desktop__initial.png) | ch5-home | desktop | Renders correctly at desktop width. |
+| 225 | [ch5-lab-cost-layers__mobile__initial.png](ch5-lab-cost-layers__mobile__initial.png) | ch5-lab-cost-layers | mobile | Hero instrument renders correctly at mobile width, transaction 1 of 6, empty shelf and $0 across all three method statements before any transaction applied, result line visible, takeaway hidden. |
+| 226 | [ch5-lab-cost-layers__tablet__initial.png](ch5-lab-cost-layers__tablet__initial.png) | ch5-lab-cost-layers | tablet | Renders correctly at tablet width. |
+| 227 | [ch5-lab-cost-layers__desktop__all-applied-fifo.png](ch5-lab-cost-layers__desktop__all-applied-fifo.png) | ch5-lab-cost-layers | desktop | All six transactions applied under FIFO: layers correctly show 2 @ $115 + 10 @ $119 = $1,420 ending inventory, and all three income statements match every anchor exactly (FIFO $1,480 / LIFO $1,320 / weighted average $1,428 gross profit). |
+| 228 | [ch5-lab-cost-layers__desktop__all-applied-lifo.png](ch5-lab-cost-layers__desktop__all-applied-lifo.png) | ch5-lab-cost-layers | desktop | Switching to LIFO correctly re-draws the layers as 5 @ $91 + 7 @ $115 = $1,260, matching the LIFO ending-inventory anchor exactly; button highlight and layer data both confirmed correct via direct DOM inspection (an earlier screenshot in this same run caught the button mid-transition — a capture-timing artifact, not an app bug, fixed by waiting for the transition before the shot). |
+| 229 | [ch5-lab-cost-layers__desktop__initial.png](ch5-lab-cost-layers__desktop__initial.png) | ch5-lab-cost-layers | desktop | Renders correctly at desktop width. |
+| 230 | [ch5-lab-inventory-error-seesaw__mobile__initial.png](ch5-lab-inventory-error-seesaw__mobile__initial.png) | ch5-lab-inventory-error-seesaw | mobile | Renders correctly at mobile width; default $2,000 overstatement matches the brief’s anchor exactly (+$2,000 / −$2,000 / two-year total $0). |
+| 231 | [ch5-lab-inventory-error-seesaw__tablet__initial.png](ch5-lab-inventory-error-seesaw__tablet__initial.png) | ch5-lab-inventory-error-seesaw | tablet | Renders correctly at tablet width. |
+| 232 | [ch5-lab-inventory-error-seesaw__desktop__initial.png](ch5-lab-inventory-error-seesaw__desktop__initial.png) | ch5-lab-inventory-error-seesaw | desktop | Renders correctly at desktop width. |
+| 233 | [ch5-lab-inventory-error-seesaw__desktop__overstatement-4000.png](ch5-lab-inventory-error-seesaw__desktop__overstatement-4000.png) | ch5-lab-inventory-error-seesaw | desktop | Moving the slider to $4,000 correctly scales the swing symmetrically (+$4,000 / −$4,000), confirming the formula generalizes beyond the book’s own $2,000 example. |
+| 234 | [ch5-lab-lower-of-cost-or-market__mobile__initial.png](ch5-lab-lower-of-cost-or-market__mobile__initial.png) | ch5-lab-lower-of-cost-or-market | mobile | Renders correctly at mobile width; default market price equals cost, correctly showing no write-down needed (the corrected baseline default, not the answer already revealed). |
+| 235 | [ch5-lab-lower-of-cost-or-market__tablet__initial.png](ch5-lab-lower-of-cost-or-market__tablet__initial.png) | ch5-lab-lower-of-cost-or-market | tablet | Renders correctly at tablet width. |
+| 236 | [ch5-lab-lower-of-cost-or-market__desktop__initial.png](ch5-lab-lower-of-cost-or-market__desktop__initial.png) | ch5-lab-lower-of-cost-or-market | desktop | Renders correctly at desktop width. |
+| 237 | [ch5-lab-lower-of-cost-or-market__desktop__market-17.png](ch5-lab-lower-of-cost-or-market__desktop__market-17.png) | ch5-lab-lower-of-cost-or-market | desktop | Dropping the market price to $17 correctly shows the write-down to $1,700 and +$300 to cost of goods sold, matching the anchor exactly. |
+| 238 | [ch5-learn-cost-layers__mobile__initial.png](ch5-learn-cost-layers__mobile__initial.png) | ch5-learn-cost-layers | mobile | Renders correctly at mobile width; embeds the hero instrument correctly. |
+| 239 | [ch5-learn-cost-layers__tablet__initial.png](ch5-learn-cost-layers__tablet__initial.png) | ch5-learn-cost-layers | tablet | Renders correctly at tablet width. |
+| 240 | [ch5-learn-cost-layers__desktop__initial.png](ch5-learn-cost-layers__desktop__initial.png) | ch5-learn-cost-layers | desktop | Renders correctly at desktop width. |
+| 241 | [ch5-learn-costing-methods__mobile__initial.png](ch5-learn-costing-methods__mobile__initial.png) | ch5-learn-costing-methods | mobile | Lesson renders correctly at mobile width; all four methods’ cost of goods sold figures match their anchors exactly. |
+| 242 | [ch5-learn-costing-methods__tablet__initial.png](ch5-learn-costing-methods__tablet__initial.png) | ch5-learn-costing-methods | tablet | Renders correctly at tablet width. |
+| 243 | [ch5-learn-costing-methods__desktop__initial.png](ch5-learn-costing-methods__desktop__initial.png) | ch5-learn-costing-methods | desktop | Renders correctly at desktop width. |
+| 244 | [ch5-learn-inventory-errors__mobile__initial.png](ch5-learn-inventory-errors__mobile__initial.png) | ch5-learn-inventory-errors | mobile | Renders correctly at mobile width; embeds the error see-saw instrument correctly. |
+| 245 | [ch5-learn-inventory-errors__tablet__initial.png](ch5-learn-inventory-errors__tablet__initial.png) | ch5-learn-inventory-errors | tablet | Renders correctly at tablet width. |
+| 246 | [ch5-learn-inventory-errors__desktop__initial.png](ch5-learn-inventory-errors__desktop__initial.png) | ch5-learn-inventory-errors | desktop | Renders correctly at desktop width. |
+| 247 | [ch5-learn-lower-of-cost-or-market__mobile__initial.png](ch5-learn-lower-of-cost-or-market__mobile__initial.png) | ch5-learn-lower-of-cost-or-market | mobile | Renders correctly at mobile width; embeds the LCM instrument correctly. |
+| 248 | [ch5-learn-lower-of-cost-or-market__tablet__initial.png](ch5-learn-lower-of-cost-or-market__tablet__initial.png) | ch5-learn-lower-of-cost-or-market | tablet | Renders correctly at tablet width. |
+| 249 | [ch5-learn-lower-of-cost-or-market__desktop__initial.png](ch5-learn-lower-of-cost-or-market__desktop__initial.png) | ch5-learn-lower-of-cost-or-market | desktop | Renders correctly at desktop width. |
+| 250 | [ch5-learn-turnover__mobile__initial.png](ch5-learn-turnover__mobile__initial.png) | ch5-learn-turnover | mobile | Renders correctly at mobile width; standalone worked example (average inventory $1,165, turnover 3.9 times, days’ sales 113.4 days) matches the book’s own rounded figures exactly after a precision fix. |
+| 251 | [ch5-learn-turnover__tablet__initial.png](ch5-learn-turnover__tablet__initial.png) | ch5-learn-turnover | tablet | Renders correctly at tablet width. |
+| 252 | [ch5-learn-turnover__desktop__initial.png](ch5-learn-turnover__desktop__initial.png) | ch5-learn-turnover | desktop | Renders correctly at desktop width. |
+| 253 | [ch5-learn-what-counts__mobile__initial.png](ch5-learn-what-counts__mobile__initial.png) | ch5-learn-what-counts | mobile | Renders correctly at mobile width; count-it/leave-it-out summary matches the classification drill exactly. |
+| 254 | [ch5-learn-what-counts__tablet__initial.png](ch5-learn-what-counts__tablet__initial.png) | ch5-learn-what-counts | tablet | Renders correctly at tablet width. |
+| 255 | [ch5-learn-what-counts__desktop__initial.png](ch5-learn-what-counts__desktop__initial.png) | ch5-learn-what-counts | desktop | Renders correctly at desktop width. |
+| 256 | [ch5-notes__mobile__initial.png](ch5-notes__mobile__initial.png) | ch5-notes | mobile | Generic Notes component renders correctly at mobile width, empty state correct. |
+| 257 | [ch5-notes__tablet__initial.png](ch5-notes__tablet__initial.png) | ch5-notes | tablet | Renders correctly at tablet width. |
+| 258 | [ch5-notes__desktop__initial.png](ch5-notes__desktop__initial.png) | ch5-notes | desktop | Renders correctly at desktop width. |
+| 259 | [ch5-practice__mobile__initial.png](ch5-practice__mobile__initial.png) | ch5-practice | mobile | Both drills render correctly at mobile width: 7-item ownership sort and the 11-card entry journalizer (9 situations, 2 sales split into price/cost pairs). |
+| 260 | [ch5-practice__tablet__initial.png](ch5-practice__tablet__initial.png) | ch5-practice | tablet | Renders correctly at tablet width. |
+| 261 | [ch5-practice__desktop__initial.png](ch5-practice__desktop__initial.png) | ch5-practice | desktop | Renders correctly at desktop width. |
+| 262 | [ch5-practice__desktop__sort-complete.png](ch5-practice__desktop__sort-complete.png) | ch5-practice | desktop | All 7 ownership items answered correctly with correct highlighted answers and explanations; "What you just proved" takeaway reveals correctly on completion. |
+| 263 | [ch5-recall__mobile__initial.png](ch5-recall__mobile__initial.png) | ch5-recall | mobile | Recall deck landing renders correctly at mobile width — 45 cards due (11 entries, 7 classifications, 7 rules, 20 terms), matching the content counts exactly. |
+| 264 | [ch5-recall__tablet__initial.png](ch5-recall__tablet__initial.png) | ch5-recall | tablet | Renders correctly at tablet width. |
+| 265 | [ch5-recall__desktop__deck-started.png](ch5-recall__desktop__deck-started.png) | ch5-recall | desktop | Starting the deck shows the first due card correctly (an entry-journalize card, box –, 1 of 45). |
+| 266 | [ch5-recall__desktop__initial.png](ch5-recall__desktop__initial.png) | ch5-recall | desktop | Renders correctly at desktop width before starting. |
+| 267 | [ch5-reference__mobile__initial.png](ch5-reference__mobile__initial.png) | ch5-reference | mobile | Generic Reference component renders correctly at mobile width — all 20 terms, 5 formulas, and all 11 journal-entry patterns across FIFO, LIFO, weighted average, and the LCM write-down. |
+| 268 | [ch5-reference__tablet__initial.png](ch5-reference__tablet__initial.png) | ch5-reference | tablet | Renders correctly at tablet width. |
+| 269 | [ch5-reference__desktop__initial.png](ch5-reference__desktop__initial.png) | ch5-reference | desktop | Renders correctly at desktop width; every formula’s worked calculation and every journal entry’s dr/cr amounts reconcile exactly to the ledger-derived figures, including the two [book?]-tagged terms’ disclaimers. |
+| 270 | [index__mobile__initial.png](index__mobile__initial.png) | index | mobile | Homepage at 390px: all 13 financial chapters listed with correct titles/summaries per the confirmed TOC, Chapter 3 marked Live with 46 cards due, 12 chapters correctly marked Planned. |
+| 271 | [index__tablet__initial.png](index__tablet__initial.png) | index | tablet | Same at 768px, summary column becomes visible alongside the title. |
+| 272 | [index__desktop__initial.png](index__desktop__initial.png) | index | desktop | Same at 1440px, “How a chapter works” four-item grid sits in two columns. |
+| 273 | [review__mobile__initial.png](review__mobile__initial.png) | review | mobile | Empty cross-chapter review state at 390px: “0 cards due”, link into Chapter 3, correct copy about deck generation. |
+| 274 | [review__tablet__initial.png](review__tablet__initial.png) | review | tablet | Same at 768px. |
+| 275 | [review__desktop__initial.png](review__desktop__initial.png) | review | desktop | Same at 1440px, content stays left-aligned rather than stretching. |
+| 276 | [study-sheet__mobile__initial.png](study-sheet__mobile__initial.png) | study-sheet | mobile | Print-oriented study sheet at 390px: all six adjusting entries (a)-(f) with correct account names and amounts, Back/Print controls at top. |
+| 277 | [study-sheet__tablet__initial.png](study-sheet__tablet__initial.png) | study-sheet | tablet | Two-column entry grid at 768px once width allows. |
+| 278 | [study-sheet__desktop__initial.png](study-sheet__desktop__initial.png) | study-sheet | desktop | Same two-column grid at 1440px, matches the reference page's journal-entry patterns exactly. |
