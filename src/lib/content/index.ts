@@ -5,6 +5,7 @@ import { chapter as ch03 } from './chapters/ch03';
 import { chapter as ch04 } from './chapters/ch04';
 import { chapter as ch05 } from './chapters/ch05';
 import { chapter as ch06 } from './chapters/ch06';
+import { chapter as ch07 } from './chapters/ch07';
 
 /** Wild, Financial and Managerial Accounting, 2025 release. Chapters 1–13 are financial. */
 export const chapterIndex: ChapterMeta[] = [
@@ -14,15 +15,7 @@ export const chapterIndex: ChapterMeta[] = [
 	ch04.meta,
 	ch05.meta,
 	ch06.meta,
-	{
-		number: 7,
-		slug: 'receivables',
-		title: 'Accounting for Receivables',
-		part: 'financial',
-		status: 'planned',
-		summary: 'Estimating what customers won’t pay before they don’t.',
-		instrument: 'Aging and allowance'
-	},
+	ch07.meta,
 	{
 		number: 8,
 		slug: 'long-term-assets',
@@ -79,7 +72,7 @@ export const chapterIndex: ChapterMeta[] = [
 	}
 ];
 
-export const chapters: Record<number, ChapterContent> = { 1: ch01, 2: ch02, 3: ch03, 4: ch04, 5: ch05, 6: ch06 };
+export const chapters: Record<number, ChapterContent> = { 1: ch01, 2: ch02, 3: ch03, 4: ch04, 5: ch05, 6: ch06, 7: ch07 };
 
 export function chapterMeta(n: number): ChapterMeta | undefined {
 	return chapterIndex.find((c) => c.number === n);

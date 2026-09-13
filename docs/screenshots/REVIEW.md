@@ -1,6 +1,6 @@
 # Visual review
 
-325 screens, captured 2026-09-13.
+373 screens, captured 2026-09-13.
 
 Open `index.html` in this folder — a browser tab, not a code editor — and look at
 every image before writing a verdict. A verdict is what is actually on the screen
@@ -326,12 +326,60 @@ and what, if anything, is wrong with it. "Looks fine" is not a verdict.
 | 314 | [ch6-reference__mobile__initial.png](ch6-reference__mobile__initial.png) | ch6-reference | mobile | Generic Reference component renders correctly at mobile width — all 26 terms, 3 formulas, and all 9 journal-entry patterns. |
 | 315 | [ch6-reference__tablet__initial.png](ch6-reference__tablet__initial.png) | ch6-reference | tablet | Renders correctly at tablet width. |
 | 316 | [ch6-reference__desktop__initial.png](ch6-reference__desktop__initial.png) | ch6-reference | desktop | Renders correctly at desktop width; every formula’s worked calculation and every journal entry’s dr/cr amounts reconcile exactly to the ledger-derived figures, including the two [book?]-tagged terms’ disclaimers. |
-| 317 | [index__mobile__initial.png](index__mobile__initial.png) | index | mobile | Homepage at 390px: all 13 financial chapters listed with correct titles/summaries per the confirmed TOC, Chapter 3 marked Live with 46 cards due, 12 chapters correctly marked Planned. |
-| 318 | [index__tablet__initial.png](index__tablet__initial.png) | index | tablet | Same at 768px, summary column becomes visible alongside the title. |
-| 319 | [index__desktop__initial.png](index__desktop__initial.png) | index | desktop | Same at 1440px, “How a chapter works” four-item grid sits in two columns. |
-| 320 | [review__mobile__initial.png](review__mobile__initial.png) | review | mobile | Empty cross-chapter review state at 390px: “0 cards due”, link into Chapter 3, correct copy about deck generation. |
-| 321 | [review__tablet__initial.png](review__tablet__initial.png) | review | tablet | Same at 768px. |
-| 322 | [review__desktop__initial.png](review__desktop__initial.png) | review | desktop | Same at 1440px, content stays left-aligned rather than stretching. |
-| 323 | [study-sheet__mobile__initial.png](study-sheet__mobile__initial.png) | study-sheet | mobile | Print-oriented study sheet at 390px: all six adjusting entries (a)-(f) with correct account names and amounts, Back/Print controls at top. |
-| 324 | [study-sheet__tablet__initial.png](study-sheet__tablet__initial.png) | study-sheet | tablet | Two-column entry grid at 768px once width allows. |
-| 325 | [study-sheet__desktop__initial.png](study-sheet__desktop__initial.png) | study-sheet | desktop | Same two-column grid at 1440px, matches the reference page's journal-entry patterns exactly. |
+| 317 | [ch7-home__mobile__initial.png](ch7-home__mobile__initial.png) | ch7-home | mobile | Chapter home renders correctly at mobile width; six module cards with correct progress counts (0 of 6 lessons, 0 of 3 instruments, 0 of 2 drills). |
+| 318 | [ch7-home__tablet__initial.png](ch7-home__tablet__initial.png) | ch7-home | tablet | Renders correctly at tablet width. |
+| 319 | [ch7-home__desktop__initial.png](ch7-home__desktop__initial.png) | ch7-home | desktop | Renders correctly at desktop width. |
+| 320 | [ch7-lab-aging-schedule__mobile__initial.png](ch7-lab-aging-schedule__mobile__initial.png) | ch7-lab-aging-schedule | mobile | Hero instrument renders correctly at mobile width; at 0% aged all $100,000 sits in "not yet due" with required allowance $1,000 and expense $350 (1,000−650), result line and hidden takeaway correct. |
+| 321 | [ch7-lab-aging-schedule__tablet__initial.png](ch7-lab-aging-schedule__tablet__initial.png) | ch7-lab-aging-schedule | tablet | Renders correctly at tablet width. |
+| 322 | [ch7-lab-aging-schedule__desktop__debit-balance.png](ch7-lab-aging-schedule__desktop__debit-balance.png) | ch7-lab-aging-schedule | desktop | Switching the existing balance to $350 debit correctly recomputes bad debts expense to $5,500 (5,150+350), matching the anchor exactly. |
+| 323 | [ch7-lab-aging-schedule__desktop__fully-aged.png](ch7-lab-aging-schedule__desktop__fully-aged.png) | ch7-lab-aging-schedule | desktop | Moving the slider to 100% exactly reproduces the book’s own aging table — all five buckets, rates, and uncollectible amounts match, required allowance $5,150, bad debts expense $4,500, takeaway revealed. |
+| 324 | [ch7-lab-aging-schedule__desktop__initial.png](ch7-lab-aging-schedule__desktop__initial.png) | ch7-lab-aging-schedule | desktop | Renders correctly at desktop width. |
+| 325 | [ch7-lab-note-calculator__mobile__initial.png](ch7-lab-note-calculator__mobile__initial.png) | ch7-lab-note-calculator | mobile | Renders correctly at mobile width; default $10,000/12%/90 days correctly gives interest $300, maturity $10,300, accrued at Dec 31 $100 (30 of 90 days). |
+| 326 | [ch7-lab-note-calculator__tablet__initial.png](ch7-lab-note-calculator__tablet__initial.png) | ch7-lab-note-calculator | tablet | Renders correctly at tablet width. |
+| 327 | [ch7-lab-note-calculator__desktop__changed.png](ch7-lab-note-calculator__desktop__changed.png) | ch7-lab-note-calculator | desktop | Changing principal to $20,000 and days to 180 correctly recomputes interest $1,200, maturity $21,200, and accrued at Dec 31 $200 (30 of 180 days), and reveals the takeaway. |
+| 328 | [ch7-lab-note-calculator__desktop__initial.png](ch7-lab-note-calculator__desktop__initial.png) | ch7-lab-note-calculator | desktop | Renders correctly at desktop width. |
+| 329 | [ch7-lab-sales-vs-receivables-method__mobile__initial.png](ch7-lab-sales-vs-receivables-method__mobile__initial.png) | ch7-lab-sales-vs-receivables-method | mobile | Renders correctly at mobile width; percent of sales method shown by default with correct $4,000 expense / $4,650 allowance. |
+| 330 | [ch7-lab-sales-vs-receivables-method__tablet__initial.png](ch7-lab-sales-vs-receivables-method__tablet__initial.png) | ch7-lab-sales-vs-receivables-method | tablet | Renders correctly at tablet width. |
+| 331 | [ch7-lab-sales-vs-receivables-method__desktop__initial.png](ch7-lab-sales-vs-receivables-method__desktop__initial.png) | ch7-lab-sales-vs-receivables-method | desktop | Renders correctly at desktop width. |
+| 332 | [ch7-lab-sales-vs-receivables-method__desktop__receivables-method.png](ch7-lab-sales-vs-receivables-method__desktop__receivables-method.png) | ch7-lab-sales-vs-receivables-method | desktop | Switching to percent of receivables correctly shows $4,500 expense / $5,150 allowance and reveals the takeaway contrasting the two methods. |
+| 333 | [ch7-learn-aging__mobile__initial.png](ch7-learn-aging__mobile__initial.png) | ch7-learn-aging | mobile | Renders correctly at mobile width; embeds the aging schedule hero correctly. |
+| 334 | [ch7-learn-aging__tablet__initial.png](ch7-learn-aging__tablet__initial.png) | ch7-learn-aging | tablet | Renders correctly at tablet width. |
+| 335 | [ch7-learn-aging__desktop__initial.png](ch7-learn-aging__desktop__initial.png) | ch7-learn-aging | desktop | Renders correctly at desktop width. |
+| 336 | [ch7-learn-notes-receivable__mobile__initial.png](ch7-learn-notes-receivable__mobile__initial.png) | ch7-learn-notes-receivable | mobile | Renders correctly at mobile width; embeds the note calculator correctly. |
+| 337 | [ch7-learn-notes-receivable__tablet__initial.png](ch7-learn-notes-receivable__tablet__initial.png) | ch7-learn-notes-receivable | tablet | Renders correctly at tablet width. |
+| 338 | [ch7-learn-notes-receivable__desktop__initial.png](ch7-learn-notes-receivable__desktop__initial.png) | ch7-learn-notes-receivable | desktop | Renders correctly at desktop width. |
+| 339 | [ch7-learn-receivables-basics__mobile__initial.png](ch7-learn-receivables-basics__mobile__initial.png) | ch7-learn-receivables-basics | mobile | Lesson renders correctly at mobile width. |
+| 340 | [ch7-learn-receivables-basics__tablet__initial.png](ch7-learn-receivables-basics__tablet__initial.png) | ch7-learn-receivables-basics | tablet | Renders correctly at tablet width. |
+| 341 | [ch7-learn-receivables-basics__desktop__initial.png](ch7-learn-receivables-basics__desktop__initial.png) | ch7-learn-receivables-basics | desktop | Renders correctly at desktop width. |
+| 342 | [ch7-learn-sales-vs-receivables__mobile__initial.png](ch7-learn-sales-vs-receivables__mobile__initial.png) | ch7-learn-sales-vs-receivables | mobile | Renders correctly at mobile width; embeds the sales-vs-receivables instrument correctly, split into its own lesson per the one-instrument-per-lesson convention. |
+| 343 | [ch7-learn-sales-vs-receivables__tablet__initial.png](ch7-learn-sales-vs-receivables__tablet__initial.png) | ch7-learn-sales-vs-receivables | tablet | Renders correctly at tablet width. |
+| 344 | [ch7-learn-sales-vs-receivables__desktop__initial.png](ch7-learn-sales-vs-receivables__desktop__initial.png) | ch7-learn-sales-vs-receivables | desktop | Renders correctly at desktop width. |
+| 345 | [ch7-learn-turnover__mobile__initial.png](ch7-learn-turnover__mobile__initial.png) | ch7-learn-turnover | mobile | Renders correctly at mobile width; standalone worked example ($500,000/$100,000/5.0 times) matches the anchor exactly. |
+| 346 | [ch7-learn-turnover__tablet__initial.png](ch7-learn-turnover__tablet__initial.png) | ch7-learn-turnover | tablet | Renders correctly at tablet width. |
+| 347 | [ch7-learn-turnover__desktop__initial.png](ch7-learn-turnover__desktop__initial.png) | ch7-learn-turnover | desktop | Renders correctly at desktop width. |
+| 348 | [ch7-learn-two-methods__mobile__initial.png](ch7-learn-two-methods__mobile__initial.png) | ch7-learn-two-methods | mobile | Renders correctly at mobile width; the two write-off entries shown are pulled live from the Bridgepoint and Meridian ledgers, not hardcoded. |
+| 349 | [ch7-learn-two-methods__tablet__initial.png](ch7-learn-two-methods__tablet__initial.png) | ch7-learn-two-methods | tablet | Renders correctly at tablet width. |
+| 350 | [ch7-learn-two-methods__desktop__initial.png](ch7-learn-two-methods__desktop__initial.png) | ch7-learn-two-methods | desktop | Renders correctly at desktop width. |
+| 351 | [ch7-notes__mobile__initial.png](ch7-notes__mobile__initial.png) | ch7-notes | mobile | Generic Notes component renders correctly at mobile width, empty state correct. |
+| 352 | [ch7-notes__tablet__initial.png](ch7-notes__tablet__initial.png) | ch7-notes | tablet | Renders correctly at tablet width. |
+| 353 | [ch7-notes__desktop__initial.png](ch7-notes__desktop__initial.png) | ch7-notes | desktop | Renders correctly at desktop width. |
+| 354 | [ch7-practice__mobile__initial.png](ch7-practice__mobile__initial.png) | ch7-practice | mobile | Both drills render correctly at mobile width: 8-item asset-effect sort and the 10-card entry journalizer. |
+| 355 | [ch7-practice__tablet__initial.png](ch7-practice__tablet__initial.png) | ch7-practice | tablet | Renders correctly at tablet width. |
+| 356 | [ch7-practice__desktop__initial.png](ch7-practice__desktop__initial.png) | ch7-practice | desktop | Renders correctly at desktop width. |
+| 357 | [ch7-practice__desktop__sort-complete.png](ch7-practice__desktop__sort-complete.png) | ch7-practice | desktop | All 8 asset-effect items answered correctly with correct highlighted answers and explanations; "What you just proved" takeaway reveals correctly on completion. |
+| 358 | [ch7-recall__mobile__initial.png](ch7-recall__mobile__initial.png) | ch7-recall | mobile | Recall deck landing renders correctly at mobile width — 46 cards due (10 entries, 8 classifications, 4 rules, 24 terms), matching the content counts exactly. |
+| 359 | [ch7-recall__tablet__initial.png](ch7-recall__tablet__initial.png) | ch7-recall | tablet | Renders correctly at tablet width. |
+| 360 | [ch7-recall__desktop__deck-started.png](ch7-recall__desktop__deck-started.png) | ch7-recall | desktop | Starting the deck shows the first due card correctly (an entry-journalize card, box –, 1 of 46). |
+| 361 | [ch7-recall__desktop__initial.png](ch7-recall__desktop__initial.png) | ch7-recall | desktop | Renders correctly at desktop width before starting. |
+| 362 | [ch7-reference__mobile__initial.png](ch7-reference__mobile__initial.png) | ch7-reference | mobile | Generic Reference component renders correctly at mobile width — all 24 terms, 6 formulas, and all 10 journal-entry patterns across Bridgepoint, Meridian, and Cobalt. |
+| 363 | [ch7-reference__tablet__initial.png](ch7-reference__tablet__initial.png) | ch7-reference | tablet | Renders correctly at tablet width. |
+| 364 | [ch7-reference__desktop__initial.png](ch7-reference__desktop__initial.png) | ch7-reference | desktop | Renders correctly at desktop width; every formula’s worked calculation and every journal entry’s dr/cr amounts reconcile exactly to the ledger-derived figures. |
+| 365 | [index__mobile__initial.png](index__mobile__initial.png) | index | mobile | Homepage at 390px: all 13 financial chapters listed with correct titles/summaries per the confirmed TOC, Chapter 3 marked Live with 46 cards due, 12 chapters correctly marked Planned. |
+| 366 | [index__tablet__initial.png](index__tablet__initial.png) | index | tablet | Same at 768px, summary column becomes visible alongside the title. |
+| 367 | [index__desktop__initial.png](index__desktop__initial.png) | index | desktop | Same at 1440px, “How a chapter works” four-item grid sits in two columns. |
+| 368 | [review__mobile__initial.png](review__mobile__initial.png) | review | mobile | Empty cross-chapter review state at 390px: “0 cards due”, link into Chapter 3, correct copy about deck generation. |
+| 369 | [review__tablet__initial.png](review__tablet__initial.png) | review | tablet | Same at 768px. |
+| 370 | [review__desktop__initial.png](review__desktop__initial.png) | review | desktop | Same at 1440px, content stays left-aligned rather than stretching. |
+| 371 | [study-sheet__mobile__initial.png](study-sheet__mobile__initial.png) | study-sheet | mobile | Print-oriented study sheet at 390px: all six adjusting entries (a)-(f) with correct account names and amounts, Back/Print controls at top. |
+| 372 | [study-sheet__tablet__initial.png](study-sheet__tablet__initial.png) | study-sheet | tablet | Two-column entry grid at 768px once width allows. |
+| 373 | [study-sheet__desktop__initial.png](study-sheet__desktop__initial.png) | study-sheet | desktop | Same two-column grid at 1440px, matches the reference page's journal-entry patterns exactly. |
