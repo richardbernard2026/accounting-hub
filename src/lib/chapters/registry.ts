@@ -1,5 +1,10 @@
 import type { Component } from 'svelte';
 import {
+	lessonComponents as ch02Lessons,
+	instrumentComponents as ch02Instruments
+} from './ch02/manifest';
+import Ch02Practice from './ch02/Practice.svelte';
+import {
 	lessonComponents as ch03Lessons,
 	instrumentComponents as ch03Instruments
 } from './ch03/manifest';
@@ -17,6 +22,11 @@ export interface ChapterModules {
 }
 
 export const chapterModules: Record<number, ChapterModules> = {
+	2: {
+		lessonComponents: ch02Lessons,
+		instrumentComponents: ch02Instruments,
+		practice: Ch02Practice
+	},
 	3: {
 		lessonComponents: ch03Lessons,
 		instrumentComponents: ch03Instruments,

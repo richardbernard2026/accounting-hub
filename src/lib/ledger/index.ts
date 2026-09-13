@@ -67,6 +67,25 @@ export function isTemporary(type: AccountType): boolean {
 	return type === 'revenue' || type === 'expense' || type === 'contra-equity';
 }
 
+export function elementLabel(type: AccountType): string {
+	switch (type) {
+		case 'asset':
+			return 'Asset';
+		case 'contra-asset':
+			return 'Contra asset';
+		case 'liability':
+			return 'Liability';
+		case 'equity':
+			return 'Equity';
+		case 'contra-equity':
+			return 'Equity (contra)';
+		case 'revenue':
+			return 'Revenue';
+		case 'expense':
+			return 'Expense';
+	}
+}
+
 export function chartOf(accounts: Account[]): Map<string, Account> {
 	const m = new Map<string, Account>();
 	for (const a of accounts) {
