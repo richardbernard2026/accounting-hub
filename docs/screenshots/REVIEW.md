@@ -1,6 +1,6 @@
 # Visual review
 
-278 screens, captured 2026-09-13.
+325 screens, captured 2026-09-13.
 
 Open `index.html` in this folder — a browser tab, not a code editor — and look at
 every image before writing a verdict. A verdict is what is actually on the screen
@@ -279,12 +279,59 @@ and what, if anything, is wrong with it. "Looks fine" is not a verdict.
 | 267 | [ch5-reference__mobile__initial.png](ch5-reference__mobile__initial.png) | ch5-reference | mobile | Generic Reference component renders correctly at mobile width — all 20 terms, 5 formulas, and all 11 journal-entry patterns across FIFO, LIFO, weighted average, and the LCM write-down. |
 | 268 | [ch5-reference__tablet__initial.png](ch5-reference__tablet__initial.png) | ch5-reference | tablet | Renders correctly at tablet width. |
 | 269 | [ch5-reference__desktop__initial.png](ch5-reference__desktop__initial.png) | ch5-reference | desktop | Renders correctly at desktop width; every formula’s worked calculation and every journal entry’s dr/cr amounts reconcile exactly to the ledger-derived figures, including the two [book?]-tagged terms’ disclaimers. |
-| 270 | [index__mobile__initial.png](index__mobile__initial.png) | index | mobile | Homepage at 390px: all 13 financial chapters listed with correct titles/summaries per the confirmed TOC, Chapter 3 marked Live with 46 cards due, 12 chapters correctly marked Planned. |
-| 271 | [index__tablet__initial.png](index__tablet__initial.png) | index | tablet | Same at 768px, summary column becomes visible alongside the title. |
-| 272 | [index__desktop__initial.png](index__desktop__initial.png) | index | desktop | Same at 1440px, “How a chapter works” four-item grid sits in two columns. |
-| 273 | [review__mobile__initial.png](review__mobile__initial.png) | review | mobile | Empty cross-chapter review state at 390px: “0 cards due”, link into Chapter 3, correct copy about deck generation. |
-| 274 | [review__tablet__initial.png](review__tablet__initial.png) | review | tablet | Same at 768px. |
-| 275 | [review__desktop__initial.png](review__desktop__initial.png) | review | desktop | Same at 1440px, content stays left-aligned rather than stretching. |
-| 276 | [study-sheet__mobile__initial.png](study-sheet__mobile__initial.png) | study-sheet | mobile | Print-oriented study sheet at 390px: all six adjusting entries (a)-(f) with correct account names and amounts, Back/Print controls at top. |
-| 277 | [study-sheet__tablet__initial.png](study-sheet__tablet__initial.png) | study-sheet | tablet | Two-column entry grid at 768px once width allows. |
-| 278 | [study-sheet__desktop__initial.png](study-sheet__desktop__initial.png) | study-sheet | desktop | Same two-column grid at 1440px, matches the reference page's journal-entry patterns exactly. |
+| 270 | [ch6-home__mobile__initial.png](ch6-home__mobile__initial.png) | ch6-home | mobile | Chapter home renders correctly at mobile width; six module cards with correct progress counts (0 of 6 lessons, 0 of 3 instruments, 0 of 2 drills). |
+| 271 | [ch6-home__tablet__initial.png](ch6-home__tablet__initial.png) | ch6-home | tablet | Renders correctly at tablet width. |
+| 272 | [ch6-home__desktop__initial.png](ch6-home__desktop__initial.png) | ch6-home | desktop | Renders correctly at desktop width. |
+| 273 | [ch6-lab-bank-reconciliation__mobile__initial.png](ch6-lab-bank-reconciliation__mobile__initial.png) | ch6-lab-bank-reconciliation | mobile | Hero instrument renders correctly at mobile width; 7 unsorted items each with Bank side/Book side buttons, pre-adjustment balances shown, takeaway hidden. |
+| 274 | [ch6-lab-bank-reconciliation__tablet__initial.png](ch6-lab-bank-reconciliation__tablet__initial.png) | ch6-lab-bank-reconciliation | tablet | Renders correctly at tablet width. |
+| 275 | [ch6-lab-bank-reconciliation__desktop__all-sorted.png](ch6-lab-bank-reconciliation__desktop__all-sorted.png) | ch6-lab-bank-reconciliation | desktop | Sorting all 7 items correctly converges both adjusted balances to $1,695 exactly, generates the 5 correct book-side journal entries with correct dr/cr amounts, and reveals "Matched" plus the takeaway. |
+| 276 | [ch6-lab-bank-reconciliation__desktop__initial.png](ch6-lab-bank-reconciliation__desktop__initial.png) | ch6-lab-bank-reconciliation | desktop | Renders correctly at desktop width. |
+| 277 | [ch6-lab-control-failure-diagnostic__mobile__initial.png](ch6-lab-control-failure-diagnostic__mobile__initial.png) | ch6-lab-control-failure-diagnostic | mobile | Renders correctly at mobile width; scenario 1 of 7 with all 7 principles as options, result line and hidden takeaway correct. |
+| 278 | [ch6-lab-control-failure-diagnostic__tablet__initial.png](ch6-lab-control-failure-diagnostic__tablet__initial.png) | ch6-lab-control-failure-diagnostic | tablet | Renders correctly at tablet width. |
+| 279 | [ch6-lab-control-failure-diagnostic__desktop__first-answered.png](ch6-lab-control-failure-diagnostic__desktop__first-answered.png) | ch6-lab-control-failure-diagnostic | desktop | Answering scenario 1 correctly ("Establish responsibilities") shows "Right.", advances the correct count to 1, and reveals the takeaway. "Pin this state" button styling is the standard btn-quiet look used throughout, not disabled. |
+| 280 | [ch6-lab-control-failure-diagnostic__desktop__initial.png](ch6-lab-control-failure-diagnostic__desktop__initial.png) | ch6-lab-control-failure-diagnostic | desktop | Renders correctly at desktop width. |
+| 281 | [ch6-lab-petty-cash-cycle__mobile__initial.png](ch6-lab-petty-cash-cycle__mobile__initial.png) | ch6-lab-petty-cash-cycle | mobile | Renders correctly at mobile width; step 1 of 3, all figures at their pre-step values ($0/$1,000/$0), takeaway hidden. |
+| 282 | [ch6-lab-petty-cash-cycle__tablet__initial.png](ch6-lab-petty-cash-cycle__tablet__initial.png) | ch6-lab-petty-cash-cycle | tablet | Renders correctly at tablet width. |
+| 283 | [ch6-lab-petty-cash-cycle__desktop__all-applied.png](ch6-lab-petty-cash-cycle__desktop__all-applied.png) | ch6-lab-petty-cash-cycle | desktop | All three steps applied: petty cash $150, cash $778, expenses recorded $72 — all reconcile exactly (1,000 − 100 − 72 − 50 = 778), and the entry for increasing the fund displays correctly. |
+| 284 | [ch6-lab-petty-cash-cycle__desktop__initial.png](ch6-lab-petty-cash-cycle__desktop__initial.png) | ch6-lab-petty-cash-cycle | desktop | Renders correctly at desktop width. |
+| 285 | [ch6-learn-bank-reconciliation__mobile__initial.png](ch6-learn-bank-reconciliation__mobile__initial.png) | ch6-learn-bank-reconciliation | mobile | Renders correctly at mobile width; embeds the bank reconciliation hero correctly. |
+| 286 | [ch6-learn-bank-reconciliation__tablet__initial.png](ch6-learn-bank-reconciliation__tablet__initial.png) | ch6-learn-bank-reconciliation | tablet | Renders correctly at tablet width. |
+| 287 | [ch6-learn-bank-reconciliation__desktop__initial.png](ch6-learn-bank-reconciliation__desktop__initial.png) | ch6-learn-bank-reconciliation | desktop | Renders correctly at desktop width. |
+| 288 | [ch6-learn-cash-and-equivalents__mobile__initial.png](ch6-learn-cash-and-equivalents__mobile__initial.png) | ch6-learn-cash-and-equivalents | mobile | Renders correctly at mobile width. |
+| 289 | [ch6-learn-cash-and-equivalents__tablet__initial.png](ch6-learn-cash-and-equivalents__tablet__initial.png) | ch6-learn-cash-and-equivalents | tablet | Renders correctly at tablet width. |
+| 290 | [ch6-learn-cash-and-equivalents__desktop__initial.png](ch6-learn-cash-and-equivalents__desktop__initial.png) | ch6-learn-cash-and-equivalents | desktop | Renders correctly at desktop width. |
+| 291 | [ch6-learn-control-principles__mobile__initial.png](ch6-learn-control-principles__mobile__initial.png) | ch6-learn-control-principles | mobile | Renders correctly at mobile width; embeds the control failure diagnostic instrument correctly. |
+| 292 | [ch6-learn-control-principles__tablet__initial.png](ch6-learn-control-principles__tablet__initial.png) | ch6-learn-control-principles | tablet | Renders correctly at tablet width. |
+| 293 | [ch6-learn-control-principles__desktop__initial.png](ch6-learn-control-principles__desktop__initial.png) | ch6-learn-control-principles | desktop | Renders correctly at desktop width. |
+| 294 | [ch6-learn-days-sales-uncollected__mobile__initial.png](ch6-learn-days-sales-uncollected__mobile__initial.png) | ch6-learn-days-sales-uncollected | mobile | Renders correctly at mobile width; standalone worked example ($12,000/$146,000/30.0 days) with correct disclaimer that it is not tied to this chapter’s own scenarios. |
+| 295 | [ch6-learn-days-sales-uncollected__tablet__initial.png](ch6-learn-days-sales-uncollected__tablet__initial.png) | ch6-learn-days-sales-uncollected | tablet | Renders correctly at tablet width. |
+| 296 | [ch6-learn-days-sales-uncollected__desktop__initial.png](ch6-learn-days-sales-uncollected__desktop__initial.png) | ch6-learn-days-sales-uncollected | desktop | Renders correctly at desktop width. |
+| 297 | [ch6-learn-internal-control__mobile__initial.png](ch6-learn-internal-control__mobile__initial.png) | ch6-learn-internal-control | mobile | Lesson renders correctly at mobile width, fraud-triangle summary matches the recall rule exactly. |
+| 298 | [ch6-learn-internal-control__tablet__initial.png](ch6-learn-internal-control__tablet__initial.png) | ch6-learn-internal-control | tablet | Renders correctly at tablet width. |
+| 299 | [ch6-learn-internal-control__desktop__initial.png](ch6-learn-internal-control__desktop__initial.png) | ch6-learn-internal-control | desktop | Renders correctly at desktop width. |
+| 300 | [ch6-learn-petty-cash__mobile__initial.png](ch6-learn-petty-cash__mobile__initial.png) | ch6-learn-petty-cash | mobile | Renders correctly at mobile width; embeds the petty cash cycle instrument correctly. |
+| 301 | [ch6-learn-petty-cash__tablet__initial.png](ch6-learn-petty-cash__tablet__initial.png) | ch6-learn-petty-cash | tablet | Renders correctly at tablet width. |
+| 302 | [ch6-learn-petty-cash__desktop__initial.png](ch6-learn-petty-cash__desktop__initial.png) | ch6-learn-petty-cash | desktop | Renders correctly at desktop width. |
+| 303 | [ch6-notes__mobile__initial.png](ch6-notes__mobile__initial.png) | ch6-notes | mobile | Generic Notes component renders correctly at mobile width, empty state correct. |
+| 304 | [ch6-notes__tablet__initial.png](ch6-notes__tablet__initial.png) | ch6-notes | tablet | Renders correctly at tablet width. |
+| 305 | [ch6-notes__desktop__initial.png](ch6-notes__desktop__initial.png) | ch6-notes | desktop | Renders correctly at desktop width. |
+| 306 | [ch6-practice__mobile__initial.png](ch6-practice__mobile__initial.png) | ch6-practice | mobile | Both drills render correctly at mobile width: 9-item reconciliation-side sort and the 9-card entry journalizer. |
+| 307 | [ch6-practice__tablet__initial.png](ch6-practice__tablet__initial.png) | ch6-practice | tablet | Renders correctly at tablet width. |
+| 308 | [ch6-practice__desktop__initial.png](ch6-practice__desktop__initial.png) | ch6-practice | desktop | Renders correctly at desktop width. |
+| 309 | [ch6-practice__desktop__sort-complete.png](ch6-practice__desktop__sort-complete.png) | ch6-practice | desktop | All 9 reconciliation items answered correctly with correct highlighted answers and explanations; "What you just proved" takeaway reveals correctly on completion. |
+| 310 | [ch6-recall__mobile__initial.png](ch6-recall__mobile__initial.png) | ch6-recall | mobile | Recall deck landing renders correctly at mobile width — 49 cards due (9 entries, 9 classifications, 5 rules, 26 terms), matching the content counts exactly. |
+| 311 | [ch6-recall__tablet__initial.png](ch6-recall__tablet__initial.png) | ch6-recall | tablet | Renders correctly at tablet width. |
+| 312 | [ch6-recall__desktop__deck-started.png](ch6-recall__desktop__deck-started.png) | ch6-recall | desktop | Starting the deck shows the first due card correctly (an entry-journalize card, box –, 1 of 49). |
+| 313 | [ch6-recall__desktop__initial.png](ch6-recall__desktop__initial.png) | ch6-recall | desktop | Renders correctly at desktop width before starting. |
+| 314 | [ch6-reference__mobile__initial.png](ch6-reference__mobile__initial.png) | ch6-reference | mobile | Generic Reference component renders correctly at mobile width — all 26 terms, 3 formulas, and all 9 journal-entry patterns. |
+| 315 | [ch6-reference__tablet__initial.png](ch6-reference__tablet__initial.png) | ch6-reference | tablet | Renders correctly at tablet width. |
+| 316 | [ch6-reference__desktop__initial.png](ch6-reference__desktop__initial.png) | ch6-reference | desktop | Renders correctly at desktop width; every formula’s worked calculation and every journal entry’s dr/cr amounts reconcile exactly to the ledger-derived figures, including the two [book?]-tagged terms’ disclaimers. |
+| 317 | [index__mobile__initial.png](index__mobile__initial.png) | index | mobile | Homepage at 390px: all 13 financial chapters listed with correct titles/summaries per the confirmed TOC, Chapter 3 marked Live with 46 cards due, 12 chapters correctly marked Planned. |
+| 318 | [index__tablet__initial.png](index__tablet__initial.png) | index | tablet | Same at 768px, summary column becomes visible alongside the title. |
+| 319 | [index__desktop__initial.png](index__desktop__initial.png) | index | desktop | Same at 1440px, “How a chapter works” four-item grid sits in two columns. |
+| 320 | [review__mobile__initial.png](review__mobile__initial.png) | review | mobile | Empty cross-chapter review state at 390px: “0 cards due”, link into Chapter 3, correct copy about deck generation. |
+| 321 | [review__tablet__initial.png](review__tablet__initial.png) | review | tablet | Same at 768px. |
+| 322 | [review__desktop__initial.png](review__desktop__initial.png) | review | desktop | Same at 1440px, content stays left-aligned rather than stretching. |
+| 323 | [study-sheet__mobile__initial.png](study-sheet__mobile__initial.png) | study-sheet | mobile | Print-oriented study sheet at 390px: all six adjusting entries (a)-(f) with correct account names and amounts, Back/Print controls at top. |
+| 324 | [study-sheet__tablet__initial.png](study-sheet__tablet__initial.png) | study-sheet | tablet | Two-column entry grid at 768px once width allows. |
+| 325 | [study-sheet__desktop__initial.png](study-sheet__desktop__initial.png) | study-sheet | desktop | Same two-column grid at 1440px, matches the reference page's journal-entry patterns exactly. |
