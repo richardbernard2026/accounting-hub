@@ -1,6 +1,6 @@
 # Visual review
 
-424 screens, captured 2026-09-13.
+471 screens, captured 2026-09-13.
 
 Open `index.html` in this folder — a browser tab, not a code editor — and look at
 every image before writing a verdict. A verdict is what is actually on the screen
@@ -425,12 +425,59 @@ and what, if anything, is wrong with it. "Looks fine" is not a verdict.
 | 413 | [ch8-reference__mobile__initial.png](ch8-reference__mobile__initial.png) | ch8-reference | mobile | Generic Reference component renders correctly at mobile width — all 38 terms, 8 formulas, and all 10 journal-entry patterns across Fletcher Manufacturing (both methods) and Bay Ridge Woodworks. |
 | 414 | [ch8-reference__tablet__initial.png](ch8-reference__tablet__initial.png) | ch8-reference | tablet | Renders correctly at tablet width. |
 | 415 | [ch8-reference__desktop__initial.png](ch8-reference__desktop__initial.png) | ch8-reference | desktop | Renders correctly at desktop width; every formula’s worked calculation and every journal entry’s dr/cr amounts reconcile exactly to the ledger-derived figures. |
-| 416 | [index__mobile__initial.png](index__mobile__initial.png) | index | mobile | Homepage at 390px: all 13 financial chapters listed with correct titles/summaries per the confirmed TOC, Chapter 3 marked Live with 46 cards due, 12 chapters correctly marked Planned. |
-| 417 | [index__tablet__initial.png](index__tablet__initial.png) | index | tablet | Same at 768px, summary column becomes visible alongside the title. |
-| 418 | [index__desktop__initial.png](index__desktop__initial.png) | index | desktop | Same at 1440px, “How a chapter works” four-item grid sits in two columns. |
-| 419 | [review__mobile__initial.png](review__mobile__initial.png) | review | mobile | Empty cross-chapter review state at 390px: “0 cards due”, link into Chapter 3, correct copy about deck generation. |
-| 420 | [review__tablet__initial.png](review__tablet__initial.png) | review | tablet | Same at 768px. |
-| 421 | [review__desktop__initial.png](review__desktop__initial.png) | review | desktop | Same at 1440px, content stays left-aligned rather than stretching. |
-| 422 | [study-sheet__mobile__initial.png](study-sheet__mobile__initial.png) | study-sheet | mobile | Print-oriented study sheet at 390px: all six adjusting entries (a)-(f) with correct account names and amounts, Back/Print controls at top. |
-| 423 | [study-sheet__tablet__initial.png](study-sheet__tablet__initial.png) | study-sheet | tablet | Two-column entry grid at 768px once width allows. |
-| 424 | [study-sheet__desktop__initial.png](study-sheet__desktop__initial.png) | study-sheet | desktop | Same two-column grid at 1440px, matches the reference page's journal-entry patterns exactly. |
+| 416 | [ch9-home__mobile__initial.png](ch9-home__mobile__initial.png) | ch9-home | mobile | Renders correctly at mobile width; hero sentence and all six section cards stack cleanly. |
+| 417 | [ch9-home__tablet__initial.png](ch9-home__tablet__initial.png) | ch9-home | tablet | Renders correctly at tablet width, two-column card grid. |
+| 418 | [ch9-home__desktop__initial.png](ch9-home__desktop__initial.png) | ch9-home | desktop | Renders correctly at desktop width. Hero figures ($10,000 payroll → $7,535 net pay, $11,365 total cost) match the payroll anchors exactly. |
+| 419 | [ch9-lab-note-across-year-end__mobile__initial.png](ch9-lab-note-across-year-end__mobile__initial.png) | ch9-lab-note-across-year-end | mobile | Renders correctly at mobile width; slider and both figure boxes stack cleanly. |
+| 420 | [ch9-lab-note-across-year-end__tablet__initial.png](ch9-lab-note-across-year-end__tablet__initial.png) | ch9-lab-note-across-year-end | tablet | Renders correctly at tablet width. |
+| 421 | [ch9-lab-note-across-year-end__desktop__day-45.png](ch9-lab-note-across-year-end__desktop__day-45.png) | ch9-lab-note-across-year-end | desktop | Moving year end to day 45 correctly splits interest into $150 accrued / $150 next year (45/45 days), matching the note's daily-interest logic. The takeaway line now reads generically and stays true at any day position. |
+| 422 | [ch9-lab-note-across-year-end__desktop__initial.png](ch9-lab-note-across-year-end__desktop__initial.png) | ch9-lab-note-across-year-end | desktop | Renders correctly at desktop width. Default day 15 of 90 shows $50 accrued / $250 next year, matching the note anchors exactly. |
+| 423 | [ch9-lab-payroll-waterfall__mobile__initial.png](ch9-lab-payroll-waterfall__mobile__initial.png) | ch9-lab-payroll-waterfall | mobile | Renders correctly at mobile width; both employee and employer tables stack cleanly. |
+| 424 | [ch9-lab-payroll-waterfall__tablet__initial.png](ch9-lab-payroll-waterfall__tablet__initial.png) | ch9-lab-payroll-waterfall | tablet | Renders correctly at tablet width, two-column layout. |
+| 425 | [ch9-lab-payroll-waterfall__desktop__gross-20000.png](ch9-lab-payroll-waterfall__desktop__gross-20000.png) | ch9-lab-payroll-waterfall | desktop | Moving gross pay to $20,000 correctly scales every withholding and employer tax line proportionally (net pay $15,070, total cost $22,730). Fixed a bug here: the takeaway line previously hardcoded "$10,000" from the default state and went stale at this value; rewritten to a generic statement that holds at any gross pay. |
+| 426 | [ch9-lab-payroll-waterfall__desktop__initial.png](ch9-lab-payroll-waterfall__desktop__initial.png) | ch9-lab-payroll-waterfall | desktop | Renders correctly at desktop width. Default $10,000 gross pay shows net pay $7,535 and total cost $11,365, matching the payroll anchors exactly. |
+| 427 | [ch9-lab-warranty-accrual__mobile__initial.png](ch9-lab-warranty-accrual__mobile__initial.png) | ch9-lab-warranty-accrual | mobile | Renders correctly at mobile width. |
+| 428 | [ch9-lab-warranty-accrual__tablet__initial.png](ch9-lab-warranty-accrual__tablet__initial.png) | ch9-lab-warranty-accrual | tablet | Renders correctly at tablet width. |
+| 429 | [ch9-lab-warranty-accrual__desktop__initial.png](ch9-lab-warranty-accrual__desktop__initial.png) | ch9-lab-warranty-accrual | desktop | Renders correctly at desktop width. Default $200,000 sales at 4% shows $8,000 warranty expense, matching the anchor exactly. |
+| 430 | [ch9-lab-warranty-accrual__desktop__repairs-1500.png](ch9-lab-warranty-accrual__desktop__repairs-1500.png) | ch9-lab-warranty-accrual | desktop | Using $1,500 of repair parts correctly leaves warranty expense unchanged at $8,000 and drops liability remaining to $6,500, matching the anchor exactly — the instrument's central point (expense is fixed at sale, repairs only draw down the liability) comes through clearly. |
+| 431 | [ch9-learn-current-liabilities__mobile__initial.png](ch9-learn-current-liabilities__mobile__initial.png) | ch9-learn-current-liabilities | mobile | Renders correctly at mobile width. |
+| 432 | [ch9-learn-current-liabilities__tablet__initial.png](ch9-learn-current-liabilities__tablet__initial.png) | ch9-learn-current-liabilities | tablet | Renders correctly at tablet width. |
+| 433 | [ch9-learn-current-liabilities__desktop__initial.png](ch9-learn-current-liabilities__desktop__initial.png) | ch9-learn-current-liabilities | desktop | Renders correctly at desktop width. Known/Estimated/Contingent framing is clear and prose stays under the word-count rule. |
+| 434 | [ch9-learn-notes-payable__mobile__initial.png](ch9-learn-notes-payable__mobile__initial.png) | ch9-learn-notes-payable | mobile | Renders correctly at mobile width. |
+| 435 | [ch9-learn-notes-payable__tablet__initial.png](ch9-learn-notes-payable__tablet__initial.png) | ch9-learn-notes-payable | tablet | Renders correctly at tablet width. |
+| 436 | [ch9-learn-notes-payable__desktop__initial.png](ch9-learn-notes-payable__desktop__initial.png) | ch9-learn-notes-payable | desktop | Renders correctly at desktop width. $50 accrued / $250 next-year split matches the note anchors exactly. |
+| 437 | [ch9-learn-payroll__mobile__initial.png](ch9-learn-payroll__mobile__initial.png) | ch9-learn-payroll | mobile | Renders correctly at mobile width. |
+| 438 | [ch9-learn-payroll__tablet__initial.png](ch9-learn-payroll__tablet__initial.png) | ch9-learn-payroll | tablet | Renders correctly at tablet width. |
+| 439 | [ch9-learn-payroll__desktop__initial.png](ch9-learn-payroll__desktop__initial.png) | ch9-learn-payroll | desktop | Renders correctly at desktop width. Employee and employer tables both match the payroll anchors exactly ($7,535 net pay, $11,365 total cost). |
+| 440 | [ch9-learn-sales-tax-and-unearned-revenue__mobile__initial.png](ch9-learn-sales-tax-and-unearned-revenue__mobile__initial.png) | ch9-learn-sales-tax-and-unearned-revenue | mobile | Renders correctly at mobile width. |
+| 441 | [ch9-learn-sales-tax-and-unearned-revenue__tablet__initial.png](ch9-learn-sales-tax-and-unearned-revenue__tablet__initial.png) | ch9-learn-sales-tax-and-unearned-revenue | tablet | Renders correctly at tablet width. |
+| 442 | [ch9-learn-sales-tax-and-unearned-revenue__desktop__initial.png](ch9-learn-sales-tax-and-unearned-revenue__desktop__initial.png) | ch9-learn-sales-tax-and-unearned-revenue | desktop | Renders correctly at desktop width. Sales-tax and unearned-ticket-revenue entries both balance and match the brief. |
+| 443 | [ch9-learn-times-interest-earned__mobile__initial.png](ch9-learn-times-interest-earned__mobile__initial.png) | ch9-learn-times-interest-earned | mobile | Renders correctly at mobile width. |
+| 444 | [ch9-learn-times-interest-earned__tablet__initial.png](ch9-learn-times-interest-earned__tablet__initial.png) | ch9-learn-times-interest-earned | tablet | Renders correctly at tablet width. |
+| 445 | [ch9-learn-times-interest-earned__desktop__initial.png](ch9-learn-times-interest-earned__desktop__initial.png) | ch9-learn-times-interest-earned | desktop | Renders correctly at desktop width. 5.0 times matches the times-interest-earned anchor exactly. |
+| 446 | [ch9-learn-warranty__mobile__initial.png](ch9-learn-warranty__mobile__initial.png) | ch9-learn-warranty | mobile | Renders correctly at mobile width. |
+| 447 | [ch9-learn-warranty__tablet__initial.png](ch9-learn-warranty__tablet__initial.png) | ch9-learn-warranty | tablet | Renders correctly at tablet width. |
+| 448 | [ch9-learn-warranty__desktop__initial.png](ch9-learn-warranty__desktop__initial.png) | ch9-learn-warranty | desktop | Renders correctly at desktop width. $8,000 warranty expense matches the anchor exactly. |
+| 449 | [ch9-notes__mobile__initial.png](ch9-notes__mobile__initial.png) | ch9-notes | mobile | Renders correctly at mobile width, empty state. |
+| 450 | [ch9-notes__tablet__initial.png](ch9-notes__tablet__initial.png) | ch9-notes | tablet | Renders correctly at tablet width, empty state. |
+| 451 | [ch9-notes__desktop__initial.png](ch9-notes__desktop__initial.png) | ch9-notes | desktop | Renders correctly at desktop width, empty state with correct guidance text. |
+| 452 | [ch9-practice__mobile__initial.png](ch9-practice__mobile__initial.png) | ch9-practice | mobile | Renders correctly at mobile width; both drills stack cleanly. |
+| 453 | [ch9-practice__tablet__initial.png](ch9-practice__tablet__initial.png) | ch9-practice | tablet | Renders correctly at tablet width. |
+| 454 | [ch9-practice__desktop__initial.png](ch9-practice__desktop__initial.png) | ch9-practice | desktop | Renders correctly at desktop width, 10 classification items and 10 entry cards present. |
+| 455 | [ch9-practice__desktop__sort-complete.png](ch9-practice__desktop__sort-complete.png) | ch9-practice | desktop | All 10 classification answers are correct and match the expected key (5 Known, 2 Estimated, 1 Contingent-record, 1 Contingent-disclose, 1 No entry); each reveals a correct per-item reason and "What you just proved" appears. |
+| 456 | [ch9-recall__mobile__initial.png](ch9-recall__mobile__initial.png) | ch9-recall | mobile | Renders correctly at mobile width. |
+| 457 | [ch9-recall__tablet__initial.png](ch9-recall__tablet__initial.png) | ch9-recall | tablet | Renders correctly at tablet width. |
+| 458 | [ch9-recall__desktop__deck-started.png](ch9-recall__desktop__deck-started.png) | ch9-recall | desktop | Deck starts correctly with the first journalize-it card (C2, Box –, 1 of 56). |
+| 459 | [ch9-recall__desktop__initial.png](ch9-recall__desktop__initial.png) | ch9-recall | desktop | Renders correctly at desktop width. 56 cards due matches 10 entries + 10 classifications + 5 rules + 31 terms exactly. |
+| 460 | [ch9-reference__mobile__initial.png](ch9-reference__mobile__initial.png) | ch9-reference | mobile | Renders correctly at mobile width; dense reference page stays readable with no horizontal overflow. |
+| 461 | [ch9-reference__tablet__initial.png](ch9-reference__tablet__initial.png) | ch9-reference | tablet | Renders correctly at tablet width. |
+| 462 | [ch9-reference__desktop__initial.png](ch9-reference__desktop__initial.png) | ch9-reference | desktop | Renders correctly at desktop width. All formulas and 10 entry patterns match the hand-verified figures exactly; Form 941/payroll register/employee earnings report are correctly tagged [book?] pending textbook confirmation. |
+| 463 | [index__mobile__initial.png](index__mobile__initial.png) | index | mobile | Homepage at 390px: all 13 financial chapters listed with correct titles/summaries per the confirmed TOC, Chapter 3 marked Live with 46 cards due, 12 chapters correctly marked Planned. |
+| 464 | [index__tablet__initial.png](index__tablet__initial.png) | index | tablet | Same at 768px, summary column becomes visible alongside the title. |
+| 465 | [index__desktop__initial.png](index__desktop__initial.png) | index | desktop | Same at 1440px, “How a chapter works” four-item grid sits in two columns. |
+| 466 | [review__mobile__initial.png](review__mobile__initial.png) | review | mobile | Empty cross-chapter review state at 390px: “0 cards due”, link into Chapter 3, correct copy about deck generation. |
+| 467 | [review__tablet__initial.png](review__tablet__initial.png) | review | tablet | Same at 768px. |
+| 468 | [review__desktop__initial.png](review__desktop__initial.png) | review | desktop | Same at 1440px, content stays left-aligned rather than stretching. |
+| 469 | [study-sheet__mobile__initial.png](study-sheet__mobile__initial.png) | study-sheet | mobile | Print-oriented study sheet at 390px: all six adjusting entries (a)-(f) with correct account names and amounts, Back/Print controls at top. |
+| 470 | [study-sheet__tablet__initial.png](study-sheet__tablet__initial.png) | study-sheet | tablet | Two-column entry grid at 768px once width allows. |
+| 471 | [study-sheet__desktop__initial.png](study-sheet__desktop__initial.png) | study-sheet | desktop | Same two-column grid at 1440px, matches the reference page's journal-entry patterns exactly. |
