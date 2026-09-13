@@ -1,6 +1,6 @@
 # Visual review
 
-180 screens, captured 2026-09-13.
+230 screens, captured 2026-09-13.
 
 Open `index.html` in this folder — a browser tab, not a code editor — and look at
 every image before writing a verdict. A verdict is what is actually on the screen
@@ -181,12 +181,62 @@ and what, if anything, is wrong with it. "Looks fine" is not a verdict.
 | 169 | [ch3-reference__tablet__initial.png](ch3-reference__tablet__initial.png) | ch3-reference | tablet | Same content in a slightly wider single column at 768px. |
 | 170 | [ch3-reference__desktop__initial.png](ch3-reference__desktop__initial.png) | ch3-reference | desktop | Two-column term/formula layout at 1440px; every worked value (e.g. $375 depreciation, 46.4% margin) matches the ledger-derived numbers seen elsewhere in the chapter. |
 | 171 | [ch3-reference__desktop__term-inline-capture.png](ch3-reference__desktop__term-inline-capture.png) | ch3-reference | desktop | Clicking “Write it in your words” for Time period assumption opens an inline textarea in place (not a popover), so no fixed-position capture artifact here — renders correctly. |
-| 172 | [index__mobile__initial.png](index__mobile__initial.png) | index | mobile | Homepage at 390px: all 13 financial chapters listed with correct titles/summaries per the confirmed TOC, Chapter 3 marked Live with 46 cards due, 12 chapters correctly marked Planned. |
-| 173 | [index__tablet__initial.png](index__tablet__initial.png) | index | tablet | Same at 768px, summary column becomes visible alongside the title. |
-| 174 | [index__desktop__initial.png](index__desktop__initial.png) | index | desktop | Same at 1440px, “How a chapter works” four-item grid sits in two columns. |
-| 175 | [review__mobile__initial.png](review__mobile__initial.png) | review | mobile | Empty cross-chapter review state at 390px: “0 cards due”, link into Chapter 3, correct copy about deck generation. |
-| 176 | [review__tablet__initial.png](review__tablet__initial.png) | review | tablet | Same at 768px. |
-| 177 | [review__desktop__initial.png](review__desktop__initial.png) | review | desktop | Same at 1440px, content stays left-aligned rather than stretching. |
-| 178 | [study-sheet__mobile__initial.png](study-sheet__mobile__initial.png) | study-sheet | mobile | Print-oriented study sheet at 390px: all six adjusting entries (a)-(f) with correct account names and amounts, Back/Print controls at top. |
-| 179 | [study-sheet__tablet__initial.png](study-sheet__tablet__initial.png) | study-sheet | tablet | Two-column entry grid at 768px once width allows. |
-| 180 | [study-sheet__desktop__initial.png](study-sheet__desktop__initial.png) | study-sheet | desktop | Same two-column grid at 1440px, matches the reference page's journal-entry patterns exactly. |
+| 172 | [ch4-home__mobile__initial.png](ch4-home__mobile__initial.png) | ch4-home | mobile | Chapter home renders correctly at mobile width; six module cards with correct progress counts (0 of 6 lessons, 0 of 3 instruments, 0 of 2 drills). |
+| 173 | [ch4-home__tablet__initial.png](ch4-home__tablet__initial.png) | ch4-home | tablet | Renders correctly at tablet width. |
+| 174 | [ch4-home__desktop__initial.png](ch4-home__desktop__initial.png) | ch4-home | desktop | Renders correctly at desktop width. |
+| 175 | [ch4-lab-discount-decision__mobile__initial.png](ch4-lab-discount-decision__mobile__initial.png) | ch4-lab-discount-decision | mobile | Renders correctly at mobile width. Changed the slider’s default from day 30 to day 10 (the discount-taking baseline) so moving it actually demonstrates an escalating cost, matching the instruction’s "move the day and see what it costs" framing. |
+| 176 | [ch4-lab-discount-decision__tablet__initial.png](ch4-lab-discount-decision__tablet__initial.png) | ch4-lab-discount-decision | tablet | Renders correctly at tablet width with the corrected day-10 default. |
+| 177 | [ch4-lab-discount-decision__desktop__day-30.png](ch4-lab-discount-decision__desktop__day-30.png) | ch4-lab-discount-decision | desktop | Moving to day 30 correctly shows $500 cash paid, discount skipped, and 37.2% implied annual rate — matches the brief’s anchor exactly, and now shows a real before/after contrast against the day-10 default. |
+| 178 | [ch4-lab-discount-decision__desktop__initial.png](ch4-lab-discount-decision__desktop__initial.png) | ch4-lab-discount-decision | desktop | Renders correctly at desktop width; default now shows the $490/discount-taken baseline instead of opening already at the worst case. |
+| 179 | [ch4-lab-income-statement-formats__mobile__initial.png](ch4-lab-income-statement-formats__mobile__initial.png) | ch4-lab-income-statement-formats | mobile | Renders correctly at mobile width; multiple-step table matches the brief’s figures exactly line for line. |
+| 180 | [ch4-lab-income-statement-formats__tablet__initial.png](ch4-lab-income-statement-formats__tablet__initial.png) | ch4-lab-income-statement-formats | tablet | Renders correctly at tablet width. |
+| 181 | [ch4-lab-income-statement-formats__desktop__initial.png](ch4-lab-income-statement-formats__desktop__initial.png) | ch4-lab-income-statement-formats | desktop | Renders correctly at desktop width. |
+| 182 | [ch4-lab-income-statement-formats__desktop__single-step.png](ch4-lab-income-statement-formats__desktop__single-step.png) | ch4-lab-income-statement-formats | desktop | Toggling to single-step correctly shows net revenues $191,000, total expenses $171,000, and the same $20,000 net income as the multiple-step view. |
+| 183 | [ch4-lab-merchandise-flow__mobile__initial.png](ch4-lab-merchandise-flow__mobile__initial.png) | ch4-lab-merchandise-flow | mobile | Hero instrument renders correctly at mobile width, step 1 of 5, all figures at $0 before any step applied, result line visible, takeaway correctly hidden. |
+| 184 | [ch4-lab-merchandise-flow__tablet__initial.png](ch4-lab-merchandise-flow__tablet__initial.png) | ch4-lab-merchandise-flow | tablet | Renders correctly at tablet width. |
+| 185 | [ch4-lab-merchandise-flow__desktop__initial.png](ch4-lab-merchandise-flow__desktop__initial.png) | ch4-lab-merchandise-flow | desktop | Renders correctly at desktop width. |
+| 186 | [ch4-lab-merchandise-flow__desktop__step-1-bought.png](ch4-lab-merchandise-flow__desktop__step-1-bought.png) | ch4-lab-merchandise-flow | desktop | Applying step 1 posts the purchase entry correctly (shelf 10 units, inventory $500). Background capital entry now posts correctly after the fix (cash reads $0 here only because the $500 opening cash was fully spent buying inventory — correct). |
+| 187 | [ch4-lab-merchandise-flow__desktop__step-2-paid.png](ch4-lab-merchandise-flow__desktop__step-2-paid.png) | ch4-lab-merchandise-flow | desktop | Fixed a real bug here: the opening capital entry was not included in any step’s entryIds, so cash showed as a negative ($490) instead of the correct running balance. Fixed by treating entries outside the step sequence as always-posted background context in MerchandiseFlow.svelte. Now correctly shows cash $10, inventory $490, unit cost $49. |
+| 188 | [ch4-lab-merchandise-flow__desktop__step-3-sold.png](ch4-lab-merchandise-flow__desktop__step-3-sold.png) | ch4-lab-merchandise-flow | desktop | Sale step correctly fires two entries side by side (price entry above, cost entry below) with a connecting rule; shelf drops to 4 units, inventory $196, cash unchanged at $10 — all correct. |
+| 189 | [ch4-lab-merchandise-flow__desktop__step-5-done.png](ch4-lab-merchandise-flow__desktop__step-5-done.png) | ch4-lab-merchandise-flow | desktop | All five steps applied: shelf ends at 5 units @ $49 = $245 inventory, cash correctly returns to $500, and the netted-out sale panel matches the anchors exactly (net sales $490, COGS $245, gross profit $245, margin 50.0%). |
+| 190 | [ch4-learn-acid-test__mobile__initial.png](ch4-learn-acid-test__mobile__initial.png) | ch4-learn-acid-test | mobile | Renders correctly at mobile width; standalone worked example (Meridian Retail, $20,000/$16,000/1.25) with inventory correctly called out as excluded. |
+| 191 | [ch4-learn-acid-test__tablet__initial.png](ch4-learn-acid-test__tablet__initial.png) | ch4-learn-acid-test | tablet | Renders correctly at tablet width. |
+| 192 | [ch4-learn-acid-test__desktop__initial.png](ch4-learn-acid-test__desktop__initial.png) | ch4-learn-acid-test | desktop | Renders correctly at desktop width. |
+| 193 | [ch4-learn-discount-decision__mobile__initial.png](ch4-learn-discount-decision__mobile__initial.png) | ch4-learn-discount-decision | mobile | Renders correctly at mobile width with the corrected day-10 default. |
+| 194 | [ch4-learn-discount-decision__tablet__initial.png](ch4-learn-discount-decision__tablet__initial.png) | ch4-learn-discount-decision | tablet | Renders correctly at tablet width. |
+| 195 | [ch4-learn-discount-decision__desktop__initial.png](ch4-learn-discount-decision__desktop__initial.png) | ch4-learn-discount-decision | desktop | Renders correctly at desktop width. |
+| 196 | [ch4-learn-income-statement__mobile__initial.png](ch4-learn-income-statement__mobile__initial.png) | ch4-learn-income-statement | mobile | Renders correctly at mobile width. |
+| 197 | [ch4-learn-income-statement__tablet__initial.png](ch4-learn-income-statement__tablet__initial.png) | ch4-learn-income-statement | tablet | Renders correctly at tablet width. |
+| 198 | [ch4-learn-income-statement__desktop__initial.png](ch4-learn-income-statement__desktop__initial.png) | ch4-learn-income-statement | desktop | Renders correctly at desktop width. |
+| 199 | [ch4-learn-merchandisers__mobile__initial.png](ch4-learn-merchandisers__mobile__initial.png) | ch4-learn-merchandisers | mobile | Lesson renders correctly at mobile width, prose under length limits, no instrument (appropriately — this LO has none). |
+| 200 | [ch4-learn-merchandisers__tablet__initial.png](ch4-learn-merchandisers__tablet__initial.png) | ch4-learn-merchandisers | tablet | Renders correctly at tablet width. |
+| 201 | [ch4-learn-merchandisers__desktop__initial.png](ch4-learn-merchandisers__desktop__initial.png) | ch4-learn-merchandisers | desktop | Renders correctly at desktop width. |
+| 202 | [ch4-learn-purchases__mobile__initial.png](ch4-learn-purchases__mobile__initial.png) | ch4-learn-purchases | mobile | Renders correctly at mobile width; the three static journal entries shown are pulled live from Z-Mart’s actual ledger entries, not hardcoded. |
+| 203 | [ch4-learn-purchases__tablet__initial.png](ch4-learn-purchases__tablet__initial.png) | ch4-learn-purchases | tablet | Renders correctly at tablet width. |
+| 204 | [ch4-learn-purchases__desktop__initial.png](ch4-learn-purchases__desktop__initial.png) | ch4-learn-purchases | desktop | Renders correctly at desktop width. |
+| 205 | [ch4-learn-sales__mobile__initial.png](ch4-learn-sales__mobile__initial.png) | ch4-learn-sales | mobile | Renders correctly at mobile width with the corrected background-entry fix; embeds the hero instrument correctly. |
+| 206 | [ch4-learn-sales__tablet__initial.png](ch4-learn-sales__tablet__initial.png) | ch4-learn-sales | tablet | Renders correctly at tablet width. |
+| 207 | [ch4-learn-sales__desktop__initial.png](ch4-learn-sales__desktop__initial.png) | ch4-learn-sales | desktop | Renders correctly at desktop width. |
+| 208 | [ch4-notes__mobile__initial.png](ch4-notes__mobile__initial.png) | ch4-notes | mobile | Generic Notes component renders correctly at mobile width, empty state correct. |
+| 209 | [ch4-notes__tablet__initial.png](ch4-notes__tablet__initial.png) | ch4-notes | tablet | Renders correctly at tablet width. |
+| 210 | [ch4-notes__desktop__initial.png](ch4-notes__desktop__initial.png) | ch4-notes | desktop | Renders correctly at desktop width. |
+| 211 | [ch4-practice__mobile__initial.png](ch4-practice__mobile__initial.png) | ch4-practice | mobile | Both drills render correctly at mobile width: 13-item classification sort and the 13-card entry journalizer (11 situations, 2 split into price/cost pairs). |
+| 212 | [ch4-practice__tablet__initial.png](ch4-practice__tablet__initial.png) | ch4-practice | tablet | Renders correctly at tablet width. |
+| 213 | [ch4-practice__desktop__initial.png](ch4-practice__desktop__initial.png) | ch4-practice | desktop | Renders correctly at desktop width. |
+| 214 | [ch4-practice__desktop__sort-complete.png](ch4-practice__desktop__sort-complete.png) | ch4-practice | desktop | All 13 classification items answered correctly with correct highlighted answers and explanations; "What you just proved" takeaway reveals correctly on completion. |
+| 215 | [ch4-recall__mobile__initial.png](ch4-recall__mobile__initial.png) | ch4-recall | mobile | Recall deck landing renders correctly at mobile width — 66 cards due (13 entries, 13 classifications, 7 rules, 33 terms), matching the content counts exactly. |
+| 216 | [ch4-recall__tablet__initial.png](ch4-recall__tablet__initial.png) | ch4-recall | tablet | Renders correctly at tablet width. |
+| 217 | [ch4-recall__desktop__deck-started.png](ch4-recall__desktop__deck-started.png) | ch4-recall | desktop | Starting the deck shows the first due card correctly (an entry-journalize card, box –, 1 of 66). |
+| 218 | [ch4-recall__desktop__initial.png](ch4-recall__desktop__initial.png) | ch4-recall | desktop | Renders correctly at desktop width before starting. |
+| 219 | [ch4-reference__mobile__initial.png](ch4-reference__mobile__initial.png) | ch4-reference | mobile | Generic Reference component renders correctly at mobile width — all 33 terms, 5 formulas, and all 13 journal-entry patterns across both Z-Mart and Harborview. |
+| 220 | [ch4-reference__tablet__initial.png](ch4-reference__tablet__initial.png) | ch4-reference | tablet | Renders correctly at tablet width. |
+| 221 | [ch4-reference__desktop__initial.png](ch4-reference__desktop__initial.png) | ch4-reference | desktop | Renders correctly at desktop width; every formula’s worked calculation and every journal entry’s dr/cr amounts reconcile exactly to the ledger-derived figures, including the Sales refund payable term’s [book?] disclaimer. |
+| 222 | [index__mobile__initial.png](index__mobile__initial.png) | index | mobile | Homepage at 390px: all 13 financial chapters listed with correct titles/summaries per the confirmed TOC, Chapter 3 marked Live with 46 cards due, 12 chapters correctly marked Planned. |
+| 223 | [index__tablet__initial.png](index__tablet__initial.png) | index | tablet | Same at 768px, summary column becomes visible alongside the title. |
+| 224 | [index__desktop__initial.png](index__desktop__initial.png) | index | desktop | Same at 1440px, “How a chapter works” four-item grid sits in two columns. |
+| 225 | [review__mobile__initial.png](review__mobile__initial.png) | review | mobile | Empty cross-chapter review state at 390px: “0 cards due”, link into Chapter 3, correct copy about deck generation. |
+| 226 | [review__tablet__initial.png](review__tablet__initial.png) | review | tablet | Same at 768px. |
+| 227 | [review__desktop__initial.png](review__desktop__initial.png) | review | desktop | Same at 1440px, content stays left-aligned rather than stretching. |
+| 228 | [study-sheet__mobile__initial.png](study-sheet__mobile__initial.png) | study-sheet | mobile | Print-oriented study sheet at 390px: all six adjusting entries (a)-(f) with correct account names and amounts, Back/Print controls at top. |
+| 229 | [study-sheet__tablet__initial.png](study-sheet__tablet__initial.png) | study-sheet | tablet | Two-column entry grid at 768px once width allows. |
+| 230 | [study-sheet__desktop__initial.png](study-sheet__desktop__initial.png) | study-sheet | desktop | Same two-column grid at 1440px, matches the reference page's journal-entry patterns exactly. |

@@ -2,21 +2,14 @@ import type { ChapterContent, ChapterMeta } from './types';
 import { chapter as ch01 } from './chapters/ch01';
 import { chapter as ch02 } from './chapters/ch02';
 import { chapter as ch03 } from './chapters/ch03';
+import { chapter as ch04 } from './chapters/ch04';
 
 /** Wild, Financial and Managerial Accounting, 2025 release. Chapters 1–13 are financial. */
 export const chapterIndex: ChapterMeta[] = [
 	ch01.meta,
 	ch02.meta,
 	ch03.meta,
-	{
-		number: 4,
-		slug: 'merchandising-operations',
-		title: 'Accounting for Merchandising Operations',
-		part: 'financial',
-		status: 'planned',
-		summary: 'Inventory in, sales out, gross profit in between.',
-		instrument: 'Perpetual inventory flow'
-	},
+	ch04.meta,
 	{
 		number: 5,
 		slug: 'inventories',
@@ -100,7 +93,7 @@ export const chapterIndex: ChapterMeta[] = [
 	}
 ];
 
-export const chapters: Record<number, ChapterContent> = { 1: ch01, 2: ch02, 3: ch03 };
+export const chapters: Record<number, ChapterContent> = { 1: ch01, 2: ch02, 3: ch03, 4: ch04 };
 
 export function chapterMeta(n: number): ChapterMeta | undefined {
 	return chapterIndex.find((c) => c.number === n);

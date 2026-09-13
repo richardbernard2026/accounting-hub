@@ -76,6 +76,7 @@ export interface Company {
 	retainedEarningsAcct: string;
 	dividendsAcct: string;
 	contraOf: Record<string, string>;
+	contraRevenueOf?: Record<string, string>;
 }
 
 export interface QuickCheck {

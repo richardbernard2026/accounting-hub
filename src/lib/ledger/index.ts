@@ -5,7 +5,14 @@
  */
 
 export type AccountType =
-	'asset' | 'contra-asset' | 'liability' | 'equity' | 'contra-equity' | 'revenue' | 'expense';
+	| 'asset'
+	| 'contra-asset'
+	| 'liability'
+	| 'equity'
+	| 'contra-equity'
+	| 'revenue'
+	| 'contra-revenue'
+	| 'expense';
 
 export interface Account {
 	num: string;
@@ -53,6 +60,7 @@ export function normalSide(type: AccountType): Side {
 	switch (type) {
 		case 'asset':
 		case 'contra-equity':
+		case 'contra-revenue':
 		case 'expense':
 			return 'dr';
 		case 'contra-asset':
@@ -64,7 +72,9 @@ export function normalSide(type: AccountType): Side {
 }
 
 export function isTemporary(type: AccountType): boolean {
-	return type === 'revenue' || type === 'expense' || type === 'contra-equity';
+	return (
+		type === 'revenue' || type === 'contra-revenue' || type === 'expense' || type === 'contra-equity'
+	);
 }
 
 export function elementLabel(type: AccountType): string {
@@ -81,6 +91,8 @@ export function elementLabel(type: AccountType): string {
 			return 'Equity (contra)';
 		case 'revenue':
 			return 'Revenue';
+		case 'contra-revenue':
+			return 'Revenue (contra)';
 		case 'expense':
 			return 'Expense';
 	}
@@ -205,13 +217,26 @@ export interface StatementOptions {
 	/** For each contra-asset, which asset it offsets (so the balance sheet nets them). */
 	/* Note: `beginning` retained earnings is the account balance before closing entries; chapters that close the books post those entries explicitly. */
 	contraOf?: Record<string, string>;
+	/** For each contra-revenue (e.g. sales discounts), which revenue it offsets (so net sales nets them). */
+	contraRevenueOf?: Record<string, string>;
 }
 
 export function statements(balances: Map<string, Balance>, o: StatementOptions): Statements {
 	const list = [...balances.values()].sort((x, y) => x.acct.num.localeCompare(y.acct.num));
-	const revenues = list
-		.filter((b) => b.acct.type === 'revenue' && b.balance !== 0)
-		.map((b) => ({ num: b.acct.num, label: b.acct.name, amount: b.balance }));
+	const revenues: StatementLine[] = [];
+	for (const b of list) {
+		if (b.acct.type !== 'revenue' || b.balance === 0) continue;
+		revenues.push({ num: b.acct.num, label: b.acct.name, amount: b.balance });
+		for (const c of list) {
+			if (
+				c.acct.type === 'contra-revenue' &&
+				o.contraRevenueOf?.[c.acct.num] === b.acct.num &&
+				c.balance !== 0
+			) {
+				revenues.push({ num: c.acct.num, label: `Less: ${c.acct.name}`, amount: -c.balance });
+			}
+		}
+	}
 	const expenses = list
 		.filter((b) => b.acct.type === 'expense' && b.balance !== 0)
 		.map((b) => ({ num: b.acct.num, label: b.acct.name, amount: b.balance }));
