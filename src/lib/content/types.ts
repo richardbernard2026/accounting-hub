@@ -125,6 +125,13 @@ export interface ChapterContent {
 	accounts?: Account[];
 	classifications?: Classification[];
 	entryCards?: EntryCardSpec[];
+	/**
+	 * A second sort-style drill for a chapter whose practice skill is not a
+	 * debit/credit journalizer (e.g. reclassifying facts by section and
+	 * direction, rather than recording new transactions). Counted alongside
+	 * `entryCards` toward Practice's "N of drills done" total.
+	 */
+	secondaryClassifications?: Classification[];
 	rules?: Rule[];
 	formulas?: Formula[];
 	/** Learn's pages, in order. */
