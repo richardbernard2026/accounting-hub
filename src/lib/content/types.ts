@@ -77,6 +77,8 @@ export interface Company {
 	dividendsAcct: string;
 	contraOf: Record<string, string>;
 	contraRevenueOf?: Record<string, string>;
+	contraLiabilityOf?: Record<string, string>;
+	adjunctLiabilityOf?: Record<string, string>;
 }
 
 export interface QuickCheck {

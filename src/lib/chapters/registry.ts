@@ -44,6 +44,11 @@ import {
 	instrumentComponents as ch09Instruments
 } from './ch09/manifest';
 import Ch09Practice from './ch09/Practice.svelte';
+import {
+	lessonComponents as ch10Lessons,
+	instrumentComponents as ch10Instruments
+} from './ch10/manifest';
+import Ch10Practice from './ch10/Practice.svelte';
 
 /**
  * Only Learn's lessons, Lab's instruments, and Practice are bespoke per
@@ -101,5 +106,10 @@ export const chapterModules: Record<number, ChapterModules> = {
 		lessonComponents: ch09Lessons,
 		instrumentComponents: ch09Instruments,
 		practice: Ch09Practice
+	},
+	10: {
+		lessonComponents: ch10Lessons,
+		instrumentComponents: ch10Instruments,
+		practice: Ch10Practice
 	}
 };

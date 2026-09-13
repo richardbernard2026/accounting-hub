@@ -8,6 +8,8 @@ export type AccountType =
 	| 'asset'
 	| 'contra-asset'
 	| 'liability'
+	| 'contra-liability'
+	| 'adjunct-liability'
 	| 'equity'
 	| 'contra-equity'
 	| 'revenue'
@@ -59,12 +61,14 @@ export interface TrialBalance {
 export function normalSide(type: AccountType): Side {
 	switch (type) {
 		case 'asset':
+		case 'contra-liability':
 		case 'contra-equity':
 		case 'contra-revenue':
 		case 'expense':
 			return 'dr';
 		case 'contra-asset':
 		case 'liability':
+		case 'adjunct-liability':
 		case 'equity':
 		case 'revenue':
 			return 'cr';
@@ -85,6 +89,10 @@ export function elementLabel(type: AccountType): string {
 			return 'Contra asset';
 		case 'liability':
 			return 'Liability';
+		case 'contra-liability':
+			return 'Liability (contra)';
+		case 'adjunct-liability':
+			return 'Liability (adjunct)';
 		case 'equity':
 			return 'Equity';
 		case 'contra-equity':
@@ -219,6 +227,10 @@ export interface StatementOptions {
 	contraOf?: Record<string, string>;
 	/** For each contra-revenue (e.g. sales discounts), which revenue it offsets (so net sales nets them). */
 	contraRevenueOf?: Record<string, string>;
+	/** For each contra-liability (e.g. discount on bonds payable), which liability it offsets. */
+	contraLiabilityOf?: Record<string, string>;
+	/** For each adjunct-liability (e.g. premium on bonds payable), which liability it adds to. */
+	adjunctLiabilityOf?: Record<string, string>;
 }
 
 export function statements(balances: Map<string, Balance>, o: StatementOptions): Statements {
@@ -263,9 +275,27 @@ export function statements(balances: Map<string, Balance>, o: StatementOptions):
 		}
 	}
 	const totalAssets = sum(assets.map((l) => l.amount));
-	const liabilities = list
-		.filter((b) => b.acct.type === 'liability' && b.balance !== 0)
-		.map((b) => ({ num: b.acct.num, label: b.acct.name, amount: b.balance }));
+	const liabilities: StatementLine[] = [];
+	for (const b of list) {
+		if (b.acct.type !== 'liability' || b.balance === 0) continue;
+		liabilities.push({ num: b.acct.num, label: b.acct.name, amount: b.balance });
+		for (const c of list) {
+			if (
+				c.acct.type === 'contra-liability' &&
+				o.contraLiabilityOf?.[c.acct.num] === b.acct.num &&
+				c.balance !== 0
+			) {
+				liabilities.push({ num: c.acct.num, label: `Less: ${c.acct.name}`, amount: -c.balance });
+			}
+			if (
+				c.acct.type === 'adjunct-liability' &&
+				o.adjunctLiabilityOf?.[c.acct.num] === b.acct.num &&
+				c.balance !== 0
+			) {
+				liabilities.push({ num: c.acct.num, label: `Plus: ${c.acct.name}`, amount: c.balance });
+			}
+		}
+	}
 	const totalLiabilities = sum(liabilities.map((l) => l.amount));
 	const equity: StatementLine[] = list
 		.filter(
