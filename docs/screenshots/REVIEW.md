@@ -1,6 +1,6 @@
 # Visual review
 
-373 screens, captured 2026-09-13.
+424 screens, captured 2026-09-13.
 
 Open `index.html` in this folder — a browser tab, not a code editor — and look at
 every image before writing a verdict. A verdict is what is actually on the screen
@@ -374,12 +374,63 @@ and what, if anything, is wrong with it. "Looks fine" is not a verdict.
 | 362 | [ch7-reference__mobile__initial.png](ch7-reference__mobile__initial.png) | ch7-reference | mobile | Generic Reference component renders correctly at mobile width — all 24 terms, 6 formulas, and all 10 journal-entry patterns across Bridgepoint, Meridian, and Cobalt. |
 | 363 | [ch7-reference__tablet__initial.png](ch7-reference__tablet__initial.png) | ch7-reference | tablet | Renders correctly at tablet width. |
 | 364 | [ch7-reference__desktop__initial.png](ch7-reference__desktop__initial.png) | ch7-reference | desktop | Renders correctly at desktop width; every formula’s worked calculation and every journal entry’s dr/cr amounts reconcile exactly to the ledger-derived figures. |
-| 365 | [index__mobile__initial.png](index__mobile__initial.png) | index | mobile | Homepage at 390px: all 13 financial chapters listed with correct titles/summaries per the confirmed TOC, Chapter 3 marked Live with 46 cards due, 12 chapters correctly marked Planned. |
-| 366 | [index__tablet__initial.png](index__tablet__initial.png) | index | tablet | Same at 768px, summary column becomes visible alongside the title. |
-| 367 | [index__desktop__initial.png](index__desktop__initial.png) | index | desktop | Same at 1440px, “How a chapter works” four-item grid sits in two columns. |
-| 368 | [review__mobile__initial.png](review__mobile__initial.png) | review | mobile | Empty cross-chapter review state at 390px: “0 cards due”, link into Chapter 3, correct copy about deck generation. |
-| 369 | [review__tablet__initial.png](review__tablet__initial.png) | review | tablet | Same at 768px. |
-| 370 | [review__desktop__initial.png](review__desktop__initial.png) | review | desktop | Same at 1440px, content stays left-aligned rather than stretching. |
-| 371 | [study-sheet__mobile__initial.png](study-sheet__mobile__initial.png) | study-sheet | mobile | Print-oriented study sheet at 390px: all six adjusting entries (a)-(f) with correct account names and amounts, Back/Print controls at top. |
-| 372 | [study-sheet__tablet__initial.png](study-sheet__tablet__initial.png) | study-sheet | tablet | Two-column entry grid at 768px once width allows. |
-| 373 | [study-sheet__desktop__initial.png](study-sheet__desktop__initial.png) | study-sheet | desktop | Same two-column grid at 1440px, matches the reference page's journal-entry patterns exactly. |
+| 365 | [ch8-home__mobile__initial.png](ch8-home__mobile__initial.png) | ch8-home | mobile | Chapter home renders correctly at mobile width; six module cards with correct progress counts (0 of 7 lessons, 0 of 3 instruments, 0 of 2 drills). |
+| 366 | [ch8-home__tablet__initial.png](ch8-home__tablet__initial.png) | ch8-home | tablet | Renders correctly at tablet width. |
+| 367 | [ch8-home__desktop__initial.png](ch8-home__desktop__initial.png) | ch8-home | desktop | Renders correctly at desktop width. |
+| 368 | [ch8-lab-change-in-estimate__mobile__initial.png](ch8-lab-change-in-estimate__mobile__initial.png) | ch8-lab-change-in-estimate | mobile | Renders correctly at mobile width; default (4 more years, $400 salvage) exactly matches the book’s revised schedule (years 1–2 unchanged at $1,800, years 3–6 at $1,500). |
+| 369 | [ch8-lab-change-in-estimate__tablet__initial.png](ch8-lab-change-in-estimate__tablet__initial.png) | ch8-lab-change-in-estimate | tablet | Renders correctly at tablet width. |
+| 370 | [ch8-lab-change-in-estimate__desktop__changed.png](ch8-lab-change-in-estimate__desktop__changed.png) | ch8-lab-change-in-estimate | desktop | Changing to 2 remaining years at $0 salvage correctly recomputes to $3,200/year (6,400÷2), with years 1–2 still shown unchanged, and reveals the takeaway. |
+| 371 | [ch8-lab-change-in-estimate__desktop__initial.png](ch8-lab-change-in-estimate__desktop__initial.png) | ch8-lab-change-in-estimate | desktop | Renders correctly at desktop width. |
+| 372 | [ch8-lab-depreciation-curves__mobile__initial.png](ch8-lab-depreciation-curves__mobile__initial.png) | ch8-lab-depreciation-curves | mobile | Hero instrument renders correctly at mobile width; straight-line default shows five equal $1,800 bars totaling $9,000, result line visible, takeaway hidden. |
+| 373 | [ch8-lab-depreciation-curves__tablet__initial.png](ch8-lab-depreciation-curves__tablet__initial.png) | ch8-lab-depreciation-curves | tablet | Renders correctly at tablet width. |
+| 374 | [ch8-lab-depreciation-curves__desktop__ddb-book-value.png](ch8-lab-depreciation-curves__desktop__ddb-book-value.png) | ch8-lab-depreciation-curves | desktop | Toggling to book value under DDB correctly shows the declining balance floored at the $1,000 salvage value in year 5. |
+| 375 | [ch8-lab-depreciation-curves__desktop__ddb-expense.png](ch8-lab-depreciation-curves__desktop__ddb-expense.png) | ch8-lab-depreciation-curves | desktop | Switching to double-declining-balance correctly shows all five years (4,000/2,400/1,440/864/296) matching the book’s table exactly, total $9,000, and reveals the takeaway. |
+| 376 | [ch8-lab-depreciation-curves__desktop__initial.png](ch8-lab-depreciation-curves__desktop__initial.png) | ch8-lab-depreciation-curves | desktop | Renders correctly at desktop width. |
+| 377 | [ch8-lab-disposal__mobile__initial.png](ch8-lab-disposal__mobile__initial.png) | ch8-lab-disposal | mobile | Renders correctly at mobile width; default sale price at book value ($4,600) correctly shows $0 gain, result line and hidden takeaway correct. |
+| 378 | [ch8-lab-disposal__tablet__initial.png](ch8-lab-disposal__tablet__initial.png) | ch8-lab-disposal | tablet | Renders correctly at tablet width. |
+| 379 | [ch8-lab-disposal__desktop__initial.png](ch8-lab-disposal__desktop__initial.png) | ch8-lab-disposal | desktop | Renders correctly at desktop width. |
+| 380 | [ch8-lab-disposal__desktop__loss-4000.png](ch8-lab-disposal__desktop__loss-4000.png) | ch8-lab-disposal | desktop | Moving the sale price to $4,000 correctly shows a $600 loss against the $4,600 book value, matching the anchor exactly, and reveals the takeaway. |
+| 381 | [ch8-learn-change-in-estimate__mobile__initial.png](ch8-learn-change-in-estimate__mobile__initial.png) | ch8-learn-change-in-estimate | mobile | Renders correctly at mobile width; embeds the change-in-estimate instrument correctly. |
+| 382 | [ch8-learn-change-in-estimate__tablet__initial.png](ch8-learn-change-in-estimate__tablet__initial.png) | ch8-learn-change-in-estimate | tablet | Renders correctly at tablet width. |
+| 383 | [ch8-learn-change-in-estimate__desktop__initial.png](ch8-learn-change-in-estimate__desktop__initial.png) | ch8-learn-change-in-estimate | desktop | Renders correctly at desktop width. |
+| 384 | [ch8-learn-depreciation-methods__mobile__initial.png](ch8-learn-depreciation-methods__mobile__initial.png) | ch8-learn-depreciation-methods | mobile | Renders correctly at mobile width; embeds the depreciation curves hero correctly. |
+| 385 | [ch8-learn-depreciation-methods__tablet__initial.png](ch8-learn-depreciation-methods__tablet__initial.png) | ch8-learn-depreciation-methods | tablet | Renders correctly at tablet width. |
+| 386 | [ch8-learn-depreciation-methods__desktop__initial.png](ch8-learn-depreciation-methods__desktop__initial.png) | ch8-learn-depreciation-methods | desktop | Renders correctly at desktop width. |
+| 387 | [ch8-learn-disposals__mobile__initial.png](ch8-learn-disposals__mobile__initial.png) | ch8-learn-disposals | mobile | Renders correctly at mobile width; embeds the disposal instrument correctly. |
+| 388 | [ch8-learn-disposals__tablet__initial.png](ch8-learn-disposals__tablet__initial.png) | ch8-learn-disposals | tablet | Renders correctly at tablet width. |
+| 389 | [ch8-learn-disposals__desktop__initial.png](ch8-learn-disposals__desktop__initial.png) | ch8-learn-disposals | desktop | Renders correctly at desktop width. |
+| 390 | [ch8-learn-expenditures__mobile__initial.png](ch8-learn-expenditures__mobile__initial.png) | ch8-learn-expenditures | mobile | Renders correctly at mobile width; ordinary repair and betterment entries shown are pulled live from the ledger. |
+| 391 | [ch8-learn-expenditures__tablet__initial.png](ch8-learn-expenditures__tablet__initial.png) | ch8-learn-expenditures | tablet | Renders correctly at tablet width. |
+| 392 | [ch8-learn-expenditures__desktop__initial.png](ch8-learn-expenditures__desktop__initial.png) | ch8-learn-expenditures | desktop | Renders correctly at desktop width. |
+| 393 | [ch8-learn-natural-resources-and-intangibles__mobile__initial.png](ch8-learn-natural-resources-and-intangibles__mobile__initial.png) | ch8-learn-natural-resources-and-intangibles | mobile | Renders correctly at mobile width; depletion and amortization entries shown are pulled live from the ledger. |
+| 394 | [ch8-learn-natural-resources-and-intangibles__tablet__initial.png](ch8-learn-natural-resources-and-intangibles__tablet__initial.png) | ch8-learn-natural-resources-and-intangibles | tablet | Renders correctly at tablet width. |
+| 395 | [ch8-learn-natural-resources-and-intangibles__desktop__initial.png](ch8-learn-natural-resources-and-intangibles__desktop__initial.png) | ch8-learn-natural-resources-and-intangibles | desktop | Renders correctly at desktop width. |
+| 396 | [ch8-learn-plant-assets-and-cost__mobile__initial.png](ch8-learn-plant-assets-and-cost__mobile__initial.png) | ch8-learn-plant-assets-and-cost | mobile | Lesson renders correctly at mobile width; the lump-sum entry shown is pulled live from the Bay Ridge Woodworks ledger, not hardcoded. |
+| 397 | [ch8-learn-plant-assets-and-cost__tablet__initial.png](ch8-learn-plant-assets-and-cost__tablet__initial.png) | ch8-learn-plant-assets-and-cost | tablet | Renders correctly at tablet width. |
+| 398 | [ch8-learn-plant-assets-and-cost__desktop__initial.png](ch8-learn-plant-assets-and-cost__desktop__initial.png) | ch8-learn-plant-assets-and-cost | desktop | Renders correctly at desktop width. |
+| 399 | [ch8-learn-turnover__mobile__initial.png](ch8-learn-turnover__mobile__initial.png) | ch8-learn-turnover | mobile | Renders correctly at mobile width; standalone worked example ($800,000/$400,000/2.0 times) matches the anchor exactly. |
+| 400 | [ch8-learn-turnover__tablet__initial.png](ch8-learn-turnover__tablet__initial.png) | ch8-learn-turnover | tablet | Renders correctly at tablet width. |
+| 401 | [ch8-learn-turnover__desktop__initial.png](ch8-learn-turnover__desktop__initial.png) | ch8-learn-turnover | desktop | Renders correctly at desktop width. |
+| 402 | [ch8-notes__mobile__initial.png](ch8-notes__mobile__initial.png) | ch8-notes | mobile | Generic Notes component renders correctly at mobile width, empty state correct. |
+| 403 | [ch8-notes__tablet__initial.png](ch8-notes__tablet__initial.png) | ch8-notes | tablet | Renders correctly at tablet width. |
+| 404 | [ch8-notes__desktop__initial.png](ch8-notes__desktop__initial.png) | ch8-notes | desktop | Renders correctly at desktop width. |
+| 405 | [ch8-practice__mobile__initial.png](ch8-practice__mobile__initial.png) | ch8-practice | mobile | Both drills render correctly at mobile width: 11-item capitalize-or-expense sort and the 10-card entry journalizer. |
+| 406 | [ch8-practice__tablet__initial.png](ch8-practice__tablet__initial.png) | ch8-practice | tablet | Renders correctly at tablet width. |
+| 407 | [ch8-practice__desktop__initial.png](ch8-practice__desktop__initial.png) | ch8-practice | desktop | Renders correctly at desktop width. |
+| 408 | [ch8-practice__desktop__sort-complete.png](ch8-practice__desktop__sort-complete.png) | ch8-practice | desktop | All 11 classification items answered correctly with correct highlighted answers and explanations; "What you just proved" takeaway reveals correctly on completion. |
+| 409 | [ch8-recall__mobile__initial.png](ch8-recall__mobile__initial.png) | ch8-recall | mobile | Recall deck landing renders correctly at mobile width — 64 cards due (10 entries, 11 classifications, 5 rules, 38 terms), matching the content counts exactly. |
+| 410 | [ch8-recall__tablet__initial.png](ch8-recall__tablet__initial.png) | ch8-recall | tablet | Renders correctly at tablet width. |
+| 411 | [ch8-recall__desktop__deck-started.png](ch8-recall__desktop__deck-started.png) | ch8-recall | desktop | Starting the deck shows the first due card correctly (an entry-journalize card, box –, 1 of 64). |
+| 412 | [ch8-recall__desktop__initial.png](ch8-recall__desktop__initial.png) | ch8-recall | desktop | Renders correctly at desktop width before starting. |
+| 413 | [ch8-reference__mobile__initial.png](ch8-reference__mobile__initial.png) | ch8-reference | mobile | Generic Reference component renders correctly at mobile width — all 38 terms, 8 formulas, and all 10 journal-entry patterns across Fletcher Manufacturing (both methods) and Bay Ridge Woodworks. |
+| 414 | [ch8-reference__tablet__initial.png](ch8-reference__tablet__initial.png) | ch8-reference | tablet | Renders correctly at tablet width. |
+| 415 | [ch8-reference__desktop__initial.png](ch8-reference__desktop__initial.png) | ch8-reference | desktop | Renders correctly at desktop width; every formula’s worked calculation and every journal entry’s dr/cr amounts reconcile exactly to the ledger-derived figures. |
+| 416 | [index__mobile__initial.png](index__mobile__initial.png) | index | mobile | Homepage at 390px: all 13 financial chapters listed with correct titles/summaries per the confirmed TOC, Chapter 3 marked Live with 46 cards due, 12 chapters correctly marked Planned. |
+| 417 | [index__tablet__initial.png](index__tablet__initial.png) | index | tablet | Same at 768px, summary column becomes visible alongside the title. |
+| 418 | [index__desktop__initial.png](index__desktop__initial.png) | index | desktop | Same at 1440px, “How a chapter works” four-item grid sits in two columns. |
+| 419 | [review__mobile__initial.png](review__mobile__initial.png) | review | mobile | Empty cross-chapter review state at 390px: “0 cards due”, link into Chapter 3, correct copy about deck generation. |
+| 420 | [review__tablet__initial.png](review__tablet__initial.png) | review | tablet | Same at 768px. |
+| 421 | [review__desktop__initial.png](review__desktop__initial.png) | review | desktop | Same at 1440px, content stays left-aligned rather than stretching. |
+| 422 | [study-sheet__mobile__initial.png](study-sheet__mobile__initial.png) | study-sheet | mobile | Print-oriented study sheet at 390px: all six adjusting entries (a)-(f) with correct account names and amounts, Back/Print controls at top. |
+| 423 | [study-sheet__tablet__initial.png](study-sheet__tablet__initial.png) | study-sheet | tablet | Two-column entry grid at 768px once width allows. |
+| 424 | [study-sheet__desktop__initial.png](study-sheet__desktop__initial.png) | study-sheet | desktop | Same two-column grid at 1440px, matches the reference page's journal-entry patterns exactly. |
