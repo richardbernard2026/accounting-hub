@@ -107,6 +107,21 @@ export interface EntryCardSpec {
 	hint?: string;
 }
 
+/**
+ * A prompt for a chapter with no journal entries at all, where the student
+ * computes a number instead (e.g. a ratio). Paired with ComputationDrill /
+ * ComputationCard, which mirror EntryDrill / EntryCard's reveal pattern for
+ * a numeric answer rather than a debit/credit entry.
+ */
+export interface ComputationItem {
+	lo: string;
+	prompt: string;
+	answer: number;
+	unit: '%' | '$' | 'times' | 'days' | '';
+	tolerance: number;
+	why: string;
+}
+
 /** A rule question with a short list of answers (debit or credit, deferral or accrual…). */
 export interface Rule {
 	lo: string;
@@ -132,6 +147,8 @@ export interface ChapterContent {
 	 * `entryCards` toward Practice's "N of drills done" total.
 	 */
 	secondaryClassifications?: Classification[];
+	/** A numeric-computation drill for a chapter with no journal entries at all. Counted the same way as `entryCards`. */
+	computationItems?: ComputationItem[];
 	rules?: Rule[];
 	formulas?: Formula[];
 	/** Learn's pages, in order. */

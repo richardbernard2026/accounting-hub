@@ -119,17 +119,19 @@
 		</table>
 	</section>
 
-	<section class="border-rule-2 mt-10 border-t pt-8">
-		<h2 class="kicker">Every entry the chapter teaches</h2>
-		<div class="mt-3 grid gap-4 sm:grid-cols-2">
-			{#each patterns as e (e.id)}
-				<div class="border-rule-2 bg-paper-2/40 border px-3 py-2">
-					<div class="text-ink-2 text-xs">({e.id}) {e.explanation}</div>
-					<div class="mt-1">
-						<JournalEntry entry={e} {accountName} compact date={false} />
+	{#if patterns.length}
+		<section class="border-rule-2 mt-10 border-t pt-8">
+			<h2 class="kicker">Every entry the chapter teaches</h2>
+			<div class="mt-3 grid gap-4 sm:grid-cols-2">
+				{#each patterns as e (e.id)}
+					<div class="border-rule-2 bg-paper-2/40 border px-3 py-2">
+						<div class="text-ink-2 text-xs">({e.id}) {e.explanation}</div>
+						<div class="mt-1">
+							<JournalEntry entry={e} {accountName} compact date={false} />
+						</div>
 					</div>
-				</div>
-			{/each}
-		</div>
-	</section>
+				{/each}
+			</div>
+		</section>
+	{/if}
 </div>

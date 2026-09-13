@@ -16,7 +16,9 @@
 	const instruments = chapter.instruments ?? [];
 	const drillKinds = [
 		...(chapter.classifications?.length ? (['classification'] as const) : []),
-		...(chapter.entryCards?.length || chapter.secondaryClassifications?.length ? (['entry'] as const) : [])
+		...(chapter.entryCards?.length || chapter.secondaryClassifications?.length || chapter.computationItems?.length
+			? (['entry'] as const)
+			: [])
 	];
 
 	/** `**bold**` to `<strong>`. Content is our own authored copy, never user input. */
